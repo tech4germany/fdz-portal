@@ -33,7 +33,6 @@ app.use(
   "/assets",
   express.static(path.join(__dirname, "../landing_page/assets"))
 );
-app.use("/test", express.static(path.join(__dirname, "../landing_page/test")));
 
 app.use(routes);
 app.use((error, req, res, next) => {
