@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 
 const security = require("./middleware/security");
 const routes = require("./routes");
+const { ValError } = require("./utils/errors");
+global.ValError = ValError;
 
 mongoose.Promise = Promise;
 mongoose
