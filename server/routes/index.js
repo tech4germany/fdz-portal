@@ -7,7 +7,7 @@ const apiRoutes = require("./api");
 router.use("/api", apiRoutes);
 // App
 router.get("/landing", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../landing_page/index.html"));
+  res.sendFile(path.join(__dirname, "../../frontend/landing_page/index.html"));
 });
 
 module.exports = router;
