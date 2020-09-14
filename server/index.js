@@ -10,6 +10,9 @@ const routes = require("./routes");
 const { ValError } = require("./utils/errors");
 global.ValError = ValError;
 
+PORT = process.env.PORT || 8000;
+MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/fdz";
+
 mongoose.Promise = Promise;
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -45,6 +48,6 @@ app.use((error, req, res, next) => {
   res.json({ status: error.status ? error.status : 500, message });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is up and running: http://localhost:${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is up and running: http://localhost:${PORT}`);
 });
