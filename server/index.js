@@ -10,8 +10,8 @@ const routes = require("./routes");
 const { ValError } = require("./utils/errors");
 global.ValError = ValError;
 
-PORT = process.env.PORT || 8000;
-MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/fdz";
+const PORT = process.env.PORT || 8000;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/fdz";
 
 mongoose.Promise = Promise;
 mongoose
