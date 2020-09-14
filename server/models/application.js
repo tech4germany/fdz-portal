@@ -72,6 +72,13 @@ const applicationSchema = new Schema(
         },
       },
     ],
+    accessLevel: [
+      {
+        type: String,
+        required: true,
+        enum: ["referencedata", "suf", "syntheticdata", "customizeddata"],
+      },
+    ],
     scripts: [{ type: Schema.Types.ObjectId, ref: "Scripts" }],
     user: { type: Schema.Types.ObjectId, required: false },
   },
