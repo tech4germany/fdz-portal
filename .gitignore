@@ -1,6 +1,9 @@
 #build
 frontend/build
 
+#git
+.gitconfig
+
 # Logs
 logs
 *.log
