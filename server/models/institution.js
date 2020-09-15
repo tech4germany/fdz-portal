@@ -16,7 +16,7 @@ const institutionSchema = new Schema({
     type: String,
     required: true,
   },
-  userStatus: {
+  status: {
     type: String,
     enum: ["new", "awatingVerification", "verified"],
     default: "new",

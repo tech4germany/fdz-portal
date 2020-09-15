@@ -14,7 +14,7 @@ const applicationSchema = new Schema(
     },
     statusFdz: {
       type: String,
-      required: true,
+      required: false,
       enum: [
         "new",
         "checking_identity",
@@ -25,10 +25,11 @@ const applicationSchema = new Schema(
         "waiting_testdata",
         "waiting_script",
       ],
+      default: "new",
     },
     statusUser: {
       type: String,
-      required: true,
+      required: false,
       enum: [
         "new",
         "checking_identity",
@@ -39,6 +40,7 @@ const applicationSchema = new Schema(
         "waiting_testdata",
         "waiting_script",
       ],
+      default: "new",
     },
     currentStepTimeEstimate: {
       type: Number,
@@ -76,11 +78,18 @@ const applicationSchema = new Schema(
       {
         type: String,
         required: true,
-        enum: ["referencedata", "suf", "syntheticdata", "customizeddata"],
+        enum: [
+          "none",
+          "referencedata",
+          "suf",
+          "syntheticdata",
+          "customizeddata",
+        ],
+        default: "none",
       },
     ],
     scripts: [{ type: Schema.Types.ObjectId, ref: "Scripts" }],
-    user: { type: Schema.Types.ObjectId, required: false },
+    user: { type: Schema.Types.ObjectId, required: true },
   },
   {
     timestamps: {

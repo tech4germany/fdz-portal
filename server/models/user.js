@@ -16,7 +16,7 @@ const userSchema = new Schema({
     enum: ["user", "fdz", "admin"],
     default: "user",
   },
-  userStatus: {
+  status: {
     type: String,
     enum: [
       "new",

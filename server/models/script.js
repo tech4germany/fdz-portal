@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const scriptSchema = new Schema(
   {
-    filename: {
+    fileName: {
       type: String,
       required: true,
     },
@@ -22,6 +22,7 @@ const scriptSchema = new Schema(
         "successful",
         "updated",
       ],
+      default: "new",
     },
     queuePosition: {
       type: Number,

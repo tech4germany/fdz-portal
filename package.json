@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
+    "seed": "node server/utils/seed.js",
     "dev:server": "nodemon server/index.js",
     "dev:frontend": "parcel frontend/app/index.html",
     "start": "node server/index.js",
