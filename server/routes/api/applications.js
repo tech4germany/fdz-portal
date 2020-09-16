@@ -1,6 +1,7 @@
 const router = require("express").Router();
 // to catch errors (no need for try/catch)
 const asyncWrap = require("../../middleware/asyncWrap");
+const { permissionCheck } = require("../../middleware/auth");
 
 // Single
 router.get(
@@ -30,6 +31,18 @@ router.post(
     //   name: req.body.name,
     // });
     res.json({ status: 200 });
+  })
+);
+
+// Update Status
+router.put(
+  "/status/:id",
+  asyncWrap(async (req, res) => {
+    const applicationName = await applicationsService.updateStatus({
+      newStatus: req.body.status,
+    });
+    const applicationName = "Test Application";
+    res.json({ status: 200, applicationName });
   })
 );
 
