@@ -57,6 +57,15 @@ const applicationSchema = new Schema(
     history: [
       {
         action: {
+          enum: [
+            "status_update",
+            "submitted",
+            "updated",
+            "test_data_delivered",
+            "script_submitted",
+          ],
+        },
+        actionDetail: {
           type: String,
           required: true,
         },

@@ -32,14 +32,28 @@ const updateStatus = async (params, user) => {
     throw new ValError("Not allowed to change status");
 
   try {
-    await Project.findOneAndUpdate(
-      { _id: params.id },
-      { status: params.status },
-      {
-        new: true,
-        runValidators: true,
-      }
+    const applicationDB = await Application.findById(params.id).select(
+      "status history"
     );
+
+    applicationDB.history.push({
+      action: "status_update",
+      actionDetail: `${applicationDB.status} to ${params.status}`,
+      fdzUser: user._id,
+      time: Math.floor(Date.now() / 1000),
+    });
+    applicationDB.status = params.status;
+    await applicationDB.save();
+
+    // await Application.findOneAndUpdate(
+    //   { _id: params.id },
+    //   { status: params.status },
+    //   {
+    //     new: true,
+    //     runValidators: true,
+    //   }
+    // );
+
     // Placeholder: notify user
   } catch (error) {
     throw error;
