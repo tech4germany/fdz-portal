@@ -7,7 +7,8 @@
     "dev:server": "nodemon server/index.js",
     "dev:frontend": "parcel frontend/app/index.html",
     "start": "node server/index.js",
-    "build": "parcel build frontend/app/index.html --out-dir frontend/build --public-url /public",
+    "build": "parcel build frontend/app/index.html --out-dir frontend/build --public-url ./",
+    "build:static": "parcel build frontend/app/index.html --out-dir frontend/build --public-url ./",
     "test": "ava --verbose"
   },
   "author": "",
