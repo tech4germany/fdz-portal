@@ -6,6 +6,7 @@ import Home from "./Home";
 import Applications from "./Applications";
 import Application from "./Application";
 import ApplicationNew from "./ApplicationNew";
+import StatusBar from "./StatusBar";
 import "./App.css";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -25,6 +26,7 @@ export default class App extends React.Component {
               <ApplicationNew />
             </Route>
             <Route path="/application" render={() => <Application />} />
+            <Route path="/status" render={() => <StatusBar />} />
             <Route
               path="/auth"
               render={() => (

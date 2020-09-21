@@ -8,8 +8,8 @@ const Header = () => {
     <div className="header">
       <img src={bfarmLogo} alt="bfarm_logo" />
       <Link to="/applications">List</Link> |
-      <Link to="/application">Single</Link> |
-      <Link to="/application/new">New</Link> |<Link to="/">Home</Link> |
+      <Link to="/application">Single</Link> | <Link to="/status">Status</Link> |
+      <Link to="/application/new">New</Link> | <Link to="/">Home</Link> |
       <Link to="/test">NotFound</Link>
     </div>
   );
