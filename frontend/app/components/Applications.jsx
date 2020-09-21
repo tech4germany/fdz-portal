@@ -1,7 +1,8 @@
 import React from "react";
+import "./Applications.css";
 
 const Applications = () => {
-  return <React.Fragment>List of applications</React.Fragment>;
+  return <div className="application-list"></div>;
 };
 
 export default Applications;

@@ -6,7 +6,7 @@ const sendData = async (endpoint, type, data) => {
     method: type,
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${localStorage.getItem("identity")}`,
+      // Authorization: `Bearer ${localStorage.getItem("identity")}`,
       "Content-Type": "application/json;charset=UTF-8",
     },
     body: JSON.stringify(data),
@@ -21,9 +21,9 @@ const getData = async (endpoint) => {
   const url = BASE_URL + "/api" + endpoint;
   const options = {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("identity")}`,
-    },
+    // headers: {
+    //   Authorization: `Bearer ${localStorage.getItem("identity")}`,
+    // },
   };
 
   const response = await fetch(url, options);

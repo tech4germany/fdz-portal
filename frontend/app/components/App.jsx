@@ -5,6 +5,7 @@ import NotFound from "./NotFound";
 import Home from "./Home";
 import Applications from "./Applications";
 import Application from "./Application";
+import Login from "./Auth/Login";
 import ApplicationNew from "./ApplicationNew";
 import StatusBar from "./StatusBar";
 import "./App.css";
@@ -27,6 +28,7 @@ export default class App extends React.Component {
             </Route>
             <Route path="/application" render={() => <Application />} />
             <Route path="/status" render={() => <StatusBar />} />
+            <Route path="/login" render={() => <Login />} />
             <Route
               path="/auth"
               render={() => (
