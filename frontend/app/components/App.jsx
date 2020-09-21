@@ -5,7 +5,10 @@ import NotFound from "./NotFound";
 import Home from "./Home";
 import Applications from "./Applications";
 import Application from "./Application";
+import ApplicationNew from "./ApplicationNew";
 import "./App.css";
+import "bulma/css/bulma.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 export default class App extends React.Component {
   render() {
@@ -18,6 +21,9 @@ export default class App extends React.Component {
               <Home />
             </Route>
             <Route exact path="/applications" render={() => <Applications />} />
+            <Route exact path="/application/new">
+              <ApplicationNew />
+            </Route>
             <Route path="/application" render={() => <Application />} />
             <Route
               path="/auth"
