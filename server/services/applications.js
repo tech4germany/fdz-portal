@@ -14,16 +14,17 @@ const get = async (id) => {
 
 const list = async (params, user) => {
   const limit = parseInt(params.limit) || 100;
-  let userId = user._id;
-  if (user.role !== "researcher") {
-    userId = params.userId || null;
+  const query = {};
+  if (false && user.role === "researcher") {
+    query.user = params.userId;
   }
 
-  const applications = await Application.find({ user: userId }, null, {
+  const applications = await Application.find(query, null, {
     sort: { created_at: -1 },
   })
     .limit(limit)
     .lean(); // .select({ "name": 1, "_id": 0})
+  console.log(applications);
   return applications;
 };
 

@@ -45,7 +45,7 @@ const StatusBar = () => {
         <div id="content-1">
           <div className="timeline-item is-success">
             <div className="timeline-marker is-icon is-success">
-              <i class="fa fa-check"></i>
+              <i className="fa fa-check"></i>
             </div>
             <div className="timeline-content">
               <p className="heading">January 2016</p>
@@ -54,7 +54,7 @@ const StatusBar = () => {
           </div>
           <div className="timeline-item is-success">
             <div className="timeline-marker is-icon is-success">
-              <i class="fa fa-check"></i>
+              <i className="fa fa-check"></i>
             </div>
             <div className="timeline-content">
               <p className="heading">February 2016</p>

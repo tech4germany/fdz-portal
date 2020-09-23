@@ -41,12 +41,12 @@ const handleError = (result) => {
     return;
   }
 
-  displayMessage(
-    false,
-    result.status === 400
-      ? result.message
-      : "Unexpected server error. Couldn't finish action."
-  );
+  // displayMessage(
+  //   false,
+  //   result.status === 400
+  //     ? result.message
+  //     : "Unexpected server error. Couldn't finish action."
+  // );
 };
 
 export { sendData, getData };

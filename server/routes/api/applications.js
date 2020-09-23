@@ -1,14 +1,14 @@
 const router = require("express").Router();
 // to catch errors (no need for try/catch)
 const asyncWrap = require("../../middleware/asyncWrap");
+const applicationsServices = require("../../services/applications");
 const { permissionCheck } = require("../../middleware/auth");
 
 // Single
 router.get(
   "/:id",
   asyncWrap(async (req, res) => {
-    //const application = await applicationService.get(req.params.id);
-    const application = `Application: ${req.params.id}`;
+    const application = await applicationsServices.get(req.params.id);
     res.json({ status: 200, application });
   })
 );
@@ -17,8 +17,7 @@ router.get(
 router.get(
   "/",
   asyncWrap(async (req, res) => {
-    //const applications = await applicationsService.list();
-    const applications = ["1", "2", "3"];
+    const applications = await applicationsServices.list(req.params);
     res.json({ status: 200, applications });
   })
 );
@@ -27,9 +26,9 @@ router.get(
 router.post(
   "/",
   asyncWrap(async (req, res) => {
-    // await applicationsService.create({
-    //   name: req.body.name,
-    // });
+    await applicationsServices.create({
+      name: req.body.name,
+    });
     res.json({ status: 200 });
   })
 );

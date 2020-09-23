@@ -17,7 +17,11 @@ const Applications = () => {
 
   const applicationsList = applications.map((application) => {
     console.log("map");
-    return <div key={application}>{application}</div>;
+    return (
+      <div key={application._id}>
+        {application.name} - {application.status}
+      </div>
+    );
   });
   console.log("render");
 
