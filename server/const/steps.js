@@ -53,132 +53,133 @@
 
 const STEPS = [
   {
-    name = "application_submitted",
-    string = "Sie haben den Antrag eingereicht",
-    newBubble = true,
-    type = "submitted",
-    actionRequiered = false
+    name: "application_submitted",
+    string: "Sie haben den Antrag eingereicht",
+    newBubble: true,
+    type: "submitted",
+    actionRequiered: false,
   },
   {
-    name = "application_unchecked",
-    string = "Der Antrag wird überprüft",
-    newBubble = true,
-    type = "waiting",
-    actionRequiered = false
+    name: "application_unchecked",
+    string: "Der Antrag wird überprüft",
+    newBubble: true,
+    type: "waiting",
+    actionRequiered: false,
   },
   {
-    name = "application_checked",
-    string = "Der Antrag wurde überprüft",
-    newBubble = false,
-    type = "success",
-    actionRequiered = true
+    name: "application_checked",
+    string: "Der Antrag wurde überprüft",
+    newBubble: false,
+    type: "success",
+    actionRequiered: true,
   },
   {
-    name = "application_needs_update",
-    string = "Der Antrag muss überarbeitet werden",
-    newBubble = false,
-    type = "update",
-    actionRequiered = true
+    name: "application_needs_update",
+    string: "Der Antrag muss überarbeitet werden",
+    newBubble: false,
+    type: "update",
+    actionRequiered: true,
   },
   {
-    name = "application_needs_update",
-    string = "Der Antrag muss überarbeitet werden",
-    newBubble = false,
-    type = "update",
-    actionRequiered = true
+    name: "application_needs_update",
+    string: "Der Antrag muss überarbeitet werden",
+    newBubble: false,
+    type: "update",
+    actionRequiered: true,
   },
   {
-    name = "application_updated",
-    string = "Der Antrag wurde überarbeitet",
-    newBubble = false,
-    type = "submitted",
-    actionRequiered = false
+    name: "application_updated",
+    string: "Der Antrag wurde überarbeitet",
+    newBubble: false,
+    type: "submitted",
+    actionRequiered: false,
   },
   {
-    name = "application_rejected",
-    string = "Der Antrag wurde abgewiesen",
-    newBubble = false,
-    type = "fail",
-    actionRequiered = false
+    name: "application_rejected",
+    string: "Der Antrag wurde abgewiesen",
+    newBubble: false,
+    type: "fail",
+    actionRequiered: false,
   },
   {
-    name = "testdata_prepared",
-    string = "Die Testdaten werden bereitgestellt",
-    newBubble = true,
-    type = "waiting",
-    actionRequiered = false
+    name: "testdata_prepared",
+    string: "Die Testdaten werden bereitgestellt",
+    newBubble: true,
+    type: "waiting",
+    actionRequiered: false,
   },
   {
-    name = "testdata_delivered",
-    string = "Der Zugang zu den Testdaten wurde übermittelt",
-    newBubble = false,
-    type = "success",
-    actionRequiered = true
+    name: "testdata_delivered",
+    string: "Der Zugang zu den Testdaten wurde übermittelt",
+    newBubble: false,
+    type: "success",
+    actionRequiered: true,
   },
   {
-    name = "script_submitted",
-    string = "Sie haben das Script {1} eingereicht",
-    newBubble = true,
-    type = "submitted",
-    actionRequiered = false
+    name: "script_submitted",
+    string: "Sie haben das Script {1} eingereicht",
+    newBubble: true,
+    type: "submitted",
+    actionRequiered: false,
   },
   {
-    name = "script_unchecked",
-    string = "Das Skript wird überprüft",
-    newBubble = true,
-    type = "waiting",
-    actionRequiered = false
+    name: "script_unchecked",
+    string: "Das Skript wird überprüft",
+    newBubble: true,
+    type: "waiting",
+    actionRequiered: false,
   },
   {
-    name = "script_checked",
-    string = "Das Sript wurde erfolgreich überprüft",
-    newBubble = false,
-    type = "success",
-    actionRequiered = false
+    name: "script_checked",
+    string: "Das Sript wurde erfolgreich überprüft",
+    newBubble: false,
+    type: "success",
+    actionRequiered: false,
   },
   {
-    name = "script_needs_update",
-    string = "Das Skript {1} muss überarbeitet werden. Siehe Meldung.",
-    newBubble = false,
-    type = "update",
-    actionRequiered = true
+    name: "script_needs_update",
+    string: "Das Skript {1} muss überarbeitet werden. Siehe Meldung.",
+    newBubble: false,
+    type: "update",
+    actionRequiered: true,
   },
   {
-    name = "script_unexecuted",
-    string = "Das Skript wird ausgeführt",
-    newBubble = true,
-    type = "waiting",
-    actionRequiered = false
+    name: "script_unexecuted",
+    string: "Das Skript wird ausgeführt",
+    newBubble: true,
+    type: "waiting",
+    actionRequiered: false,
   },
   {
-    name = "script_executed",
-    string = "Das Sript wurde erfolgreich ausgeführt",
-    newBubble = false,
-    type = "success",
-    actionRequiered = false
+    name: "script_executed",
+    string: "Das Sript wurde erfolgreich ausgeführt",
+    newBubble: false,
+    type: "success",
+    actionRequiered: false,
   },
   {
-    name = "results_preparing",
-    string = "Die Ergebnismenge wird bereitgestellt",
-    newBubble = true,
-    type = "waiting",
-    actionRequiered = false
+    name: "results_preparing",
+    string: "Die Ergebnismenge wird bereitgestellt",
+    newBubble: true,
+    type: "waiting",
+    actionRequiered: false,
   },
   {
-    name = "results_delivered",
-    string = "Die Ergebnismenge wurde übermittelt",
-    newBubble = false,
-    type = "success",
-    actionRequiered = false
+    name: "results_delivered",
+    string: "Die Ergebnismenge wurde übermittelt",
+    newBubble: false,
+    type: "success",
+    actionRequiered: false,
   },
-]
+];
 
-const STATUSES_NAMES = STEPS2.map(step => {
-  return step.name
-})
-
-
+const getStatusNames = () => {
+  console.log("running status fucntion");
+  return STEPS.map((step) => step.name);
+};
+const STATUSES_NAMES = getStatusNames();
 
 module.exports = {
-  STEPS, STATUSES_NAMES
+  STEPS,
+  STATUSES_NAMES,
 };

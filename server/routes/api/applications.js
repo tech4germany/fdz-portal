@@ -41,7 +41,7 @@ router.put(
     const applicationName = await applicationsService.updateStatus({
       newStatus: req.body.status,
     });
-    const applicationName = "Test Application";
+    //const applicationName = "Test Application";
     res.json({ status: 200, applicationName });
   })
 );
