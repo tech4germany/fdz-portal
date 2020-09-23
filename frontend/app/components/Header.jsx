@@ -7,9 +7,9 @@ const Header = () => {
   return (
     <div className="header">
       <img src={bfarmLogo} alt="bfarm_logo" />
-      <div class="tabs tabs-length">
+      <div className="tabs tabs-length">
         <ul>
-          <li class="is-active">
+          <li className="is-active">
             <Link to="/applications">List</Link>
           </li>
           <li>

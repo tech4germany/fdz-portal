@@ -1,4 +1,5 @@
-const BASE_URL = window.location.origin;
+const BASE_URL = "http://localhost:8000";
+//window.location.origin;
 
 const sendData = async (endpoint, type, data) => {
   const url = BASE_URL + "/api" + endpoint;
