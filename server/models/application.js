@@ -12,35 +12,24 @@ const applicationSchema = new Schema(
       type: String,
       required: false,
     },
-    statusFdz: {
+    status: {
       type: String,
       required: false,
       enum: [
-        "new",
-        "checking_identity",
-        "checking_formal",
-        "checking_content",
-        "response_needed",
-        "approved",
-        "waiting_testdata",
-        "waiting_script",
+        "application_submitted",
+        "application_checked",
+        "application_accepted",
+        "application_needs_update",
+        "application_updated",
+        "application_rejected",
+        "testdata_delivered",
+        "script_submitted",
+        "script_checked",
+        "script_executed",
+        "script_failed",
+        "results_submitted",
       ],
-      default: "new",
-    },
-    statusUser: {
-      type: String,
-      required: false,
-      enum: [
-        "new",
-        "checking_identity",
-        "checking_formal",
-        "checking_content",
-        "response_needed",
-        "approved",
-        "waiting_testdata",
-        "waiting_script",
-      ],
-      default: "new",
+      default: "application_submitted",
     },
     currentStepTimeEstimate: {
       type: Number,
@@ -54,15 +43,39 @@ const applicationSchema = new Schema(
       type: Number,
       default: 0,
     },
+    mainSteps: [
+      {
+        id: {
+          type: Number,
+          required: true,
+        },
+        status: {
+          type: String,
+          enum: ["done", "current"],
+          required: true,
+        },
+        date: {
+          type: Date,
+          required: false,
+        },
+      },
+    ],
     history: [
       {
         action: {
           enum: [
-            "status_update",
-            "submitted",
-            "updated",
-            "test_data_delivered",
+            "application_submitted",
+            "application_checked",
+            "application_accepted",
+            "application_needs_update",
+            "application_updated",
+            "application_rejected",
+            "testdata_delivered",
             "script_submitted",
+            "script_checked",
+            "script_executed",
+            "script_failed",
+            "results_submitted",
           ],
         },
         actionDetail: {
@@ -77,7 +90,7 @@ const applicationSchema = new Schema(
           type: String,
           required: true,
         },
-        time: {
+        date: {
           type: String,
           required: true,
         },

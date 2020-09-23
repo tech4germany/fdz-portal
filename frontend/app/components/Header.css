@@ -1,3 +1,8 @@
 .header {
-  height: 150px;
+  padding-top: 20px;
+  padding-left: 20px;
+  background-color: white;
 }
+/* .tabs {
+  width: 700px;
+} */

@@ -19,49 +19,85 @@ const StatusBar = () => {
     spacer.classList.toggle("is-hidden");
   };
 
+  const createTimeline = () => {
+    let timeline = '<div className="timeline">';
+  };
+
   return (
-    <div className="timeline">
-      <header className="timeline-header">
-        <span className="tag is-medium is-primary">
-          <span className="timeline-header-text">Start</span>
-          <span className="icon is-small" id="1" onClick={collapseDetails}>
-            <i className="fas fa-angle-up" aria-hidden="true" id="icon-1"></i>
+    <div className="content-box">
+      <div className="timeline">
+        <header className="timeline-header">
+          <span className="tag is-large is-success">
+            <span className="timeline-header-text">Antrag</span>
+            <span
+              className="icon is-small click"
+              id="1"
+              onClick={collapseDetails}
+            >
+              <i className="fas fa-angle-up" aria-hidden="true" id="icon-1"></i>
+            </span>
           </span>
-        </span>
-      </header>
-      <div className="timeline-item is-hidden" id="row-spacer-1"></div>
-      <div id="content-1">
-        <div className="timeline-item">
-          <div className="timeline-marker"></div>
-          <div className="timeline-content">
-            <p className="heading">January 2016</p>
-            <p>Timeline content - Can include any HTML element</p>
+        </header>
+        <div
+          className="timeline-item is-hidden is-success"
+          id="row-spacer-1"
+        ></div>
+        <div id="content-1">
+          <div className="timeline-item is-success">
+            <div className="timeline-marker is-icon is-success">
+              <i class="fa fa-check"></i>
+            </div>
+            <div className="timeline-content">
+              <p className="heading">January 2016</p>
+              <p>Timeline content - Can include any HTML element</p>
+            </div>
+          </div>
+          <div className="timeline-item is-success">
+            <div className="timeline-marker is-icon is-success">
+              <i class="fa fa-check"></i>
+            </div>
+            <div className="timeline-content">
+              <p className="heading">February 2016</p>
+              <p>Timeline content - Can include any HTML element</p>
+            </div>
           </div>
         </div>
-        <div className="timeline-item">
-          <div className="timeline-marker is-image is-32x32">
-            <img src="https://bulma.io/images/placeholders/32x32.png" />
+        <header className="timeline-header">
+          <span className="tag is-large is-info">
+            <span className="timeline-header-text">Testdaten</span>
+            <span
+              className="icon is-small click"
+              id="2"
+              onClick={collapseDetails}
+            >
+              <i className="fas fa-angle-up" aria-hidden="true" id="icon-2"></i>
+            </span>
+          </span>
+        </header>
+        <div className="timeline-item is-hidden" id="row-spacer-2"></div>
+        <div id="content-2">
+          <div className="timeline-item">
+            <div className="timeline-marker is-icon is-info">
+              <i className="fa fa-hourglass-start"></i>
+            </div>
+            <div className="timeline-content">
+              <p className="heading">March 2017</p>
+              <p>Timeline content - Can include any HTML element</p>
+            </div>
           </div>
-          <div className="timeline-content">
-            <p className="heading">February 2016</p>
-            <p>Timeline content - Can include any HTML element</p>
+          <div className="timeline-item">
+            <div className="timeline-marker is-icon is-info">
+              <i className="fa fa-exclamation"></i>
+            </div>
+            <div className="timeline-content">
+              <p className="heading">March 2017</p>
+              <p>Timeline content - Can include any HTML element</p>
+            </div>
           </div>
         </div>
-      </div>
-      <header className="timeline-header">
-        <span className="tag is-primary">2017</span>
-      </header>
-      <div className="timeline-item">
-        <div className="timeline-marker is-icon">
-          <i className="fa fa-flag"></i>
+        <div className="timeline-header">
+          <span className="tag is-medium is-large is-dark">Ergebnismenge</span>
         </div>
-        <div className="timeline-content">
-          <p className="heading">March 2017</p>
-          <p>Timeline content - Can include any HTML element</p>
-        </div>
-      </div>
-      <div className="timeline-header">
-        <span className="tag is-medium is-primary">End</span>
       </div>
     </div>
   );
