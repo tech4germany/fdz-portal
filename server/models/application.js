@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const { STATUSES_NAMES } = require("../const/steps.js");
 
 const applicationSchema = new Schema(
   {
@@ -15,20 +16,7 @@ const applicationSchema = new Schema(
     status: {
       type: String,
       required: false,
-      enum: [
-        "application_submitted",
-        "application_checked",
-        "application_accepted",
-        "application_needs_update",
-        "application_updated",
-        "application_rejected",
-        "testdata_delivered",
-        "script_submitted",
-        "script_checked",
-        "script_executed",
-        "script_failed",
-        "results_submitted",
-      ],
+      enum: STATUSES_NAMES,
       default: "application_submitted",
     },
     currentStepTimeEstimate: {
@@ -63,20 +51,7 @@ const applicationSchema = new Schema(
     history: [
       {
         action: {
-          enum: [
-            "application_submitted",
-            "application_checked",
-            "application_accepted",
-            "application_needs_update",
-            "application_updated",
-            "application_rejected",
-            "testdata_delivered",
-            "script_submitted",
-            "script_checked",
-            "script_executed",
-            "script_failed",
-            "results_submitted",
-          ],
+          enum: STATUSES_NAMES,
         },
         actionDetail: {
           type: String,
