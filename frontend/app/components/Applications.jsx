@@ -17,7 +17,6 @@ const Applications = () => {
   }, []);
 
   const applicationsList = applications.map((application) => {
-    console.log("map");
     return (
       <div key={application._id} className="application">
         <div>
@@ -29,15 +28,14 @@ const Applications = () => {
       </div>
     );
   });
-  console.log("render");
 
   return (
-    <React.Fragment>
+    <div className="content-box">
       <div className="application-list">
         {applicationsList}
         <div className="right">
           <Link to="/application/new">
-            <button className="button">
+            <button className="button is-small is-info">
               <span className="icon">
                 <i className="fas fa-plus"></i>
               </span>
@@ -46,7 +44,7 @@ const Applications = () => {
           </Link>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

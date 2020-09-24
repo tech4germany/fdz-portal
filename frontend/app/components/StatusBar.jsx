@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import "bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css";
 import "./StatusBar.css";
 
-const StatusBar = () => {
+const StatusBar = (props) => {
+  console.log(props);
   const collapseDetails = (element) => {
     const content = document.getElementById(
       `content-${element.currentTarget.id}`
@@ -26,6 +27,14 @@ const StatusBar = () => {
 
   return (
     <div className="content-box">
+      <div className="application-title">
+        {props.application.name}{" "}
+        <i
+          className="fas fa-sync-alt is-hidden"
+          aria-hidden="true"
+          onClick={props.refreshData}
+        ></i>
+      </div>
       <div className="timeline">
         <header
           className="timeline-header-over click"
@@ -77,7 +86,7 @@ const StatusBar = () => {
           <div>
             Please submit a script:{" "}
             <Link to="/application/id/script">
-              <button class="button is-info is-inverted is-small">
+              <button className="button is-info is-inverted is-small">
                 Submit
               </button>
             </Link>
