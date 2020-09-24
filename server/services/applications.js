@@ -24,7 +24,6 @@ const list = async (params, user) => {
   })
     .limit(limit)
     .lean(); // .select({ "name": 1, "_id": 0})
-  console.log(applications);
   return applications;
 };
 

@@ -39,6 +39,14 @@ const create = async () => {
     application1.user = user1DB._id;
     application1DB = await Application.create(application1);
 
+    const application2 = {
+      name: "Covid",
+      description: "Zweiter Antrag",
+      queuePosition: 2,
+    };
+    application2.user = user1DB._id;
+    application2DB = await Application.create(application2);
+
     const script1 = { fileName: "script1.sql", queuePosition: 1 };
     script1.user = user1DB._id;
     script1.application = application1DB._id;
