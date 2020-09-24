@@ -8,6 +8,7 @@ import Application from "./Application";
 import Login from "./Auth/Login";
 import ApplicationNew from "./ApplicationNew";
 import StatusBar from "./StatusBar";
+import NavState from "./states/navState.jsx";
 import "./App.css";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -26,7 +27,11 @@ export default class App extends React.Component {
             <Route exact path="/application/new">
               <ApplicationNew />
             </Route>
-            <Route path="/application" render={() => <Application />} />
+            <Route
+              path="/application/:id/script"
+              render={() => <Application />}
+            />
+            <Route path="/application/:id" render={() => <Application />} />
             <Route path="/status" render={() => <StatusBar />} />
             <Route path="/login" render={() => <Login />} />
             <Route

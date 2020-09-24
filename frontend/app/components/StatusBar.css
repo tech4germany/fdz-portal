@@ -1,9 +1,7 @@
-.timeline-header-text {
-  margin-right: 10px;
-}
 .click {
   cursor: pointer;
 }
+
 .content-box {
   background-color: white;
   margin-top: 30px;
@@ -14,4 +12,24 @@
   width: 750px;
   border-radius: 0.25rem;
   box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.timeline-mainstep {
+  background-color: #209cee;
+  width: 400px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  color: white;
+  border-radius: 0.25rem;
+}
+.collapse {
+  margin-top: 5px;
+}
+.timeline-head {
+  font-size: 20px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
 }

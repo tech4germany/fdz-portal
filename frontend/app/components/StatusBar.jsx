@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css";
 import "./StatusBar.css";
 
@@ -27,7 +28,7 @@ const StatusBar = () => {
     <div className="content-box">
       <div className="timeline">
         <header
-          className="timeline-header click"
+          className="timeline-header-over click"
           id="1"
           onClick={collapseDetails}
         >
@@ -62,17 +63,25 @@ const StatusBar = () => {
             </div>
           </div>
         </div>
-        <header className="timeline-header">
-          <span className="tag is-large is-info">
-            <span className="timeline-header-text">Testdaten</span>
-            <span
-              className="icon is-small click"
+        <header className="timeline-mainstep">
+          <div className="timeline-head">
+            <div className="timeline-title">Testdata</div>
+            <div
+              className="icon is-small click collapse"
               id="2"
               onClick={collapseDetails}
             >
               <i className="fas fa-angle-up" aria-hidden="true" id="icon-2"></i>
-            </span>
-          </span>
+            </div>
+          </div>
+          <div>
+            Please submit a script:{" "}
+            <Link to="/application/id/script">
+              <button class="button is-info is-inverted is-small">
+                Submit
+              </button>
+            </Link>
+          </div>
         </header>
         <div className="timeline-item is-hidden" id="row-spacer-2"></div>
         <div id="content-2">
@@ -95,7 +104,7 @@ const StatusBar = () => {
             </div>
           </div>
         </div>
-        <div className="timeline-header">
+        <div className="timeline-header-over">
           <span className="tag is-medium is-large is-dark">Ergebnismenge</span>
         </div>
       </div>

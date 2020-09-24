@@ -1,7 +1,9 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const Application = () => {
-  return <React.Fragment>Single Applications</React.Fragment>;
+  const applicationId = useParams().id;
+  return <React.Fragment>{applicationId}</React.Fragment>;
 };
 
 export default Application;
