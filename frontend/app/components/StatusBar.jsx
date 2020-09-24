@@ -26,14 +26,14 @@ const StatusBar = () => {
   return (
     <div className="content-box">
       <div className="timeline">
-        <header className="timeline-header">
+        <header
+          className="timeline-header click"
+          id="1"
+          onClick={collapseDetails}
+        >
           <span className="tag is-large is-success">
             <span className="timeline-header-text">Antrag</span>
-            <span
-              className="icon is-small click"
-              id="1"
-              onClick={collapseDetails}
-            >
+            <span className="icon is-small">
               <i className="fas fa-angle-up" aria-hidden="true" id="icon-1"></i>
             </span>
           </span>
