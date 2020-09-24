@@ -3,7 +3,7 @@ const Application = require("../models/Application");
 const Script = require("../models/Script");
 
 const get = async (id) => {
-  const application = await Application.findOne({ id })
+  const application = await Application.findById(id)
     .populate({
       path: "scripts",
       select: "fileName status",

@@ -87,6 +87,7 @@ const create = async () => {
     await mongoose.connection.close();
   } catch (error) {
     console.log(error);
+    process.exit();
   }
   console.log("seeding done");
 };
