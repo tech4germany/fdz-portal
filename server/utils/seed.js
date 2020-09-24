@@ -35,16 +35,49 @@ const create = async () => {
       name: "Diabetes Prävalenz",
       description: "Erster Antrag",
       queuePosition: 1,
+      history: [],
+      mainSteps: [],
     };
     application1.user = user1DB._id;
+    application1.history.push({
+      action: "application_submitted",
+      user: user1DB._id,
+      date: "1600954411",
+    });
+    application1.history.push({
+      action: "application_unchecked",
+      user: user1DB._id,
+      date: "1600954412",
+    });
+    application1.history.push({
+      action: "application_checked",
+      user: user1DB._id,
+      date: "1600954662",
+    });
+    application1.history.push({
+      action: "testdata_prepared",
+      user: user1DB._id,
+      date: "1600954663",
+    });
+    application1.mainSteps.push({ id: 1, status: "done", date: 1600954662 });
+    application1.mainSteps.push({ id: 2, status: "current", date: 1600954663 });
+    application1.status = "testdata_prepared";
     application1DB = await Application.create(application1);
 
     const application2 = {
       name: "Covid",
       description: "Zweiter Antrag",
       queuePosition: 2,
+      history: [],
+      mainSteps: [],
     };
     application2.user = user1DB._id;
+    application2.history.push({
+      action: "application_submitted",
+      user: user1DB._id,
+      date: "1600956411",
+    });
+    application2.mainSteps.push({ id: 1, status: "current", date: 1600954662 });
     application2DB = await Application.create(application2);
 
     const script1 = { fileName: "script1.sql", queuePosition: 1 };

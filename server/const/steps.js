@@ -70,17 +70,10 @@ const STEPS = [
   },
   {
     name: "application_checked",
-    string: "Der Antrag wurde überprüft",
+    string: "Der Antrag wurde erfolgreich überprüft",
     newBubble: false,
     showDefault: false,
     type: "success",
-    actionRequiered: true,
-  },
-  {
-    name: "application_needs_update",
-    string: "Der Antrag muss überarbeitet werden",
-    newBubble: false,
-    type: "update",
     actionRequiered: true,
   },
   {
@@ -190,7 +183,6 @@ const STEPS = [
 ];
 
 const getStatusNames = () => {
-  console.log("running status fucntion");
   return STEPS.map((step) => step.name);
 };
 const STATUSES_NAMES = getStatusNames();

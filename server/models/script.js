@@ -51,11 +51,11 @@ const scriptSchema = new Schema(
 
     application: {
       type: Schema.Types.ObjectId,
-      ref: "Applications",
+      ref: "Application",
       required: true,
     },
 
-    user: { type: Schema.Types.ObjectId, ref: "Users", required: true },
+    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
   {
     timestamps: {

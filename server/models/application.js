@@ -44,18 +44,20 @@ const applicationSchema = new Schema(
         },
         date: {
           type: Date,
-          required: false,
+          required: true,
         },
       },
     ],
     history: [
       {
         action: {
-          enum: STATUSES_NAMES,
-        },
-        actionDetail: {
           type: String,
           required: true,
+          enum: STATUSES_NAMES,
+        },
+        messsage: {
+          type: String,
+          required: false,
         },
         user: {
           type: String,
@@ -63,7 +65,7 @@ const applicationSchema = new Schema(
         },
         fdzUser: {
           type: String,
-          required: true,
+          required: false,
         },
         date: {
           type: String,
@@ -85,7 +87,7 @@ const applicationSchema = new Schema(
         default: "none",
       },
     ],
-    scripts: [{ type: Schema.Types.ObjectId, ref: "Scripts" }],
+    scripts: [{ type: Schema.Types.ObjectId, ref: "Script" }],
     user: { type: Schema.Types.ObjectId, required: true },
   },
   {
