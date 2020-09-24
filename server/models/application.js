@@ -55,6 +55,11 @@ const applicationSchema = new Schema(
           required: true,
           enum: STATUSES_NAMES,
         },
+        mainStep: {
+          type: Number,
+          required: true,
+          default: 1,
+        },
         messsage: {
           type: String,
           required: false,

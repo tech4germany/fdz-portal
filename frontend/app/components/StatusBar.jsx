@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css";
 import "./StatusBar.css";
 
-const StatusBar = (props) => {
-  console.log(props);
+const StatusBar = ({ refreshData, application }) => {
+  console.log(application);
   const collapseDetails = (element) => {
     const content = document.getElementById(
       `content-${element.currentTarget.id}`
@@ -22,17 +22,20 @@ const StatusBar = (props) => {
   };
 
   const createTimeline = () => {
+    const currentAction = application.history[application.history.length - 1];
+    console.log(currentAction);
+    const mainStep1 = `<div>`;
     let timeline = '<div className="timeline">';
   };
-
+  createTimeline();
   return (
     <div className="content-box">
       <div className="application-title">
-        {props.application.name}{" "}
+        {application.name}{" "}
         <i
           className="fas fa-sync-alt is-hidden"
           aria-hidden="true"
-          onClick={props.refreshData}
+          onClick={refreshData}
         ></i>
       </div>
       <div className="timeline">

@@ -42,20 +42,24 @@ const create = async () => {
     application1.history.push({
       action: "application_submitted",
       user: user1DB._id,
+      mainStep: 1,
       date: "1600954411",
     });
     application1.history.push({
       action: "application_unchecked",
       user: user1DB._id,
+      mainStep: 1,
       date: "1600954412",
     });
     application1.history.push({
       action: "application_checked",
       user: user1DB._id,
+      mainStep: 1,
       date: "1600954662",
     });
     application1.history.push({
       action: "testdata_prepared",
+      mainStep: 2,
       user: user1DB._id,
       date: "1600954663",
     });
@@ -74,6 +78,7 @@ const create = async () => {
     application2.user = user1DB._id;
     application2.history.push({
       action: "application_submitted",
+      mainStep: 1,
       user: user1DB._id,
       date: "1600956411",
     });
