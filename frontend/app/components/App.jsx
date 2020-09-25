@@ -7,7 +7,7 @@ import Applications from "./Applications";
 import Application from "./Application";
 import Login from "./Auth/Login";
 import ApplicationNew from "./ApplicationNew";
-import StatusBar from "./StatusBar";
+import StatusShow from "./StatusShow";
 import NavState from "./states/navState.jsx";
 import "./App.css";
 import "bulma/css/bulma.css";
@@ -32,7 +32,7 @@ export default class App extends React.Component {
               render={() => <Application />}
             />
             <Route path="/application/:id" render={() => <Application />} />
-            <Route path="/status" render={() => <StatusBar />} />
+            <Route path="/status" render={() => <StatusShow />} />
             <Route path="/login" render={() => <Login />} />
             <Route
               path="/auth"

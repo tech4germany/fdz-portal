@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css";
-import "./StatusBar.css";
 
 const StatusBar = ({ refreshData, application }) => {
   console.log(application);
@@ -24,7 +23,6 @@ const StatusBar = ({ refreshData, application }) => {
   return (
     <div className="content-box">
       <div className="application-title">
-        {application.name}{" "}
         <i
           className="fas fa-sync-alt is-hidden"
           aria-hidden="true"

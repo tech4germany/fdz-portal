@@ -13,16 +13,13 @@ const Header = () => {
             <Link to="/applications">List</Link>
           </li>
           <li>
-            <Link to="/application">Single</Link>
-          </li>
-          <li>
             <Link to="/status">Status</Link>
           </li>
           <li>
             <Link to="/application/new">New</Link>
           </li>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
             <Link to="/test">NotFound</Link>
