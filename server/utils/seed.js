@@ -3,6 +3,7 @@ const Institution = require("../models/Institution");
 const User = require("../models/User");
 const Application = require("../models/Application");
 const Script = require("../models/Script");
+const { MAIN_STEPS } = require("../const/steps.js");
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/fdz";
 
@@ -65,6 +66,8 @@ const create = async () => {
     });
     application1.mainSteps.push({ id: 1, status: "done", date: 1600954662 });
     application1.mainSteps.push({ id: 2, status: "current", date: 1600954663 });
+    application1.mainSteps.push({ id: 3, status: "future" });
+    application1.mainSteps.push({ id: 4, status: "future" });
     application1.status = "testdata_prepared";
     application1DB = await Application.create(application1);
 
@@ -83,6 +86,9 @@ const create = async () => {
       date: "1600956411",
     });
     application2.mainSteps.push({ id: 1, status: "current", date: 1600954662 });
+    application1.mainSteps.push({ id: 2, status: "future" });
+    application1.mainSteps.push({ id: 3, status: "future" });
+    application1.mainSteps.push({ id: 4, status: "future" });
     application2DB = await Application.create(application2);
 
     const script1 = { fileName: "script1.sql", queuePosition: 1 };

@@ -16,7 +16,6 @@
 }
 
 .timeline-mainstep {
-  background-color: #209cee;
   width: 400px;
   padding: 10px;
   display: flex;
@@ -38,4 +37,13 @@
 .application-title {
   font-size: 22px;
   margin-bottom: 20px;
+}
+.current {
+  background-color: #209cee;
+}
+.done {
+  background-color: #48c774;
+}
+.future {
+  background-color: #363636;
 }

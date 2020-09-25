@@ -55,6 +55,7 @@ const STEPS = [
   {
     name: "application_submitted",
     string: "Sie haben den Antrag eingereicht",
+    mainStep: 1,
     newBubble: true,
     showDefault: false,
     type: "submitted",
@@ -63,6 +64,7 @@ const STEPS = [
   {
     name: "application_unchecked",
     string: "Der Antrag wird überprüft",
+    mainStep: 1,
     newBubble: true,
     showDefault: false,
     type: "waiting",
@@ -71,6 +73,7 @@ const STEPS = [
   {
     name: "application_checked",
     string: "Der Antrag wurde erfolgreich überprüft",
+    mainStep: 1,
     newBubble: false,
     showDefault: false,
     type: "success",
@@ -79,6 +82,7 @@ const STEPS = [
   {
     name: "application_needs_update",
     string: "Der Antrag muss überarbeitet werden",
+    mainStep: 1,
     newBubble: false,
     showDefault: false,
     type: "update",
@@ -87,6 +91,7 @@ const STEPS = [
   {
     name: "application_updated",
     string: "Der Antrag wurde überarbeitet",
+    mainStep: 1,
     newBubble: false,
     showDefault: false,
     type: "submitted",
@@ -95,6 +100,7 @@ const STEPS = [
   {
     name: "application_rejected",
     string: "Der Antrag wurde abgewiesen",
+    mainStep: 1,
     newBubble: false,
     showDefault: false,
     type: "fail",
@@ -103,6 +109,7 @@ const STEPS = [
   {
     name: "testdata_prepared",
     string: "Die Testdaten werden bereitgestellt",
+    mainStep: 2,
     newBubble: true,
     showDefault: false,
     type: "waiting",
@@ -111,6 +118,7 @@ const STEPS = [
   {
     name: "testdata_delivered",
     string: "Der Zugang zu den Testdaten wurde übermittelt",
+    mainStep: 2,
     newBubble: false,
     showDefault: false,
     type: "success",
@@ -119,6 +127,7 @@ const STEPS = [
   {
     name: "script_submitted",
     string: "Sie haben das Script {1} eingereicht",
+    mainStep: 3,
     newBubble: true,
     showDefault: false,
     type: "submitted",
@@ -127,6 +136,7 @@ const STEPS = [
   {
     name: "script_unchecked",
     string: "Das Skript wird überprüft",
+    mainStep: 3,
     newBubble: true,
     showDefault: false,
     type: "waiting",
@@ -135,6 +145,7 @@ const STEPS = [
   {
     name: "script_checked",
     string: "Das Sript wurde erfolgreich überprüft",
+    mainStep: 3,
     newBubble: false,
     showDefault: false,
     type: "success",
@@ -143,6 +154,7 @@ const STEPS = [
   {
     name: "script_needs_update",
     string: "Das Skript {1} muss überarbeitet werden. Siehe Meldung.",
+    mainStep: 3,
     newBubble: false,
     showDefault: false,
     type: "update",
@@ -151,6 +163,7 @@ const STEPS = [
   {
     name: "script_unexecuted",
     string: "Das Skript wird ausgeführt",
+    mainStep: 3,
     newBubble: true,
     showDefault: false,
     type: "waiting",
@@ -159,6 +172,7 @@ const STEPS = [
   {
     name: "script_executed",
     string: "Das Sript wurde erfolgreich ausgeführt",
+    mainStep: 3,
     newBubble: false,
     showDefault: false,
     type: "success",
@@ -167,6 +181,7 @@ const STEPS = [
   {
     name: "results_preparing",
     string: "Die Ergebnismenge wird bereitgestellt",
+    mainStep: 3,
     newBubble: true,
     showDefault: false,
     type: "waiting",
@@ -175,6 +190,7 @@ const STEPS = [
   {
     name: "results_delivered",
     string: "Die Ergebnismenge wurde übermittelt",
+    mainStep: 3,
     newBubble: false,
     showDefault: true,
     type: "success",

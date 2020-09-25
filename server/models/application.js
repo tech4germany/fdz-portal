@@ -39,12 +39,12 @@ const applicationSchema = new Schema(
         },
         status: {
           type: String,
-          enum: ["done", "current"],
+          enum: ["done", "current", "future"],
           required: true,
         },
         date: {
           type: Date,
-          required: true,
+          required: false,
         },
       },
     ],

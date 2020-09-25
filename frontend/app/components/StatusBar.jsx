@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css";
 import "./StatusBar.css";
+import { STEPS, STATUSES_NAMES, MAIN_STEPS } from "../../../server/const/steps";
+import TimelineMain from "./Status/TimelineMain";
+import TimelineItem from "./Status/TimelineItem";
 
 const StatusBar = ({ refreshData, application }) => {
   console.log(application);
@@ -21,13 +24,39 @@ const StatusBar = ({ refreshData, application }) => {
     spacer.classList.toggle("is-hidden");
   };
 
-  const createTimeline = () => {
-    const currentAction = application.history[application.history.length - 1];
-    console.log(currentAction);
-    const mainStep1 = `<div>`;
-    let timeline = '<div className="timeline">';
-  };
-  createTimeline();
+  const currentAction = application.history[application.history.length - 1];
+  console.log(currentAction);
+
+  let timeline = [];
+  let currentMainStep = 0;
+  for (const step of STEPS) {
+    if (step.mainStep !== currentMainStep) {
+      timeline.push(
+        <TimelineMain
+          collapseDetails={collapseDetails}
+          status={application.mainSteps[step.mainStep - 1].status}
+          text="test"
+          key={"main" + currentMainStep}
+        />
+      );
+      currentMainStep = step.mainStep;
+    }
+    let status = "future";
+    let text = step.string;
+    let date = "future";
+    if (currentAction.action === step.name) {
+      status = "current";
+    } else if (application.history.find((action) => action.id === step.name)) {
+      const historyStep = application.history.find(
+        (action) => action.id === step.name
+      );
+    }
+    timeline.push(
+      <TimelineItem text={text} status={status} date={date} key={step.name} />
+    );
+  }
+
+  console.log(timeline);
   return (
     <div className="content-box">
       <div className="application-title">
@@ -38,88 +67,7 @@ const StatusBar = ({ refreshData, application }) => {
           onClick={refreshData}
         ></i>
       </div>
-      <div className="timeline">
-        <header
-          className="timeline-header-over click"
-          id="1"
-          onClick={collapseDetails}
-        >
-          <span className="tag is-large is-success">
-            <span className="timeline-header-text">Antrag</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-up" aria-hidden="true" id="icon-1"></i>
-            </span>
-          </span>
-        </header>
-        <div
-          className="timeline-item is-hidden is-success"
-          id="row-spacer-1"
-        ></div>
-        <div id="content-1">
-          <div className="timeline-item is-success">
-            <div className="timeline-marker is-icon is-success">
-              <i className="fa fa-check"></i>
-            </div>
-            <div className="timeline-content">
-              <p className="heading">January 2016</p>
-              <p>Timeline content - Can include any HTML element</p>
-            </div>
-          </div>
-          <div className="timeline-item is-success">
-            <div className="timeline-marker is-icon is-success">
-              <i className="fa fa-check"></i>
-            </div>
-            <div className="timeline-content">
-              <p className="heading">February 2016</p>
-              <p>Timeline content - Can include any HTML element</p>
-            </div>
-          </div>
-        </div>
-        <header className="timeline-mainstep">
-          <div className="timeline-head">
-            <div className="timeline-title">Testdata</div>
-            <div
-              className="icon is-small click collapse"
-              id="2"
-              onClick={collapseDetails}
-            >
-              <i className="fas fa-angle-up" aria-hidden="true" id="icon-2"></i>
-            </div>
-          </div>
-          <div>
-            Please submit a script:{" "}
-            <Link to="/application/id/script">
-              <button className="button is-info is-inverted is-small">
-                Submit
-              </button>
-            </Link>
-          </div>
-        </header>
-        <div className="timeline-item is-hidden" id="row-spacer-2"></div>
-        <div id="content-2">
-          <div className="timeline-item">
-            <div className="timeline-marker is-icon is-info">
-              <i className="fa fa-hourglass-start"></i>
-            </div>
-            <div className="timeline-content">
-              <p className="heading">March 2017</p>
-              <p>Timeline content - Can include any HTML element</p>
-            </div>
-          </div>
-          <div className="timeline-item">
-            <div className="timeline-marker is-icon is-info">
-              <i className="fa fa-exclamation"></i>
-            </div>
-            <div className="timeline-content">
-              <p className="heading">March 2017</p>
-              <p>Timeline content - Can include any HTML element</p>
-            </div>
-          </div>
-        </div>
-        <div className="timeline-header-over">
-          <span className="tag is-medium is-large is-dark">Ergebnismenge</span>
-        </div>
-      </div>
+      <div className="timeline">{timeline}</div>
     </div>
   );
 };
