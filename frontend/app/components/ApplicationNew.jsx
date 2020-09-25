@@ -4,9 +4,9 @@ import "./ApplicationNew.css";
 
 const Home = () => {
   return (
-    <div className="form">
+    <div className="content-box">
       <div className="columns">
-        <div className="column is-two-fifths">
+        <div className="column is-four-fifths">
           {/* Input */}
           <div className="field">
             <label className="label">Name</label>
