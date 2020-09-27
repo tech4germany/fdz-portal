@@ -39,6 +39,7 @@ const StatusBar = ({ refreshData, application }) => {
           key={"main" + currentMainStep}
         />
       );
+
       currentMainStep = step.mainStep;
     }
     let status = "future";

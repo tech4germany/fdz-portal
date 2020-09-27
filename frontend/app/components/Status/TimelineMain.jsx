@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const TimelineMain = (props) => {
   return (
-    <header className={"timeline-mainstep" + props.status}>
+    <header className={"timeline-mainstep " + props.status}>
       <div className="timeline-head">
         <div className="timeline-title">Testdata</div>
         <div

@@ -1,4 +1,3 @@
-const { application } = require("express");
 const Application = require("../models/Application");
 const Script = require("../models/Script");
 
