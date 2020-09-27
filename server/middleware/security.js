@@ -10,7 +10,7 @@ const security = (req, res, next) => {
     "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src data: 'self'"
   );
   // for dev
-  res.header("Access-Control-Allow-Origin", "http://localhost:1234");
+  res.header("Access-Control-Allow-Origin", "*");
   next();
 };
 
