@@ -6,7 +6,7 @@ const security = (req, res, next) => {
   res.header("Referrer-Policy", "same-origin");
   res.header("X-XSS-Protection", "1; mode=block");
   // for dev
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:1234");
   next();
 };
 

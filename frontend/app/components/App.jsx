@@ -21,7 +21,7 @@ export default class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Applications />
             </Route>
             <Route exact path="/applications" render={() => <Applications />} />
             <Route exact path="/application/new">

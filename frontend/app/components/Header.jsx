@@ -10,7 +10,7 @@ const Header = () => {
       <div className="tabs tabs-length">
         <ul>
           <li className="is-active">
-            <Link to="/applications">List</Link>
+            <Link to="/applications">Home</Link>
           </li>
           <li>
             <Link to="/status">Status</Link>

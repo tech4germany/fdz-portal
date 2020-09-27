@@ -7,4 +7,5 @@ const useNavState = () => {
 };
 
 const NavState = createContainer(useNavState);
+
 export default NavState;
