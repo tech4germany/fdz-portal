@@ -61,11 +61,16 @@ const StatusBar = ({ refreshData, application }) => {
     let status = "";
     let subText = "";
     let link = "";
+    let waitingTime = "";
     let collapsed = true;
     subSteps = STEPS.filter((step) => step.mainStep === mainStep.id);
 
     for (const step of subSteps) {
       step.message = "";
+
+      const historyStep = application.history.find(
+        (historyStep) => historyStep.name === step.name
+      );
 
       if (step.name === currentStep.name) {
         status = "current";
@@ -78,10 +83,11 @@ const StatusBar = ({ refreshData, application }) => {
         step.date = currentStep.date;
         collapsed = false;
         subText = step.string;
+        if (historyStep.time) {
+          step.time = historyStep.time;
+          waitingTime = historyStep.time;
+        }
       } else {
-        const historyStep = application.history.find(
-          (action) => action.name === step.name
-        );
         if (historyStep) {
           status = "done";
           step.status = "done";
@@ -94,7 +100,6 @@ const StatusBar = ({ refreshData, application }) => {
               "de-DE"
             );
           if (step.string.includes(":var:")) {
-            console.log("replace");
             step.string = step.string.replace(":var:", historyStep.var);
           }
         } else {
@@ -119,6 +124,7 @@ const StatusBar = ({ refreshData, application }) => {
           key={step.name}
           name={step.name}
           link={step.link}
+          time={step.time}
         />
       );
     }
@@ -132,6 +138,7 @@ const StatusBar = ({ refreshData, application }) => {
         key={"main-" + mainStep.id}
         id={mainStep.id}
         link={link}
+        time={waitingTime}
       />
     );
 

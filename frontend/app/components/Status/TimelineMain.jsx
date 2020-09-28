@@ -20,6 +20,11 @@ const TimelineMain = (props) => {
       </div>
       <div>
         {props.text}{" "}
+        {props.time && (
+          <span className="main-step-time">
+            ({props.time} Bearbeitungszeit)
+          </span>
+        )}
         {props.link && (
           <Link to={props.link}>
             <button className="button is-info is-inverted is-small">

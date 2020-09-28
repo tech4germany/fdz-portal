@@ -11,7 +11,6 @@ const Applications = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getData("/applications");
-      console.log(data);
       setApplications(data.applications);
     };
     fetchData();

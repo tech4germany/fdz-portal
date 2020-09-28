@@ -60,7 +60,6 @@ const updateStatus = async (params, user) => {
 };
 
 const uploadFakeScript = async (params) => {
-  console.log(params);
   try {
     const applicationDB = await Application.findById(
       params.applicationId
@@ -78,6 +77,7 @@ const uploadFakeScript = async (params) => {
     applicationDB.history.push({
       name: "script_unchecked",
       mainStep: 3,
+      time: "3-5 Tage",
       user: userId,
       date: Math.floor(Date.now() / 1000),
     });

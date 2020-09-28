@@ -16,7 +16,7 @@
 }
 
 .timeline-mainstep {
-  width: 400px;
+  width: 420px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -34,6 +34,10 @@
   justify-content: space-between;
 }
 
+.timeline-item-header {
+  font-weight: bold;
+}
+
 .application-title {
   font-size: 22px;
   margin-bottom: 20px;
@@ -49,4 +53,10 @@
 }
 .message-icon {
   color: #fa842b;
+}
+
+.main-step-time {
+  font-style: italic;
+  color: #e7c0a7;
+  float: right;
 }

@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const TimelineItem = (props) => {
+  console.log(props);
   const toggleModal = () => {
-    console.log("trigger mdoal", props.name);
     const content = document.getElementById(`modal-${props.name}`);
     content.classList.toggle("is-active");
   };
@@ -15,8 +15,12 @@ const TimelineItem = (props) => {
       </div>
       <div className="timeline-content">
         {props.date && (
-          <p className="heading">
-            {new Date(parseInt(props.date) * 1000).toLocaleDateString("de-DE")}
+          <p className="timeline-item-header">
+            {props.time
+              ? props.time + " Bearbeitungszeit"
+              : new Date(parseInt(props.date) * 1000).toLocaleDateString(
+                  "de-DE"
+                )}
           </p>
         )}
         <div>

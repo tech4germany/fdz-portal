@@ -64,6 +64,10 @@ const applicationSchema = new Schema(
           type: String,
           required: false,
         },
+        time: {
+          type: String,
+          required: false,
+        },
         messsage: {
           type: String,
           required: false,

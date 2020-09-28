@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css";
 
 const StatusBar = ({ refreshData, application }) => {
-  console.log(application);
   const collapseDetails = (element) => {
     const content = document.getElementById(
       `content-${element.currentTarget.id}`
