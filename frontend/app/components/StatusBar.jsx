@@ -45,9 +45,6 @@ const StatusBar = ({ refreshData, application }) => {
   for (const mainStep of MAIN_STEPS) {
     let renderSteps = [];
     let subSteps = [];
-    let isDone = false;
-    let isCurrent = false;
-    let isFuture = false;
     let status = "";
     let subText = "";
     let collapsed = true;
@@ -58,8 +55,6 @@ const StatusBar = ({ refreshData, application }) => {
         status = "current";
         step.status = "current";
         step.date = currentAction.date;
-        isCurrent = true;
-        isDone = false;
         collapsed = false;
         subText = step.string;
       } else {
@@ -69,7 +64,6 @@ const StatusBar = ({ refreshData, application }) => {
         if (historyStep) {
           status = "done";
           step.status = "done";
-          isDone = true;
 
           step.date = historyStep.date;
           subText =
@@ -79,7 +73,10 @@ const StatusBar = ({ refreshData, application }) => {
             );
         } else {
           if (!step.showDefault) continue;
-          status = "future";
+          if (status === "") {
+            status = "future";
+          }
+
           step.status = "future";
         }
       }

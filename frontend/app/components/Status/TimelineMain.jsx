@@ -12,7 +12,7 @@ const TimelineMain = (props) => {
           onClick={props.collapseDetails}
         >
           <i
-            className="fas fa-angle-up"
+            className="fas fa-angle-down"
             aria-hidden="true"
             id={"icon-" + props.id}
           ></i>
