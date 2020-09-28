@@ -43,10 +43,12 @@ const StatusBar = ({ refreshData, application }) => {
     icon.classList.toggle("fa-angle-down");
     icon.classList.toggle("fa-angle-up");
 
-    const spacer = document.getElementById(
-      `row-spacer-${element.currentTarget.id}`
-    );
-    spacer.classList.toggle("is-hidden");
+    if (element.currentTarget.id < MAIN_STEPS.length) {
+      const spacer = document.getElementById(
+        `row-spacer-${element.currentTarget.id}`
+      );
+      spacer.classList.toggle("is-hidden");
+    }
   };
 
   const currentAction = application.history[application.history.length - 1];
@@ -91,6 +93,9 @@ const StatusBar = ({ refreshData, application }) => {
           step.status = "future";
         }
       }
+      // Override old status if same group
+      if (step.status !== "future" && !step.newBubble) renderSteps.pop();
+
       renderSteps.push(
         <TimelineItem
           text={step.string}
@@ -101,6 +106,7 @@ const StatusBar = ({ refreshData, application }) => {
         />
       );
     }
+
     timeline.push(
       <TimelineMain
         collapseDetails={collapseDetails}
@@ -111,6 +117,7 @@ const StatusBar = ({ refreshData, application }) => {
         id={mainStep.id}
       />
     );
+
     // Don't show connecting timeline for last main step
     if (MAIN_STEPS.length !== mainStep.id) {
       timeline.push(
