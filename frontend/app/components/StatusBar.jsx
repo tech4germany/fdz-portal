@@ -60,14 +60,19 @@ const StatusBar = ({ refreshData, application }) => {
     let subSteps = [];
     let status = "";
     let subText = "";
+    let link = "";
     let collapsed = true;
     subSteps = STEPS.filter((step) => step.mainStep === mainStep.id);
 
     for (const step of subSteps) {
       step.message = "";
+      if (step.link) {
+        step.link = step.link.replace(":id:", application._id);
+        link = step.link;
+      }
       if (step.name === currentAction.name) {
         status = "current";
-        // step.message = "test current";
+        //step.message = "test current";
         step.status = step.type;
         step.date = currentAction.date;
         collapsed = false;
@@ -108,6 +113,7 @@ const StatusBar = ({ refreshData, application }) => {
           date={step.date}
           key={step.name}
           name={step.name}
+          link={step.link}
         />
       );
     }
@@ -120,6 +126,7 @@ const StatusBar = ({ refreshData, application }) => {
         title={mainStep.name}
         key={"main-" + mainStep.id}
         id={mainStep.id}
+        link={link}
       />
     );
 

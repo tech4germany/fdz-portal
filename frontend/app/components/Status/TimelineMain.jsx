@@ -19,11 +19,14 @@ const TimelineMain = (props) => {
         </div>
       </div>
       <div>
-        {props.text}
-        {/* Please submit a script:{" "}
-        <Link to={"/application/" + props.applicationId + "/script"}>
-          <button class="button is-info is-inverted is-small">Submit</button>
-        </Link> */}
+        {props.text}{" "}
+        {props.link && (
+          <Link to={props.link}>
+            <button className="button is-info is-inverted is-small">
+              Einreichen
+            </button>
+          </Link>
+        )}
       </div>
     </header>
   );

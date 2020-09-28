@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const TimelineItem = (props) => {
-  const openModal = () => {
+  const toggleModal = () => {
     console.log("trigger mdoal", props.name);
     const content = document.getElementById(`modal-${props.name}`);
     content.classList.toggle("is-active");
@@ -19,12 +19,22 @@ const TimelineItem = (props) => {
             {new Date(parseInt(props.date) * 1000).toLocaleDateString("de-DE")}
           </p>
         )}
-        <p>
+        <div>
           {props.text}{" "}
-          {props.message && (
-            <i onClick={openModal} className={"fa fa-envelope click"}></i>
+          {props.link && (
+            <Link to={props.link}>
+              <button className="button is-info is-outlined is-small">
+                Einreichen
+              </button>
+            </Link>
           )}
-        </p>
+          {props.message && (
+            <i
+              onClick={toggleModal}
+              className={"far fa-envelope click message-icon"}
+            ></i>
+          )}
+        </div>
       </div>
       <div id={"modal-" + props.name} className="modal">
         <div className="modal-background"></div>
@@ -42,7 +52,7 @@ const TimelineItem = (props) => {
         <button
           className="modal-close is-large"
           aria-label="close"
-          onClick={openModal}
+          onClick={toggleModal}
         ></button>
       </div>
     </div>
