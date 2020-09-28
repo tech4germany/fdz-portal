@@ -51,7 +51,7 @@ const StatusBar = ({ refreshData, application }) => {
     }
   };
 
-  const currentAction = application.history[application.history.length - 1];
+  const currentStep = application.history[application.history.length - 1];
 
   let timeline = [];
 
@@ -66,15 +66,16 @@ const StatusBar = ({ refreshData, application }) => {
 
     for (const step of subSteps) {
       step.message = "";
-      if (step.link) {
-        step.link = step.link.replace(":id:", application._id);
-        link = step.link;
-      }
-      if (step.name === currentAction.name) {
+
+      if (step.name === currentStep.name) {
         status = "current";
         //step.message = "test current";
+        if (step.link) {
+          link = step.link.replace(":id:", application._id);
+          step.link = link;
+        }
         step.status = step.type;
-        step.date = currentAction.date;
+        step.date = currentStep.date;
         collapsed = false;
         subText = step.string;
       } else {
@@ -92,6 +93,10 @@ const StatusBar = ({ refreshData, application }) => {
             new Date(parseInt(historyStep.date) * 1000).toLocaleDateString(
               "de-DE"
             );
+          if (step.string.includes(":var:")) {
+            console.log("replace");
+            step.string = step.string.replace(":var:", historyStep.var);
+          }
         } else {
           if (!step.showDefault) continue;
           if (status === "") {

@@ -59,8 +59,41 @@ const updateStatus = async (params, user) => {
   }
 };
 
+const uploadFakeScript = async (params) => {
+  console.log(params);
+  try {
+    const applicationDB = await Application.findById(
+      params.applicationId
+    ).select("status history");
+
+    userId = applicationDB.history[0].user;
+
+    applicationDB.history.push({
+      name: "script_submitted",
+      mainStep: 3,
+      var: params.fileName,
+      user: userId,
+      date: Math.floor(Date.now() / 1000),
+    });
+    applicationDB.history.push({
+      name: "script_unchecked",
+      mainStep: 3,
+      user: userId,
+      date: Math.floor(Date.now() / 1000),
+    });
+
+    applicationDB.status =
+      applicationDB.history[applicationDB.history.length - 1].name;
+    await applicationDB.save();
+    return params.fileName;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   get,
   list,
   updateStatus,
+  uploadFakeScript,
 };

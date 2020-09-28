@@ -114,7 +114,7 @@ const STEPS = [
   },
   {
     name: "script_submitted",
-    string: "Sie haben das Script {1} eingereicht",
+    string: "Sie haben das Script (:var:) eingereicht",
     mainStep: 3,
     newBubble: false,
     showDefault: false,

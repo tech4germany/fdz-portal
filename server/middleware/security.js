@@ -7,6 +7,7 @@ const security = (req, res, next) => {
   res.header("X-XSS-Protection", "1; mode=block");
   // for dev
   res.header("Access-Control-Allow-Origin", "http://localhost:1234");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 };
 

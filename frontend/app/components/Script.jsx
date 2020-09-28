@@ -13,13 +13,15 @@ const Script = () => {
     setSelectedFile(event.target.files[0]);
     document.getElementById("file-name").innerText = event.target.files[0].name;
   };
-  const uploadScript = () => {
-    console.log("uploading script");
+  const uploadScript = async () => {
+    await sendData(`/applications/${applicationId}/script/fake`, "POST", {
+      applicationId,
+      fileName: selectedFile.name,
+    });
     setLoading(true);
     setTimeout(function () {
       setLoading(false);
       setStep(2);
-      console.log("done");
     }, 4000);
   };
 
@@ -37,7 +39,7 @@ const Script = () => {
             <span className="file-icon">
               <i className="fas fa-upload"></i>
             </span>
-            <span className="file-label">Choose a file…</span>
+            <span className="file-label">Skript Datei auswählen</span>
           </span>
           <span className="file-name" id="file-name"></span>
         </label>

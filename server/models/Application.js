@@ -60,6 +60,10 @@ const applicationSchema = new Schema(
           required: true,
           default: 1,
         },
+        var: {
+          type: String,
+          required: false,
+        },
         messsage: {
           type: String,
           required: false,

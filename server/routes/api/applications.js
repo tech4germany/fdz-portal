@@ -37,11 +37,23 @@ router.post(
 router.put(
   "/status/:id",
   asyncWrap(async (req, res) => {
-    const applicationName = await applicationsService.updateStatus({
+    const applicationName = await applicationsServices.updateStatus({
       newStatus: req.body.status,
     });
     //const applicationName = "Test Application";
     res.json({ status: 200, applicationName });
+  })
+);
+
+// Fake script upload
+router.post(
+  "/:id/script/fake",
+  asyncWrap(async (req, res) => {
+    const fileName = await applicationsServices.uploadFakeScript({
+      applicationId: req.body.applicationId,
+      fileName: req.body.fileName,
+    });
+    res.json({ status: 200, fileName });
   })
 );
 
