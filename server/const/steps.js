@@ -198,7 +198,7 @@ const MAIN_STEPS = [
   { id: 1, name: "Antrag" },
   { id: 2, name: "Testdaten" },
   { id: 3, name: "Skript" },
-  { id: 4, name: "Ergebnismenge" },
+  { id: 4, name: "Antrag abschließen" },
 ];
 
 const getStatusNames = () => {

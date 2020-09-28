@@ -32,6 +32,10 @@ const Applications = () => {
   return (
     <div className="content-box">
       <div className="application-list">
+        <div key="header-applications" className="application app-header">
+          <div>Antragsname</div>
+          <div className="application-status">Status</div>
+        </div>
         {applicationsList}
         <div className="right">
           <Link to="/application/new">

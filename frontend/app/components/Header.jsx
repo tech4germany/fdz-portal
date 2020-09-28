@@ -10,12 +10,9 @@ const Header = () => {
       <div className="tabs tabs-length">
         <ul>
           <li className="is-active">
-            <Link to="/applications">Home</Link>
+            <Link to="/applications">Anträge</Link>
           </li>
-          <li>
-            <Link to="/status">Status</Link>
-          </li>
-          <li>
+          {/* <li>
             <Link to="/application/new">New</Link>
           </li>
           <li>
@@ -23,7 +20,7 @@ const Header = () => {
           </li>
           <li>
             <Link to="/test">NotFound</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
