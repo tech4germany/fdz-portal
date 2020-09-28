@@ -9,18 +9,29 @@ import TimelineItem from "./Status/TimelineItem";
 const StatusBar = ({ refreshData, application }) => {
   const statusToClass = (status) => {
     let statusClass = "";
+    let iconClass = "";
     switch (status) {
       case "done":
         statusClass = "is-success";
+        iconClass = "fa-check";
         break;
+      case "waiting":
       case "current":
         statusClass = "is-info";
+        iconClass = "fa-hourglass-start";
         break;
+      case "unsubmitted":
+        statusClass = "is-info";
+        iconClass = "fa-exclamation";
+        break;
+      case "problem":
+        statusClass = "is-danger";
+        iconClass = "fa-exclamation";
       case "future":
         statusClass = "is-dark";
         break;
     }
-    return statusClass;
+    return { statusClass, iconClass };
   };
   const collapseDetails = (element) => {
     const content = document.getElementById(
@@ -53,7 +64,7 @@ const StatusBar = ({ refreshData, application }) => {
     for (const step of subSteps) {
       if (step.name === currentAction.action) {
         status = "current";
-        step.status = "current";
+        step.status = step.type;
         step.date = currentAction.date;
         collapsed = false;
         subText = step.string;
@@ -83,7 +94,8 @@ const StatusBar = ({ refreshData, application }) => {
       renderSteps.push(
         <TimelineItem
           text={step.string}
-          status={statusToClass(step.status)}
+          status={statusToClass(step.status).statusClass}
+          icon={statusToClass(step.status).iconClass}
           date={step.date}
           key={step.name}
         />
@@ -99,10 +111,11 @@ const StatusBar = ({ refreshData, application }) => {
         id={mainStep.id}
       />
     );
+    // Don't show connecting timeline for last main step
     if (MAIN_STEPS.length !== mainStep.id) {
       timeline.push(
         <div
-          className={"timeline-item " + statusToClass(status)}
+          className={"timeline-item " + statusToClass(status).statusClass}
           id={"row-spacer-" + mainStep.id}
         ></div>
       );
