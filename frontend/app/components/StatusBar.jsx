@@ -57,6 +57,7 @@ const StatusBar = ({ refreshData, application }) => {
       if (step.name === currentAction.action) {
         status = "current";
         step.status = "current";
+        step.date = currentAction.date;
         isCurrent = true;
         isDone = false;
         collapsed = false;
@@ -69,7 +70,13 @@ const StatusBar = ({ refreshData, application }) => {
           status = "done";
           step.status = "done";
           isDone = true;
-          subText = "Abgeschlossen am " + historyStep.date;
+
+          step.date = historyStep.date;
+          subText =
+            "Abgeschlossen am " +
+            new Date(parseInt(historyStep.date) * 1000).toLocaleDateString(
+              "de-DE"
+            );
         } else {
           if (!step.showDefault) continue;
           status = "future";

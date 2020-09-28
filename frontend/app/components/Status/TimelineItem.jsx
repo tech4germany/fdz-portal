@@ -8,7 +8,9 @@ const TimelineItem = (props) => {
         {props.status === "is-success" && <i className="fa fa-check"></i>}
       </div>
       <div className="timeline-content">
-        <p className="heading">{props.date}</p>
+        <p className="heading">
+          {new Date(parseInt(props.date) * 1000).toLocaleDateString("de-DE")}
+        </p>
         <p>{props.text}</p>
       </div>
     </div>
