@@ -64,8 +64,10 @@ const StatusBar = ({ refreshData, application }) => {
     subSteps = STEPS.filter((step) => step.mainStep === mainStep.id);
 
     for (const step of subSteps) {
+      step.message = "";
       if (step.name === currentAction.name) {
         status = "current";
+        // step.message = "test current";
         step.status = step.type;
         step.date = currentAction.date;
         collapsed = false;
@@ -77,6 +79,7 @@ const StatusBar = ({ refreshData, application }) => {
         if (historyStep) {
           status = "done";
           step.status = "done";
+          if (historyStep.message) step.message = historyStep.message;
 
           step.date = historyStep.date;
           subText =
@@ -99,10 +102,12 @@ const StatusBar = ({ refreshData, application }) => {
       renderSteps.push(
         <TimelineItem
           text={step.string}
+          message={step.message}
           status={statusToClass(step.status).statusClass}
           icon={statusToClass(step.status).iconClass}
           date={step.date}
           key={step.name}
+          name={step.name}
         />
       );
     }

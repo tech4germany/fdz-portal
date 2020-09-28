@@ -14,7 +14,6 @@ const Application = () => {
 
   const fetchData = async () => {
     const data = await getData(`/applications/${applicationId}`);
-    console.log(data);
     setApplication(data.application);
   };
 
