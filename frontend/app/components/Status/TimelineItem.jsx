@@ -8,9 +8,11 @@ const TimelineItem = (props) => {
         {props.icon && <i className={"fa " + props.icon}></i>}
       </div>
       <div className="timeline-content">
-        <p className="heading">
-          {new Date(parseInt(props.date) * 1000).toLocaleDateString("de-DE")}
-        </p>
+        {props.date && (
+          <p className="heading">
+            {new Date(parseInt(props.date) * 1000).toLocaleDateString("de-DE")}
+          </p>
+        )}
         <p>{props.text}</p>
       </div>
     </div>

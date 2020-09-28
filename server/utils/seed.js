@@ -64,11 +64,20 @@ const create = async () => {
       user: user1DB._id,
       date: "1600954663",
     });
-    // application1.mainSteps.push({ id: 1, status: "done", date: 1600954662 });
-    // application1.mainSteps.push({ id: 2, status: "current", date: 1600954663 });
-    // application1.mainSteps.push({ id: 3, status: "future" });
-    // application1.mainSteps.push({ id: 4, status: "future" });
-    application1.status = "testdata_prepared";
+    application1.history.push({
+      name: "testdata_delivered",
+      mainStep: 2,
+      user: user1DB._id,
+      date: "1601128885",
+    });
+    application1.history.push({
+      name: "script_unsubmitted",
+      mainStep: 2,
+      user: user1DB._id,
+      date: "1601128891",
+    });
+    application1.status =
+      application1.history[application1.history.length - 1].name;
     application1DB = await Application.create(application1);
 
     const application2 = {
@@ -91,11 +100,8 @@ const create = async () => {
       mainStep: 1,
       date: "1600954123",
     });
-    // application2.mainSteps.push({ id: 1, status: "current", date: 1600954662 });
-    // application1.mainSteps.push({ id: 2, status: "future" });
-    // application1.mainSteps.push({ id: 3, status: "future" });
-    // application1.mainSteps.push({ id: 4, status: "future" });
-    application2.status = "application_unchecked";
+    application2.status =
+      application2.history[application2.history.length - 1].name;
     application2DB = await Application.create(application2);
 
     const script1 = { fileName: "script1.sql", queuePosition: 1 };
