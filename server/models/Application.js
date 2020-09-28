@@ -50,7 +50,7 @@ const applicationSchema = new Schema(
     ],
     history: [
       {
-        action: {
+        name: {
           type: String,
           required: true,
           enum: STATUSES_NAMES,

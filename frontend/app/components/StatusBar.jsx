@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css";
 import "./StatusBar.css";
-import { STEPS, STATUSES_NAMES, MAIN_STEPS } from "../../../server/const/steps";
+import { STEPS, MAIN_STEPS } from "../../../server/const/steps";
 import TimelineMain from "./Status/TimelineMain";
 import TimelineItem from "./Status/TimelineItem";
 
@@ -64,7 +64,7 @@ const StatusBar = ({ refreshData, application }) => {
     subSteps = STEPS.filter((step) => step.mainStep === mainStep.id);
 
     for (const step of subSteps) {
-      if (step.name === currentAction.action) {
+      if (step.name === currentAction.name) {
         status = "current";
         step.status = step.type;
         step.date = currentAction.date;
@@ -72,7 +72,7 @@ const StatusBar = ({ refreshData, application }) => {
         subText = step.string;
       } else {
         const historyStep = application.history.find(
-          (action) => action.action === step.name
+          (action) => action.name === step.name
         );
         if (historyStep) {
           status = "done";

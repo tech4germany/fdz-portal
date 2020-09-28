@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getData } from "./utils/api";
+import { STEPS } from "../../../server/const/steps";
 import "./Applications.css";
 
 const Applications = () => {
@@ -17,6 +18,8 @@ const Applications = () => {
   }, []);
 
   const applicationsList = applications.map((application) => {
+    const statusString = STEPS.find((step) => step.name === application.status)
+      .string;
     return (
       <div key={application._id} className="application">
         <div>
@@ -24,7 +27,7 @@ const Applications = () => {
             {application.name}{" "}
           </Link>
         </div>
-        <div className="application-status">{application.status}</div>
+        <div className="application-status">{statusString}</div>
       </div>
     );
   });
@@ -34,7 +37,7 @@ const Applications = () => {
       <div className="application-list">
         <div key="header-applications" className="application app-header">
           <div>Antragsname</div>
-          <div className="application-status">Status</div>
+          <div className="app-header-status">Status</div>
         </div>
         {applicationsList}
         <div className="right">

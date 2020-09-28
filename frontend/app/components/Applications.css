@@ -8,7 +8,7 @@
 }
 
 .application-status {
-  /* todo */
+  /* font-style: italic; */
 }
 
 .app-header {
@@ -20,4 +20,8 @@
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
+}
+
+.app-header-status {
+  /* margin-right: 20px; */
 }
