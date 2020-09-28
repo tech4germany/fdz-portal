@@ -5,13 +5,17 @@ const TimelineMain = (props) => {
   return (
     <header className={"timeline-mainstep " + props.status}>
       <div className="timeline-head">
-        <div className="timeline-title">Testdata</div>
+        <div className="timeline-title">{props.title}</div>
         <div
           className="icon is-small click collapse"
-          id="2"
+          id={props.id}
           onClick={props.collapseDetails}
         >
-          <i className="fas fa-angle-up" aria-hidden="true" id="icon-2"></i>
+          <i
+            className="fas fa-angle-up"
+            aria-hidden="true"
+            id={"icon-" + props.id}
+          ></i>
         </div>
       </div>
       <div>

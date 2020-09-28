@@ -7,7 +7,21 @@ import TimelineMain from "./Status/TimelineMain";
 import TimelineItem from "./Status/TimelineItem";
 
 const StatusBar = ({ refreshData, application }) => {
-  console.log(application);
+  const statusToClass = (status) => {
+    let statusClass = "";
+    switch (status) {
+      case "done":
+        statusClass = "is-success";
+        break;
+      case "current":
+        statusClass = "is-info";
+        break;
+      case "future":
+        statusClass = "is-dark";
+        break;
+    }
+    return statusClass;
+  };
   const collapseDetails = (element) => {
     const content = document.getElementById(
       `content-${element.currentTarget.id}`
@@ -25,39 +39,78 @@ const StatusBar = ({ refreshData, application }) => {
   };
 
   const currentAction = application.history[application.history.length - 1];
-  console.log(currentAction);
 
   let timeline = [];
-  let currentMainStep = 0;
-  for (const step of STEPS) {
-    if (step.mainStep !== currentMainStep) {
-      timeline.push(
-        <TimelineMain
-          collapseDetails={collapseDetails}
-          status={application.mainSteps[step.mainStep - 1].status}
-          text="test"
-          key={"main" + currentMainStep}
-        />
-      );
 
-      currentMainStep = step.mainStep;
-    }
-    let status = "future";
-    let text = step.string;
-    let date = "future";
-    if (currentAction.action === step.name) {
-      status = "current";
-    } else if (application.history.find((action) => action.id === step.name)) {
-      const historyStep = application.history.find(
-        (action) => action.id === step.name
+  for (const mainStep of MAIN_STEPS) {
+    let renderSteps = [];
+    let subSteps = [];
+    let isDone = false;
+    let isCurrent = false;
+    let isFuture = false;
+    let status = "";
+    let subText = "";
+    let collapsed = true;
+    subSteps = STEPS.filter((step) => step.mainStep === mainStep.id);
+
+    for (const step of subSteps) {
+      if (step.name === currentAction.action) {
+        status = "current";
+        step.status = "current";
+        isCurrent = true;
+        isDone = false;
+        collapsed = false;
+        subText = step.string;
+      } else {
+        const historyStep = application.history.find(
+          (action) => action.action === step.name
+        );
+        if (historyStep) {
+          status = "done";
+          step.status = "done";
+          isDone = true;
+          subText = "Abgeschlossen am " + historyStep.date;
+        } else {
+          if (!step.showDefault) continue;
+          status = "future";
+          step.status = "future";
+        }
+      }
+      renderSteps.push(
+        <TimelineItem
+          text={step.string}
+          status={statusToClass(step.status)}
+          date={step.date}
+          key={step.name}
+        />
       );
     }
     timeline.push(
-      <TimelineItem text={text} status={status} date={date} key={step.name} />
+      <TimelineMain
+        collapseDetails={collapseDetails}
+        status={status}
+        text={subText}
+        title={mainStep.name}
+        key={"main-" + mainStep.id}
+        id={mainStep.id}
+      />
+    );
+    if (MAIN_STEPS.length !== mainStep.id) {
+      timeline.push(
+        <div
+          className={"timeline-item " + statusToClass(status)}
+          id={"row-spacer-" + mainStep.id}
+        ></div>
+      );
+    }
+
+    timeline.push(
+      <div id={"content-" + mainStep.id} className="is-hidden">
+        {renderSteps}
+      </div>
     );
   }
 
-  console.log(timeline);
   return (
     <div className="content-box">
       <div className="application-title">
