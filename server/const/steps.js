@@ -28,28 +28,6 @@
 //     "Die Ergebnismenge wurde übermittelt",
 //   ],
 // };
-// const STEPS2 = [
-//   {
-//     name: "application_submitted",
-//     string_before: "-",
-//     string_after: "Sie haben den Antrag eingereicht",
-//     string_fail: "-",
-//   },
-//   {
-//     name: "application_checked",
-//     string_before: "Der Antrag wird überprüft",
-//     string_after: "Der Antrag wurde erfolgreich überprüft",
-//     string_update: "Der Antrag muss überarbeitet werden",
-//     string_fail: "Der Antrag wurde abgelehnt",
-//   },
-//   {
-//     name: "application_checked",
-//     string_before: "Der Antrag wird überprüft",
-//     string_after: "Der Antrag wurde erfolgreich überprüft",
-//     string_update: "Der Antrag muss überarbeitet werden",
-//     string_fail: "Der Antrag wurde abgelehnt",
-//   },
-// ];
 
 const STEPS = [
   {
@@ -58,7 +36,7 @@ const STEPS = [
     mainStep: 1,
     newBubble: true,
     showDefault: false,
-    type: "submitted",
+    type: "success",
     actionRequiered: false,
   },
   {
@@ -94,7 +72,7 @@ const STEPS = [
     mainStep: 1,
     newBubble: true,
     showDefault: false,
-    type: "submitted",
+    type: "success",
     actionRequiered: false,
   },
   {
@@ -139,7 +117,7 @@ const STEPS = [
     mainStep: 3,
     newBubble: false,
     showDefault: false,
-    type: "submitted",
+    type: "success",
     actionRequiered: false,
   },
   {
