@@ -59,6 +59,24 @@ const updateStatus = async (params, user) => {
   }
 };
 
+const resetStatus = async (params) => {
+  console.log(params);
+  try {
+    const applicationDB = await Application.findById(
+      params.applicationId
+    ).select("status history");
+
+    applicationDB.history.pop();
+    applicationDB.history.pop();
+
+    applicationDB.status =
+      applicationDB.history[applicationDB.history.length - 1].name;
+    await applicationDB.save();
+  } catch (error) {
+    throw error;
+  }
+};
+
 const uploadFakeScript = async (params) => {
   try {
     const applicationDB = await Application.findById(
@@ -95,5 +113,6 @@ module.exports = {
   get,
   list,
   updateStatus,
+  resetStatus,
   uploadFakeScript,
 };

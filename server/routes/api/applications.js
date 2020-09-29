@@ -35,13 +35,25 @@ router.post(
 
 // Update Status
 router.put(
-  "/status/:id",
+  "/:id/status",
   asyncWrap(async (req, res) => {
     const applicationName = await applicationsServices.updateStatus({
       newStatus: req.body.status,
     });
     //const applicationName = "Test Application";
     res.json({ status: 200, applicationName });
+  })
+);
+
+// Update Status
+router.get(
+  "/:id/reset",
+  asyncWrap(async (req, res) => {
+    await applicationsServices.resetStatus({
+      applicationId: req.params.id,
+    });
+    const result = "Status reset";
+    res.json({ status: 200, result });
   })
 );
 

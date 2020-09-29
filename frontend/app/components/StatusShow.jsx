@@ -78,7 +78,7 @@ const StatusBar = ({ refreshData, application }) => {
           </div>
           <div>
             Please submit a script:{" "}
-            <Link to="/application/id/script">
+            <Link to="/applications/id/script">
               <button className="button is-info is-inverted is-small">
                 Submit
               </button>

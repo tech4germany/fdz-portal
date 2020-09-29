@@ -26,8 +26,8 @@ export default class App extends React.Component {
             <Route exact path="/applications/new">
               <ApplicationNew />
             </Route>
-            <Route path="/application/:id/script" render={() => <Script />} />
-            <Route path="/application/:id" render={() => <Application />} />
+            <Route path="/applications/:id/script" render={() => <Script />} />
+            <Route path="/applications/:id" render={() => <Application />} />
             <Route path="/status" render={() => <StatusShow />} />
             <Route path="/login" render={() => <Login />} />
             <Route

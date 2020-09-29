@@ -22,7 +22,7 @@ const Applications = () => {
     return (
       <div key={application._id} className="application">
         <div>
-          <Link to={"/application/" + application._id}>
+          <Link to={"/applications/" + application._id}>
             {application.name}{" "}
           </Link>
         </div>
@@ -40,7 +40,7 @@ const Applications = () => {
         </div>
         {applicationsList}
         <div className="right">
-          <Link to="/application/new">
+          <Link to="/applications/new">
             <button className="button is-small is-info">
               <span className="icon">
                 <i className="fas fa-plus"></i>
