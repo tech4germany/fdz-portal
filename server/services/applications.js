@@ -85,6 +85,9 @@ const uploadFakeScript = async (params) => {
       params.applicationId
     ).select("status history");
 
+    let time = "";
+    if (params.resultMethod === "full") time = "4 - 6 Wochen";
+    else time = "2 - 3 Wochen";
     userId = applicationDB.history[0].user;
 
     applicationDB.history.push({
@@ -97,7 +100,7 @@ const uploadFakeScript = async (params) => {
     applicationDB.history.push({
       name: "script_unexecuted",
       mainStep: 3,
-      time: "4 - 6 Wochen",
+      time,
       user: userId,
       date: Math.floor(Date.now() / 1000),
     });

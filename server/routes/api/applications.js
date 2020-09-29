@@ -64,6 +64,7 @@ router.post(
     const fileName = await applicationsServices.uploadFakeScript({
       applicationId: req.body.applicationId,
       fileName: req.body.fileName,
+      resultMethod: req.body.resultMethod,
     });
     res.json({ status: 200, fileName });
   })

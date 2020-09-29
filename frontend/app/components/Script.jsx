@@ -50,12 +50,12 @@ class Script extends React.Component {
     this.setState({ title: "Ergebnismenge Wählen" });
   }
 
-  submitScript(method) {
-    this.setState({ resultMethod: method });
+  submitScript(resultMethod) {
+    this.setState({ resultMethod });
     sendData(`/applications/${this.state.applicationId}/script/fake`, "POST", {
       applicationId: this.state.applicationId,
       fileName: this.state.selectedFile.name,
-      resultMethod: method,
+      resultMethod,
     });
     this.setState({ step: 4 });
 
