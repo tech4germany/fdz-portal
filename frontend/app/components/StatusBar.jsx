@@ -148,12 +148,17 @@ const StatusBar = ({ refreshData, application }) => {
         <div
           className={"timeline-item " + statusToClass(status).statusClass}
           id={"row-spacer-" + mainStep.id}
+          key={"row-spacer-" + mainStep.id}
         ></div>
       );
     }
 
     timeline.push(
-      <div id={"content-" + mainStep.id} className="is-hidden">
+      <div
+        id={"content-" + mainStep.id}
+        key={"content-" + mainStep.id}
+        className="is-hidden"
+      >
         {renderSteps}
       </div>
     );
