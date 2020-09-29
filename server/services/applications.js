@@ -66,8 +66,10 @@ const resetStatus = async (params) => {
       params.applicationId
     ).select("status history");
 
-    applicationDB.history.pop();
-    applicationDB.history.pop();
+    applicationDB.history = applicationDB.history.filter((step) => {
+      if (step.name !== "script_submitted" && step.name !== "script_unexecuted")
+        return step;
+    });
 
     applicationDB.status =
       applicationDB.history[applicationDB.history.length - 1].name;
