@@ -1,3 +1,23 @@
 .upload-button {
   margin-top: 20px;
 }
+
+.step-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.spinner {
+  margin-left: 10px;
+}
+
+.upload-info-confirm {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.select-result-box {
+  width: 570px;
+  margin-bottom: 15px;
+  background-color: #f3f3f3 !important;
+}
