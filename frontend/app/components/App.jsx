@@ -7,6 +7,7 @@ import Applications from "./Applications";
 import Application from "./Application";
 import Login from "./Auth/Login";
 import ApplicationNew from "./ApplicationNew";
+import Manage from "./Manage";
 import StatusShow from "./Status/StatusShow";
 import "./App.css";
 import "bulma/css/bulma.css";
@@ -28,6 +29,7 @@ export default class App extends React.Component {
             </Route>
             <Route path="/applications/:id/script" render={() => <Script />} />
             <Route path="/applications/:id" render={() => <Application />} />
+            <Route path="/manage" render={() => <Manage />} />
             <Route path="/status" render={() => <StatusShow />} />
             <Route path="/login" render={() => <Login />} />
             <Route
