@@ -75,9 +75,9 @@ const uploadFakeScript = async (params) => {
       date: Math.floor(Date.now() / 1000),
     });
     applicationDB.history.push({
-      name: "script_unchecked",
+      name: "script_unexecuted",
       mainStep: 3,
-      time: "3-5 Tage",
+      time: "4 - 6 Wochen",
       user: userId,
       date: Math.floor(Date.now() / 1000),
     });
