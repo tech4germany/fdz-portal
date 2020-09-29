@@ -31,23 +31,6 @@ const applicationSchema = new Schema(
       type: Number,
       default: 0,
     },
-    mainSteps: [
-      {
-        id: {
-          type: Number,
-          required: true,
-        },
-        status: {
-          type: String,
-          enum: ["done", "current", "future"],
-          required: true,
-        },
-        date: {
-          type: Date,
-          required: false,
-        },
-      },
-    ],
     history: [
       {
         name: {
@@ -60,7 +43,15 @@ const applicationSchema = new Schema(
           required: true,
           default: 1,
         },
-        var: {
+        user: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: String,
+          required: true,
+        },
+        variable: {
           type: String,
           required: false,
         },
@@ -68,21 +59,9 @@ const applicationSchema = new Schema(
           type: String,
           required: false,
         },
-        messsage: {
+        message: {
           type: String,
           required: false,
-        },
-        user: {
-          type: String,
-          required: true,
-        },
-        fdzUser: {
-          type: String,
-          required: false,
-        },
-        date: {
-          type: String,
-          required: true,
         },
       },
     ],

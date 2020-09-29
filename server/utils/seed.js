@@ -72,9 +72,38 @@ const create = async () => {
     });
     application1.history.push({
       name: "script_unsubmitted",
-      mainStep: 2,
+      mainStep: 3,
       user: user1DB._id,
       date: "1601128891",
+    });
+    application1.history.push({
+      name: "script_submitted",
+      mainStep: 3,
+      variable: "test.sql",
+      user: user1DB._id,
+      date: 1601248891,
+    });
+    application1.history.push({
+      name: "script_unexecuted",
+      mainStep: 3,
+      time: "2 - 3 Wochen",
+      user: user1DB._id,
+      date: 1601248991,
+    });
+    application1.history.push({
+      name: "script_failed",
+      mainStep: 3,
+      variable: "test.sql",
+      message: 'Syntax error in SQL statement "SELECT * FORM * "',
+      user: user1DB._id,
+      date: 1601248991,
+    });
+    application1.history.push({
+      name: "script_needs_update",
+      mainStep: 3,
+      variable: "test.sql",
+      user: user1DB._id,
+      date: 1601248991,
     });
     application1.status =
       application1.history[application1.history.length - 1].name;

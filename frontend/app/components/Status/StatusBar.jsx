@@ -11,7 +11,7 @@ const StatusBar = ({ refreshData, application }) => {
     let statusClass = "";
     let iconClass = "";
     switch (status) {
-      case "done":
+      case "success":
         statusClass = "is-success";
         iconClass = "fa-check";
         break;
@@ -26,9 +26,11 @@ const StatusBar = ({ refreshData, application }) => {
         break;
       case "problem":
         statusClass = "is-danger";
-        iconClass = "fa-exclamation";
+        iconClass = "fa-times";
+        break;
       case "future":
         statusClass = "is-dark";
+        iconClass = "";
         break;
     }
     return { statusClass, iconClass };
@@ -51,84 +53,118 @@ const StatusBar = ({ refreshData, application }) => {
     }
   };
 
+  const createStepString = (string, variable) => {
+    if (string.includes(":var:")) {
+      string = string.replace(":var:", variable);
+    }
+    return string;
+  };
+
   const currentStep = application.history[application.history.length - 1];
 
-  let timeline = [];
+  const timeline = [];
 
   for (const mainStep of MAIN_STEPS) {
-    let renderSteps = [];
-    let subSteps = [];
     let status = "";
     let subText = "";
     let link = "";
-    let waitingTime = "";
-    let collapsed = true;
-    subSteps = STEPS.filter((step) => step.mainStep === mainStep.id);
+    let time = "";
+    const renderSteps = [];
+    const historySteps = application.history.filter(
+      (step) => step.mainStep === mainStep.id
+    );
+    const lastStep = historySteps[historySteps.length - 1];
 
-    for (const step of subSteps) {
-      step.message = "";
-
-      const historyStep = application.history.find(
-        (historyStep) => historyStep.name === step.name
+    if (historySteps.length === 0) {
+      status = "future";
+    } else if (lastStep.name === application.status) {
+      const templateLastStep = STEPS.find(
+        (tStep) => tStep.name === lastStep.name
       );
-
-      if (step.name === currentStep.name) {
-        status = "current";
-        //step.message = "test current";
-        if (step.link) {
-          link = step.link.replace(":id:", application._id);
-          step.link = link;
-        }
-        step.status = step.type;
-        step.date = currentStep.date;
-        collapsed = false;
-        subText = step.string;
-        if (historyStep.time) {
-          step.time = historyStep.time;
-          waitingTime = historyStep.time;
-        }
-      } else {
-        if (historyStep) {
-          status = "done";
-          step.status = "done";
-          if (historyStep.message) step.message = historyStep.message;
-
-          step.date = historyStep.date;
-          subText =
-            "Abgeschlossen am " +
-            new Date(parseInt(historyStep.date) * 1000).toLocaleDateString(
-              "de-DE"
-            );
-          if (step.string.includes(":var:")) {
-            step.string = step.string.replace(":var:", historyStep.var);
-          }
-        } else {
-          if (!step.showDefault) continue;
-          if (status === "") {
-            status = "future";
-          }
-
-          step.status = "future";
-        }
+      status = "current";
+      subText = createStepString(templateLastStep.string, lastStep.variable);
+      if (lastStep.time) {
+        time = lastStep.time;
       }
-      // Override old status if same group
-      if (step.status !== "future" && !step.newBubble) renderSteps.pop();
+      if (templateLastStep.link) {
+        link = templateLastStep.link.replace(":id:", application._id);
+      }
+    } else {
+      status = "success";
+      subText =
+        "Abgeschlossen am " +
+        new Date(parseInt(lastStep.date) * 1000).toLocaleDateString("de-DE");
+    }
 
+    for (const step of historySteps) {
+      const templateStep = STEPS.find((tStep) => tStep.name === step.name);
+      const statusInfo = statusToClass(templateStep.type);
+      console.log(step);
+
+      // Override old status if same group
+      if (!templateStep.newBubble) renderSteps.pop();
+      if (templateStep.link)
+        templateStep.link = templateStep.link.replace(":id:", application._id);
+      // Add previous steps
       renderSteps.push(
         <TimelineItem
-          text={step.string}
+          text={createStepString(templateStep.string, step.variable)}
           message={step.message}
-          status={statusToClass(step.status).statusClass}
-          icon={statusToClass(step.status).iconClass}
+          status={statusInfo.statusClass}
+          icon={statusInfo.iconClass}
           date={step.date}
-          key={step.name}
+          key={step.name + step.date}
           name={step.name}
-          link={step.link}
+          link={templateStep.link}
           time={step.time}
         />
       );
     }
+    // Add future stepps
+    if (status !== "success") {
+      let subSteps = STEPS.filter((step) => step.mainStep === mainStep.id);
+      if (historySteps.length === 0) {
+        for (const step of subSteps) {
+          if (step.showDefault) {
+            const statusInfo = statusToClass("future");
+            renderSteps.push(
+              <TimelineItem
+                text={step.string}
+                status={statusInfo.statusClass}
+                icon={statusInfo.iconClass}
+                key={step.name}
+              />
+            );
+          }
+        }
+      } else {
+        const templateStep = subSteps.find(
+          (step) => step.name === lastStep.name
+        );
 
+        const nextIndex = subSteps.findIndex(
+          (step) => step.name === templateStep.next
+        );
+        console.log(templateStep.name, templateStep.next);
+        if (nextIndex !== -1) {
+          subSteps = subSteps.slice(nextIndex);
+          for (const step of subSteps) {
+            if (step.showDefault) {
+              const statusInfo = statusToClass("future");
+              renderSteps.push(
+                <TimelineItem
+                  text={step.string}
+                  status={statusInfo.statusClass}
+                  icon={statusInfo.iconClass}
+                  key={step.name}
+                />
+              );
+            }
+          }
+        }
+      }
+    }
+    console.log(renderSteps);
     timeline.push(
       <TimelineMain
         collapseDetails={collapseDetails}
@@ -138,7 +174,7 @@ const StatusBar = ({ refreshData, application }) => {
         key={"main-" + mainStep.id}
         id={mainStep.id}
         link={link}
-        time={waitingTime}
+        time={time}
       />
     );
 
@@ -163,6 +199,124 @@ const StatusBar = ({ refreshData, application }) => {
       </div>
     );
   }
+
+  // for (const mainStep of MAIN_STEPS) {
+  //   let renderSteps = [];
+  //   let subSteps = [];
+  //   let status = "";
+  //   let subText = "";
+  //   let link = "";
+  //   let waitingTime = "";
+  //   let collapsed = true;
+  //   subSteps = STEPS.filter((step) => step.mainStep === mainStep.id);
+
+  //   for (const step of subSteps) {
+  //     step.message = "";
+
+  //     const historyStep = application.history.find(
+  //       (historyStep) => historyStep.name === step.name
+  //     );
+
+  //     if (step.name === currentStep.name) {
+  //       status = "current";
+  //       //step.message = "test current";
+  //       if (step.link) {
+  //         link = step.link.replace(":id:", application._id);
+  //         step.link = link;
+  //       }
+  //       step.status = step.type;
+  //       step.date = currentStep.date;
+  //       collapsed = false;
+  //       if (historyStep.time) {
+  //         step.time = historyStep.time;
+  //         waitingTime = historyStep.time;
+  //       }
+  //     } else {
+  //       if (historyStep) {
+  //         if (step.type === "problem") {
+  //           step.status = "problem";
+  //         } else {
+  //           step.status = "success";
+  //         }
+  //         status = "success";
+
+  //         if (historyStep.message) step.message = historyStep.message;
+
+  //         step.date = historyStep.date;
+  //         subText =
+  //           "Abgeschlossen am " +
+  //           new Date(parseInt(historyStep.date) * 1000).toLocaleDateString(
+  //             "de-DE"
+  //           );
+  //       } else {
+  //         if (!step.showDefault) continue;
+  //         if (status === "") {
+  //           status = "future";
+  //         }
+
+  //         step.status = "future";
+  //       }
+  //     }
+  //     if (step.status !== "future" && step.string.includes(":var:")) {
+  //       step.string = step.string.replace(":var:", historyStep.var);
+  //     }
+
+  //     if (step.name === currentStep.name) {
+  //       subText = step.string;
+  //     }
+
+  //     // Override old status if same group
+  //     if (step.status !== "future" && !step.newBubble) renderSteps.pop();
+
+  //     renderSteps.push(
+  //       <TimelineItem
+  //         text={step.string}
+  //         message={step.message}
+  //         status={statusToClass(step.status).statusClass}
+  //         icon={statusToClass(step.status).iconClass}
+  //         date={step.date}
+  //         key={step.name}
+  //         name={step.name}
+  //         link={step.link}
+  //         time={step.time}
+  //       />
+  //     );
+  //   }
+
+  //   timeline.push(
+  //     <TimelineMain
+  //       collapseDetails={collapseDetails}
+  //       status={status}
+  //       text={subText}
+  //       title={mainStep.name}
+  //       key={"main-" + mainStep.id}
+  //       id={mainStep.id}
+  //       link={link}
+  //       time={waitingTime}
+  //     />
+  //   );
+
+  //   // Don't show connecting timeline for last main step
+  //   if (MAIN_STEPS.length !== mainStep.id) {
+  //     timeline.push(
+  //       <div
+  //         className={"timeline-item " + statusToClass(status).statusClass}
+  //         id={"row-spacer-" + mainStep.id}
+  //         key={"row-spacer-" + mainStep.id}
+  //       ></div>
+  //     );
+  //   }
+
+  //   timeline.push(
+  //     <div
+  //       id={"content-" + mainStep.id}
+  //       key={"content-" + mainStep.id}
+  //       className="is-hidden"
+  //     >
+  //       {renderSteps}
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="content-box">

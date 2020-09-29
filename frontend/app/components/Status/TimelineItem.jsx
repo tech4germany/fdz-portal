@@ -6,7 +6,6 @@ const TimelineItem = (props) => {
     const content = document.getElementById(`modal-${props.name}`);
     content.classList.toggle("is-active");
   };
-
   return (
     <div className={"timeline-item " + props.status}>
       <div className={"timeline-marker is-icon " + props.status}>

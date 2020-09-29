@@ -26,8 +26,8 @@ const Applications = () => {
         : "fa-exclamation-circle";
 
     return (
-      <React.Fragment>
-        {i > 1 && <hr></hr>}
+      <React.Fragment key={i}>
+        {i > 1 && <hr />}
         <div key={application._id} className="application">
           <div>
             <Link to={"/applications/" + application._id}>
