@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const TimelineItem = (props) => {
-  console.log(props);
   const toggleModal = () => {
     const content = document.getElementById(`modal-${props.name}`);
     content.classList.toggle("is-active");

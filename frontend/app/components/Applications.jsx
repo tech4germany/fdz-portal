@@ -17,8 +17,11 @@ const Applications = () => {
   }, []);
 
   const applicationsList = applications.map((application) => {
-    const statusString = STEPS.find((step) => step.name === application.status)
-      .string;
+    const status = STEPS.find((step) => step.name === application.status);
+    const icon =
+      status.type === "waiting"
+        ? "fa-hourglass-start"
+        : "fa-exclamation-circle";
     return (
       <div key={application._id} className="application">
         <div>
@@ -26,7 +29,12 @@ const Applications = () => {
             {application.name}{" "}
           </Link>
         </div>
-        <div className="application-status">{statusString}</div>
+        <div className="application-status">
+          {status.string}{" "}
+          <small>
+            <i className={"fa " + icon}></i>
+          </small>
+        </div>
       </div>
     );
   });

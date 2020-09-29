@@ -98,6 +98,7 @@ const create = async () => {
       name: "application_unchecked",
       user: user1DB._id,
       mainStep: 1,
+      time: "1 - 2 Wochen",
       date: "1600954123",
     });
     application2.status =
