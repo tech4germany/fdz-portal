@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getData } from "./utils/api";
-import StatusBar from "./StatusBar";
+import StatusBar from "./Status/StatusBar";
 
 const Application = () => {
   const [applicationId, setApplicationId] = useState(useParams().id);

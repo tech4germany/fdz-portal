@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css";
 import "./StatusBar.css";
-import { STEPS, MAIN_STEPS } from "../../../server/const/steps";
-import TimelineMain from "./Status/TimelineMain";
-import TimelineItem from "./Status/TimelineItem";
+import { STEPS, MAIN_STEPS } from "../../../../server/const/steps";
+import TimelineMain from "./TimelineMain";
+import TimelineItem from "./TimelineItem";
 
 const StatusBar = ({ refreshData, application }) => {
   const statusToClass = (status) => {

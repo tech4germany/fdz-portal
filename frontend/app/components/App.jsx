@@ -7,7 +7,7 @@ import Applications from "./Applications";
 import Application from "./Application";
 import Login from "./Auth/Login";
 import ApplicationNew from "./ApplicationNew";
-import StatusShow from "./StatusShow";
+import StatusShow from "./Status/StatusShow";
 import "./App.css";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";
