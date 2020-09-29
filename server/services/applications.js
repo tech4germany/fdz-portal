@@ -93,7 +93,7 @@ const uploadFakeScript = async (params) => {
     applicationDB.history.push({
       name: "script_submitted",
       mainStep: 3,
-      var: params.fileName,
+      variable: params.fileName,
       user: userId,
       date: Math.floor(Date.now() / 1000),
     });

@@ -17,9 +17,17 @@ const Applications = () => {
   }, []);
 
   let i = 0;
+
   const applicationsList = applications.map((application) => {
     i++;
-    const status = STEPS.find((step) => step.name === application.status);
+    console.log(application.history[application.history.length - 1]);
+    const statusString = STEPS.find((step) => step.name === application.status)
+      .string;
+    const stepVariable =
+      application.history[application.history.length - 1].variable;
+    const statusText = statusString.includes(":var:")
+      ? statusString.replace(":var:", stepVariable)
+      : statusString;
     const icon =
       status.type === "waiting"
         ? "fa-hourglass-start"
@@ -35,7 +43,7 @@ const Applications = () => {
             </Link>
           </div>
           <div className="application-status">
-            {status.string}{" "}
+            {statusText}{" "}
             {/* <small>
               <i className={"fa " + icon}></i>
             </small> */}
