@@ -16,26 +16,32 @@ const Applications = () => {
     fetchData();
   }, []);
 
+  let i = 0;
   const applicationsList = applications.map((application) => {
+    i++;
     const status = STEPS.find((step) => step.name === application.status);
     const icon =
       status.type === "waiting"
         ? "fa-hourglass-start"
         : "fa-exclamation-circle";
+
     return (
-      <div key={application._id} className="application">
-        <div>
-          <Link to={"/applications/" + application._id}>
-            {application.name}{" "}
-          </Link>
+      <React.Fragment>
+        {i > 1 && <hr></hr>}
+        <div key={application._id} className="application">
+          <div>
+            <Link to={"/applications/" + application._id}>
+              {application.name}{" "}
+            </Link>
+          </div>
+          <div className="application-status">
+            {status.string}{" "}
+            {/* <small>
+              <i className={"fa " + icon}></i>
+            </small> */}
+          </div>
         </div>
-        <div className="application-status">
-          {status.string}{" "}
-          <small>
-            <i className={"fa " + icon}></i>
-          </small>
-        </div>
-      </div>
+      </React.Fragment>
     );
   });
 

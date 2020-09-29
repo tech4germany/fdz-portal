@@ -13,15 +13,11 @@
 
 .app-header {
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .right {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
-}
-
-.app-header-status {
-  /* margin-right: 20px; */
 }
