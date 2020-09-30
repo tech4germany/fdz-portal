@@ -21,8 +21,13 @@ const list = async (params, user) => {
   const applications = await Application.find(query, null, {
     sort: { created_at: -1 },
   })
+    .populate({
+      path: "user",
+      select: "email",
+    })
     .limit(limit)
     .lean(); // .select({ "name": 1, "_id": 0})
+  console.log(applications);
   return applications;
 };
 
