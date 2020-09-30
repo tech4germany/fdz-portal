@@ -7,6 +7,7 @@ import Application from "../Application";
 
 const Manage = () => {
   const [applications, setApplications] = useState([]);
+  const [query, setQuery] = useState("");
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const Manage = () => {
       setApplications(data.applications);
     };
     fetchData();
-  }, []);
+  }, [query]);
 
   const applicationsList = applications.map((application) => {
     const status = STEPS.find((step) => step.name === application.status);
