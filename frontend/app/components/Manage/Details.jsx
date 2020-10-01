@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getData } from "../utils/api";
+import { getData, sendData } from "../utils/api";
 import "./Details.css";
 import { STEPS, MAIN_STEPS } from "../../../../server/const/steps";
 
 const Application = () => {
   const [applicationId, setApplicationId] = useState(useParams().id);
   const [application, setApplication] = useState(null);
+  const [newStatus, setNewStatus] = useState("");
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -15,6 +17,31 @@ const Application = () => {
   const fetchData = async () => {
     const data = await getData(`/applications/${applicationId}`);
     setApplication(data.application);
+  };
+
+  const handleStatusChange = (event) => {
+    setNotification(null);
+    setNewStatus(event.target.value);
+  };
+
+  const submitNewStatus = async () => {
+    const userMessageElement = document.getElementById("userMessage");
+    if (userMessageElement) var message = userMessageElement.value;
+    const result = await sendData(
+      `/applications/${applicationId}/status`,
+      "PUT",
+      {
+        status: newStatus,
+        message,
+      }
+    );
+    await fetchData();
+    if (result.status === 200) {
+      setNotification("Status erfolgreich geändert");
+    } else {
+      setNotification("Status konnte nicht geändert werden");
+    }
+    setNewStatus("");
   };
 
   const timestampToString = (timestap) => {
@@ -48,7 +75,7 @@ const Application = () => {
         : templateStep.string;
       history.push(
         <div key={step.name + step.date}>
-          {timestampToString(step.date)} - {statusText}
+          {timestampToString(step.date)} -{statusText}
         </div>
       );
     }
@@ -56,13 +83,90 @@ const Application = () => {
       <div className="content-box">
         <div className="application-name">{application.name}</div>
         <div className="application-description">{application.description}</div>
-        <div className="application-institute">
+        <div className="application-institution">
           <i className="fa fa-university"></i> {application.institution.name}
         </div>
         <div className="application-user">
           <i className="fa fa-user"></i> {application.user.email}
         </div>
-        <div className="application-history">{history}</div>
+        <div className="application-action">
+          <button className="button is-info is-outlined">
+            <span className="icon">
+              <i className="fa fa-cloud-download-alt"></i>
+            </span>
+            <span>Skript</span>
+          </button>
+          <button className="button is-info is-outlined">
+            <span className="icon">
+              <i className="fa fa-cloud-download-alt"></i>
+            </span>
+            <span>PDF</span>
+          </button>
+
+          <div className="field">
+            <div className="control has-icons-left">
+              <div className="select">
+                <select
+                  name="cars"
+                  id="cars"
+                  value={newStatus}
+                  onChange={handleStatusChange}
+                >
+                  <option value="" disabled hidden>
+                    Neuen Status auswählen
+                  </option>
+                  <optgroup label="Antrag">
+                    <option value="application_checked">
+                      Antrag erfolgreich überprüft
+                    </option>
+                    <option value="application_failed">
+                      Antrag muss überarbeitet werden
+                    </option>
+                  </optgroup>
+                  <optgroup label="Testdaten">
+                    <option value="testdata_delivered">
+                      Testdaten bereitgestellt
+                    </option>
+                  </optgroup>
+                  <optgroup label="Skript">
+                    <option value="script_executed">
+                      Das Skript wurde erfolgreich ausgeführt
+                    </option>
+                    <option value="script_failed">
+                      Das Skript muss überarbeitet werden
+                    </option>
+                    <option value="results_delivered">
+                      Die Ergebnismenge wurde erfolgreich übermittelt
+                    </option>
+                  </optgroup>
+                </select>
+              </div>
+              <div className="icon is-small is-left">
+                <i className="fas fa-globe"></i>
+              </div>
+            </div>
+          </div>
+
+          {(newStatus === "script_failed" ||
+            newStatus === "application_failed") && (
+            <textarea
+              className="textarea"
+              id="userMessage"
+              placeholder="Nachricht an User"
+            ></textarea>
+          )}
+
+          {newStatus && (
+            <button className="button is-info" onClick={submitNewStatus}>
+              Abschicken
+            </button>
+          )}
+
+          {notification && notification}
+        </div>
+        <div className="application-history">
+          <b>Chronik</b> {history}
+        </div>
       </div>
     );
   }

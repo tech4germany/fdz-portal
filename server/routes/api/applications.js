@@ -38,9 +38,10 @@ router.put(
   "/:id/status",
   asyncWrap(async (req, res) => {
     const applicationName = await applicationsServices.updateStatus({
-      newStatus: req.body.status,
+      id: req.params.id,
+      status: req.body.status,
+      message: req.body.message,
     });
-    //const applicationName = "Test Application";
     res.json({ status: 200, applicationName });
   })
 );

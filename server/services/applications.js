@@ -1,5 +1,6 @@
 const Application = require("../models/Application");
 const Script = require("../models/Script");
+const { STEPS } = require("../const/steps");
 
 const get = async (id) => {
   const application = await Application.findById(id)
@@ -38,22 +39,38 @@ const list = async (params, user) => {
   return applications;
 };
 
-const updateStatus = async (params, user) => {
-  if (user.role === "researcher")
-    throw new ValError("Not allowed to change status");
+const updateStatus = async (data, user) => {
+  // if (user.role === "researcher")
+  //   throw new ValError("Not allowed to change status");
 
   try {
-    const applicationDB = await Application.findById(params.id).select(
+    const applicationDB = await Application.findById(data.id).select(
       "status history"
     );
+    let newStatus = data.status;
 
+    const nextStep = STEPS.find((step) => step.name === data.status);
     applicationDB.history.push({
-      action: "status_update",
-      actionDetail: `${applicationDB.status} to ${params.status}`,
-      fdzUser: user._id,
-      time: Date.now(),
+      name: data.status,
+      mainStep: nextStep.mainStep,
+      message: data.message ? data.message : null,
+      date: Date.now(),
     });
-    applicationDB.status = params.status;
+
+    if (nextStep.auto_next) {
+      const nextAutoStep = STEPS.find(
+        (step) => step.name === nextStep.auto_next
+      );
+      newStatus = nextStep.auto_next;
+      applicationDB.history.push({
+        name: nextAutoStep.name,
+        mainStep: nextAutoStep.mainStep,
+        date: Date.now(),
+      });
+    }
+
+    applicationDB.status = newStatus;
+    console.log("updating status", applicationDB);
     await applicationDB.save();
 
     // await Application.findOneAndUpdate(

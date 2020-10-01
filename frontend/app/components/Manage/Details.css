@@ -1,5 +1,6 @@
 .application-name {
   font-weight: bold;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
@@ -7,6 +8,18 @@
   margin-bottom: 15px;
 }
 
-.application-institute {
-  margin-bottom: 5px;
+.application-institution {
+  margin-bottom: 10px;
+}
+
+.application-user {
+  margin-bottom: 15px;
+}
+
+.application-action {
+  margin-bottom: 25px;
+}
+
+.application-action .button {
+  margin-right: 20px;
 }

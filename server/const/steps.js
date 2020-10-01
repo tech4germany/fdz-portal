@@ -1,34 +1,3 @@
-// const STATUSES = {
-//   names: [
-//     "application_submitted",
-//     "application_checked",
-//     "application_accepted",
-//     "application_needs_update",
-//     "application_updated",
-//     "application_rejected",
-//     "testdata_delivered",
-//     "script_submitted",
-//     "script_checked",
-//     "script_executed",
-//     "script_failed",
-//     "results_submitted",
-//   ],
-//   strings: [
-//     "Sie haben den Antrag eingereicht",
-//     "Der Antrag wurde überprüft",
-//     "Der Antrag wurde aktzeptiert",
-//     "Der Antrag muss überarbeitet werden",
-//     "Der Antrag wurde überarbeitet",
-//     "Der Antrag wurde abgewiesen",
-//     "Die Testdaten wurden zugestellt",
-//     "Das Ausführungsskript wurde eingereicht",
-//     "Das Ausführungsskript wurde überprüft",
-//     "Das Ausführungsskript wurde ausgeführt",
-//     "Das Ausführungsskript konnte nicht ausgeführt werden",
-//     "Die Ergebnismenge wurde übermittelt",
-//   ],
-// };
-
 const STEPS = [
   {
     name: "application_submitted",
@@ -37,6 +6,7 @@ const STEPS = [
     newBubble: true,
     showDefault: false,
     type: "success",
+    auto_next: "application_unchecked",
     actionRequiered: false,
   },
   {
@@ -56,6 +26,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "success",
+    auto_next: "testdata_prepared",
     actionRequiered: true,
   },
   {
@@ -65,6 +36,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "probem",
+    auto_next: "application_needs_update",
     actionRequiered: false,
   },
   {
@@ -85,6 +57,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "success",
+    auto_next: "application_unchecked",
     actionRequiered: true,
   },
   {
@@ -113,6 +86,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "success",
+    auto_next: "script_unsubmitted",
     actionRequiered: false,
   },
   {
@@ -133,6 +107,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "success",
+    auto_next: "script_unexecuted",
     actionRequiered: false,
   },
   // {
@@ -171,6 +146,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "success",
+    auto_next: "results_preparing",
     actionRequiered: false,
   },
   {
@@ -180,6 +156,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "problem",
+    auto_next: "script_needs_update",
     actionRequiered: false,
   },
   {
@@ -200,6 +177,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "success",
+    auto_next: "script_unexecuted",
     actionRequiered: true,
   },
   {
@@ -219,6 +197,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "success",
+    auto_next: "close_application",
     actionRequiered: false,
   },
   {
@@ -227,8 +206,17 @@ const STEPS = [
     mainStep: 4,
     newBubble: true,
     showDefault: true,
-    type: "submitted",
+    type: "unsubmitted",
     actionRequiered: true,
+  },
+  {
+    name: "application_closed",
+    string: "Den Antrag wurde erfolgreich abgeschloßen",
+    mainStep: 4,
+    newBubble: false,
+    showDefault: false,
+    type: "success",
+    actionRequiered: false,
   },
 ];
 
