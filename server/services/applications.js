@@ -7,6 +7,14 @@ const get = async (id) => {
       path: "scripts",
       select: "fileName status",
     })
+    .populate({
+      path: "institution",
+      select: "name",
+    })
+    .populate({
+      path: "user",
+      select: "email",
+    })
     .lean();
   return application;
 };
@@ -27,7 +35,6 @@ const list = async (params, user) => {
     })
     .limit(limit)
     .lean(); // .select({ "name": 1, "_id": 0})
-  console.log(applications);
   return applications;
 };
 
@@ -65,7 +72,6 @@ const updateStatus = async (params, user) => {
 };
 
 const resetStatus = async (params) => {
-  console.log(params);
   try {
     const applicationDB = await Application.findById(
       params.applicationId

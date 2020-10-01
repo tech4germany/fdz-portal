@@ -40,6 +40,7 @@ const create = async () => {
       mainSteps: [],
     };
     application1.user = user1DB._id;
+    application1.institution = institution1DB._id;
     application1.history.push({
       name: "application_submitted",
       user: user1DB._id,
@@ -117,6 +118,7 @@ const create = async () => {
       mainSteps: [],
     };
     application2.user = user1DB._id;
+    application2.institution = institution1DB._id;
     application2.history.push({
       name: "application_submitted",
       mainStep: 1,

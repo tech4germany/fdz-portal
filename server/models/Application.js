@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const User = require("./User");
 const Script = require("./Script");
+const Institution = require("./Institution");
 const { STATUSES_NAMES } = require("../const/steps.js");
 
 const applicationSchema = new Schema(
@@ -83,6 +84,11 @@ const applicationSchema = new Schema(
     ],
     scripts: [{ type: Schema.Types.ObjectId, ref: "Script" }],
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    institution: {
+      type: Schema.Types.ObjectId,
+      ref: "Institution",
+      required: true,
+    },
   },
   {
     timestamps: {
