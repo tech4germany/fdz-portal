@@ -99,7 +99,6 @@ const StatusBar = ({ refreshData, application }) => {
     for (const step of historySteps) {
       const templateStep = STEPS.find((tStep) => tStep.name === step.name);
       const statusInfo = statusToClass(templateStep.type);
-      console.log(step);
 
       // Override old status if same group
       if (!templateStep.newBubble) renderSteps.pop();
@@ -145,7 +144,6 @@ const StatusBar = ({ refreshData, application }) => {
         const nextIndex = subSteps.findIndex(
           (step) => step.name === templateStep.next
         );
-        console.log(templateStep.name, templateStep.next);
         if (nextIndex !== -1) {
           subSteps = subSteps.slice(nextIndex);
           for (const step of subSteps) {
@@ -164,7 +162,6 @@ const StatusBar = ({ refreshData, application }) => {
         }
       }
     }
-    console.log(renderSteps);
     timeline.push(
       <TimelineMain
         collapseDetails={collapseDetails}

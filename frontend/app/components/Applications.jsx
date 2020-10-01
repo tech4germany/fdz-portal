@@ -20,7 +20,6 @@ const Applications = () => {
 
   const applicationsList = applications.map((application) => {
     i++;
-    console.log(application.history[application.history.length - 1]);
     const statusString = STEPS.find((step) => step.name === application.status)
       .string;
     const stepVariable =

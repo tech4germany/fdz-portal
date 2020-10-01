@@ -20,7 +20,6 @@ const Manage = () => {
 
   const applicationsList = applications.map((application) => {
     const status = STEPS.find((step) => step.name === application.status);
-    console.log(application);
     const icon =
       status.type === "waiting"
         ? "fa-hourglass-start"
