@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
+import "bulma-extensions/bulma-steps/dist/css/bulma-steps.min.css";
 import { sendData } from "./utils/api";
 import "./Script.css";
 
@@ -40,6 +41,12 @@ class Script extends React.Component {
       }.bind(this),
       2000
     );
+  }
+
+  getStepClasses(step) {
+    if (step === this.state.step) return "step-item is-completed is-info";
+    if (step < this.state.step) return "step-item is-completed is-success";
+    else return "step-item";
   }
 
   confirmScript() {
@@ -209,6 +216,50 @@ class Script extends React.Component {
     }
     return (
       <div className="content-box">
+        <div className="wizard-step-bar">
+          <ul className="steps">
+            <li className={this.getStepClasses(1)}>
+              <div className="step-marker">
+                <span className="icon">
+                  <i className={"fa" + (step > 1 && " fa-check")}></i>
+                </span>
+              </div>
+              <div className="step-details ">
+                <p className="step-title">Step 1</p>
+              </div>
+            </li>
+            <li className={this.getStepClasses(2)}>
+              <div className="step-marker">
+                <span className="icon">
+                  <i className={"fa" + (step > 2 && " fa-check")}></i>
+                </span>
+              </div>
+              <div className="step-details">
+                <p className="step-title">Step 2</p>
+              </div>
+            </li>
+            <li className={this.getStepClasses(3)}>
+              <div className="step-marker">
+                <span className="icon">
+                  <i className={"fa" + (step > 3 && " fa-check")}></i>
+                </span>
+              </div>
+              <div className="step-details">
+                <p className="step-title">Step 3</p>
+              </div>
+            </li>
+            <li className={this.getStepClasses(4)}>
+              <div className="step-marker">
+                <span className="icon">
+                  <i className="fa fa-flag"></i>
+                </span>
+              </div>
+              <div className="step-details">
+                <p className="step-title">Step 4</p>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div className="step-title">{this.state.title}</div>
         {content}
       </div>

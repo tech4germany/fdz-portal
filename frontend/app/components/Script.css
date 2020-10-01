@@ -21,3 +21,7 @@
   margin-bottom: 15px;
   background-color: #f3f3f3 !important;
 }
+
+.wizard-step-bar {
+  margin-bottom: 20px;
+}
