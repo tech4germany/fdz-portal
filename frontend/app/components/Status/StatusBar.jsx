@@ -93,7 +93,7 @@ const StatusBar = ({ refreshData, application }) => {
       status = "success";
       subText =
         "Abgeschlossen am " +
-        new Date(parseInt(lastStep.date) * 1000).toLocaleDateString("de-DE");
+        new Date(lastStep.date).toLocaleDateString("de-DE");
     }
 
     for (const step of historySteps) {

@@ -51,7 +51,7 @@ const updateStatus = async (params, user) => {
       action: "status_update",
       actionDetail: `${applicationDB.status} to ${params.status}`,
       fdzUser: user._id,
-      time: Math.floor(Date.now() / 1000),
+      time: Date.now(),
     });
     applicationDB.status = params.status;
     await applicationDB.save();
@@ -108,14 +108,14 @@ const uploadFakeScript = async (params) => {
       mainStep: 3,
       variable: params.fileName,
       user: userId,
-      date: Math.floor(Date.now() / 1000),
+      date: Date.now(),
     });
     applicationDB.history.push({
       name: "script_unexecuted",
       mainStep: 3,
       time,
       user: userId,
-      date: Math.floor(Date.now() / 1000),
+      date: Date.now(),
     });
 
     applicationDB.status =

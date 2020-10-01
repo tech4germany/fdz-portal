@@ -51,7 +51,7 @@ const applicationSchema = new Schema(
           required: true,
         },
         date: {
-          type: String,
+          type: Number,
           required: true,
         },
         variable: {

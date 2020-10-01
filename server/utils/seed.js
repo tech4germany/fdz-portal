@@ -45,51 +45,51 @@ const create = async () => {
       name: "application_submitted",
       user: user1DB._id,
       mainStep: 1,
-      date: "1600954411",
+      date: 1600954411000,
     });
     application1.history.push({
       name: "application_unchecked",
       user: user1DB._id,
       mainStep: 1,
-      date: "1600954412",
+      date: 1600954412000,
     });
     application1.history.push({
       name: "application_checked",
       user: user1DB._id,
       mainStep: 1,
-      date: "1600954662",
+      date: 1600954662000,
     });
     application1.history.push({
       name: "testdata_prepared",
       mainStep: 2,
       user: user1DB._id,
-      date: "1600954663",
+      date: 1600954663000,
     });
     application1.history.push({
       name: "testdata_delivered",
       mainStep: 2,
       user: user1DB._id,
-      date: "1601128885",
+      date: 1601128885000,
     });
     application1.history.push({
       name: "script_unsubmitted",
       mainStep: 3,
       user: user1DB._id,
-      date: "1601128891",
+      date: 1601128891000,
     });
     application1.history.push({
       name: "script_submitted",
       mainStep: 3,
       variable: "test.sql",
       user: user1DB._id,
-      date: 1601248891,
+      date: 1601248891000,
     });
     application1.history.push({
       name: "script_unexecuted",
       mainStep: 3,
       time: "2 - 3 Wochen",
       user: user1DB._id,
-      date: 1601248991,
+      date: 1601248991000,
     });
     application1.history.push({
       name: "script_failed",
@@ -97,14 +97,14 @@ const create = async () => {
       variable: "test.sql",
       message: 'Syntax error in SQL statement "SELECT * FORM * "',
       user: user1DB._id,
-      date: 1601248991,
+      date: 1601248991000,
     });
     application1.history.push({
       name: "script_needs_update",
       mainStep: 3,
       variable: "test.sql",
       user: user1DB._id,
-      date: 1601248991,
+      date: 1601248991000,
     });
     application1.status =
       application1.history[application1.history.length - 1].name;
@@ -123,14 +123,14 @@ const create = async () => {
       name: "application_submitted",
       mainStep: 1,
       user: user1DB._id,
-      date: "1600956411",
+      date: 1600956411000,
     });
     application2.history.push({
       name: "application_unchecked",
       user: user1DB._id,
       mainStep: 1,
       time: "1 - 2 Wochen",
-      date: "1600954123",
+      date: 1600954123000,
     });
     application2.status =
       application2.history[application2.history.length - 1].name;

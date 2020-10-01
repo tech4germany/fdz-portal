@@ -16,9 +16,7 @@ const TimelineItem = (props) => {
           <p className="timeline-item-header">
             {props.time
               ? props.time + " Bearbeitungszeit"
-              : new Date(parseInt(props.date) * 1000).toLocaleDateString(
-                  "de-DE"
-                )}
+              : new Date(props.date).toLocaleDateString("de-DE")}
           </p>
         )}
         <div>
