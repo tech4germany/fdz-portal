@@ -1,0 +1,9 @@
+.notification.small {
+  width: 300px;
+}
+.notification.medium {
+  width: 400px;
+}
+.notification.large {
+  width: 500px;
+}

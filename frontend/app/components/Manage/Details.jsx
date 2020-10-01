@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getData, sendData } from "../utils/api";
+import Notification from "../Notification/Notification";
 import "./Details.css";
 import { STEPS, MAIN_STEPS } from "../../../../server/const/steps";
 
@@ -37,11 +38,21 @@ const Application = () => {
     );
     await fetchData();
     if (result.status === 200) {
-      setNotification("Status erfolgreich geändert");
+      setNotification({
+        text: "Status erfolgreich geändert",
+        status: "is-success",
+      });
     } else {
-      setNotification("Status konnte nicht geändert werden");
+      setNotification({
+        text: "Status konnte nicht geändert werden",
+        status: "is-fail",
+      });
     }
     setNewStatus("");
+  };
+
+  const closeNotification = () => {
+    setNotification(null);
   };
 
   const timestampToString = (timestap) => {
@@ -162,7 +173,11 @@ const Application = () => {
             </button>
           )}
 
-          {notification && notification}
+          <Notification
+            notification={notification}
+            size="large"
+            close={setNotification}
+          />
         </div>
         <div className="application-history">
           <b>Chronik</b> {history}
