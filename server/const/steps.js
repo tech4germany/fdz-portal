@@ -1,3 +1,4 @@
+// Status Sub-Steps
 const STEPS = [
   {
     name: "application_submitted",
@@ -220,6 +221,7 @@ const STEPS = [
   },
 ];
 
+// Main Steps
 const MAIN_STEPS = [
   { id: 1, name: "Antrag" },
   { id: 2, name: "Testdaten" },
@@ -227,6 +229,10 @@ const MAIN_STEPS = [
   { id: 4, name: "Antrag abschließen" },
 ];
 
+// Script Wizard - html code hier? Text ist mit html formatiert
+const SCRIPT_WIZARD = [];
+
+// Only for Database model
 const getStatusNames = () => {
   return STEPS.map((step) => step.name);
 };
