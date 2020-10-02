@@ -12,6 +12,7 @@ class Script extends React.Component {
     this.confirmScript = this.confirmScript.bind(this);
     this.submitScript = this.submitScript.bind(this);
     this.removeFile = this.removeFile.bind(this);
+    this.goBack = this.goBack.bind(this);
 
     this.state = {
       applicationId: this.props.match.params.id,
@@ -32,6 +33,10 @@ class Script extends React.Component {
     this.setState({ selectedFile: null });
   }
 
+  goBack() {
+    this.setState({ step: this.state.step - 1 });
+  }
+
   uploadScript() {
     if (!this.state.selectedFile) {
       return;
@@ -42,7 +47,7 @@ class Script extends React.Component {
         this.setState({ loading: false });
         this.setState({ step: 2 });
       }.bind(this),
-      1500
+      1000
     );
   }
 
@@ -107,6 +112,7 @@ class Script extends React.Component {
               )}
             </label>
           </div>
+
           <button
             className="button is-info upload-button"
             onClick={this.uploadScript}
@@ -131,9 +137,19 @@ class Script extends React.Component {
             Ich bin mir darüber im klaren, dass ein nicht lauffähiges Skript den
             Datenantragsprozess um mehrere Wochen bis Monate verzögern kann.
           </div>
+
+          <button
+            className="button is-info is-outlined back-button"
+            onClick={this.goBack}
+          >
+            <span className="icon is-small">
+              <i className="fas fa-chevron-circle-left"></i>
+            </span>
+          </button>
           <button
             className="button is-info upload-button"
             onClick={this.confirmScript}
+            autoFocus={true}
           >
             Bestätigen
           </button>
@@ -167,6 +183,7 @@ class Script extends React.Component {
                     <br />
                     <button
                       className="button is-info upload-button"
+                      autoFocus={true}
                       onClick={() => this.submitScript("full")}
                     >
                       Anfordern
@@ -209,6 +226,14 @@ class Script extends React.Component {
               </div>
             </article>
           </div>
+          <button
+            className="button is-info is-outlined back-button"
+            onClick={this.goBack}
+          >
+            <span className="icon is-small">
+              <i className="fas fa-chevron-circle-left"></i>
+            </span>
+          </button>
         </React.Fragment>
       );
     } else if (step === 4) {
