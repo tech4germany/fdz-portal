@@ -63,7 +63,7 @@ router.post(
   "/:id/script/fake",
   asyncWrap(async (req, res) => {
     const fileName = await applicationsServices.uploadFakeScript({
-      applicationId: req.body.applicationId,
+      applicationId: req.params.id,
       fileName: req.body.fileName,
       resultMethod: req.body.resultMethod,
     });

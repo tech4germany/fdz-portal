@@ -22,6 +22,15 @@
   background-color: #f3f3f3 !important;
 }
 
+.upload-description {
+  margin-bottom: 10px;
+}
+
 .wizard-step-bar {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.remove-file {
+  margin-left: 5px;
+  margin-top: 5px;
 }

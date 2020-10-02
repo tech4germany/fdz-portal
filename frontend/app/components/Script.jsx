@@ -11,6 +11,7 @@ class Script extends React.Component {
     this.uploadScript = this.uploadScript.bind(this);
     this.confirmScript = this.confirmScript.bind(this);
     this.submitScript = this.submitScript.bind(this);
+    this.removeFile = this.removeFile.bind(this);
 
     this.state = {
       applicationId: this.props.match.params.id,
@@ -18,14 +19,17 @@ class Script extends React.Component {
       selectedFile: null,
       confirmed: false,
       resultMethod: null,
-      title: "Skript Auswählen",
+      title: "",
       content: null,
     };
   }
 
   selectScriptHandler(event) {
     this.setState({ selectedFile: event.target.files[0] });
-    document.getElementById("file-name").innerText = event.target.files[0].name;
+  }
+
+  removeFile() {
+    this.setState({ selectedFile: null });
   }
 
   uploadScript() {
@@ -37,9 +41,8 @@ class Script extends React.Component {
       function () {
         this.setState({ loading: false });
         this.setState({ step: 2 });
-        this.setState({ title: "Skript Prüfen" });
       }.bind(this),
-      2000
+      1500
     );
   }
 
@@ -52,19 +55,15 @@ class Script extends React.Component {
   confirmScript() {
     this.setState({ step: 3 });
     this.setState({ confirmed: true });
-    this.setState({ title: "Ergebnismenge Wählen" });
   }
 
   submitScript(resultMethod) {
     this.setState({ resultMethod });
     sendData(`/applications/${this.state.applicationId}/script/fake`, "POST", {
-      applicationId: this.state.applicationId,
       fileName: this.state.selectedFile.name,
       resultMethod,
     });
     this.setState({ step: 4 });
-
-    this.setState({ title: "Zusammenfassung" });
   }
 
   render() {
@@ -73,6 +72,7 @@ class Script extends React.Component {
     if (step === 1) {
       content = (
         <React.Fragment>
+          <div className="upload-description">asd</div>
           <div className="file has-name">
             <label className="file-label">
               <input
@@ -87,7 +87,19 @@ class Script extends React.Component {
                 </span>
                 <span className="file-label">Skript Datei auswählen</span>
               </span>
-              <span className="file-name" id="file-name"></span>
+              <span className="file-name">
+                {this.state.selectedFile && this.state.selectedFile.name}
+              </span>
+              {this.state.selectedFile && (
+                <button
+                  className="button is-small remove-file is-danger is-outlined"
+                  onClick={this.removeFile}
+                >
+                  <span className="icon is-small">
+                    <i className="fas fa-trash-alt"></i>
+                  </span>
+                </button>
+              )}
               {this.state.loading && (
                 <div className="fa-2x spinner">
                   <i className="fas fa-spinner fa-spin"></i>
@@ -95,7 +107,6 @@ class Script extends React.Component {
               )}
             </label>
           </div>
-
           <button
             className="button is-info upload-button"
             onClick={this.uploadScript}
@@ -158,7 +169,7 @@ class Script extends React.Component {
                       className="button is-info upload-button"
                       onClick={() => this.submitScript("full")}
                     >
-                      Auswählen
+                      Anfordern
                     </button>
                   </p>
                 </div>
@@ -192,7 +203,7 @@ class Script extends React.Component {
                     className="button is-info upload-button"
                     onClick={() => this.submitScript("partial")}
                   >
-                    Auswählen
+                    Anfordern
                   </button>
                 </div>
               </div>
@@ -204,10 +215,14 @@ class Script extends React.Component {
       content = (
         <React.Fragment>
           Das Skript {this.state.selectedFile.name} wurde erfolgreich
-          eingereicht.
+          eingereicht und es wurde die{" "}
+          {this.state.resultMethod === "full"
+            ? " komplette Ergebnismenge"
+            : "Teil-Ergebnismenge"}{" "}
+          beantragt.
           <br />
           <Link to={"/applications/" + this.state.applicationId}>
-            <button className="button is-info is-outlined upload-button">
+            <button className="button is-info upload-button">
               Statusübersicht
             </button>
           </Link>
@@ -225,7 +240,7 @@ class Script extends React.Component {
                 </span>
               </div>
               <div className="step-details ">
-                <p className="step-title">Step 1</p>
+                <p className="step-title">Skript Auswählen</p>
               </div>
             </li>
             <li className={this.getStepClasses(2)}>
@@ -235,7 +250,7 @@ class Script extends React.Component {
                 </span>
               </div>
               <div className="step-details">
-                <p className="step-title">Step 2</p>
+                <p className="step-title">Skript Prüfen</p>
               </div>
             </li>
             <li className={this.getStepClasses(3)}>
@@ -245,7 +260,7 @@ class Script extends React.Component {
                 </span>
               </div>
               <div className="step-details">
-                <p className="step-title">Step 3</p>
+                <p className="step-title">Ergebnismenge</p>
               </div>
             </li>
             <li className={this.getStepClasses(4)}>
@@ -255,12 +270,11 @@ class Script extends React.Component {
                 </span>
               </div>
               <div className="step-details">
-                <p className="step-title">Step 4</p>
+                <p className="step-title">Zusammenfassung</p>
               </div>
             </li>
           </ul>
         </div>
-        <div className="step-title">{this.state.title}</div>
         {content}
       </div>
     );
