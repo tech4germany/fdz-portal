@@ -14,7 +14,7 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum: ["researcher", "fdz", "admin"],
-    default: "researcher",
+    required: true,
   },
   status: {
     type: String,

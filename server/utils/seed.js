@@ -3,7 +3,10 @@ const Institution = require("../models/Institution");
 const User = require("../models/User");
 const Application = require("../models/Application");
 const Script = require("../models/Script");
+const { hash } = require("./crypter");
 const { MAIN_STEPS } = require("../const/steps.js");
+
+const crypto = require("crypto");
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/fdz";
 
@@ -21,15 +24,22 @@ const create = async () => {
     await Application.deleteMany({});
     await Script.deleteMany({});
 
+    const userFDZ = {
+      email: "support@fdz.de",
+      password: hash("abc"),
+      role: "fdz",
+    };
+    User.create(userFDZ);
+
     const institution1 = { name: "RKI", email: "it@rki.de", password: "abc" };
     const institution1DB = await Institution.create(institution1);
 
     const user1 = {
       email: "it@rki.de",
-      password: "abc",
-      institution: null,
+      password: hash("abc"),
+      role: "researcher",
+      institution: institution1DB._id,
     };
-    user1.institution = institution1DB._id;
     user1DB = await User.create(user1);
 
     const application1 = {
