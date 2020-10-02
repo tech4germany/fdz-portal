@@ -48,7 +48,7 @@ const STEPS = [
     newBubble: true,
     showDefault: false,
     type: "unsubmitted",
-    next: "application_unchecked",
+    next: "application_updated",
     actionRequiered: true,
   },
   {
@@ -168,7 +168,7 @@ const STEPS = [
     newBubble: true,
     showDefault: false,
     type: "unsubmitted",
-    next: "script_unexecuted",
+    next: "script_updated",
     actionRequiered: true,
   },
   {

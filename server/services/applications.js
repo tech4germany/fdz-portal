@@ -121,7 +121,7 @@ const uploadFakeScript = async (params) => {
     userId = applicationDB.history[0].user;
 
     applicationDB.history.push({
-      name: "script_submitted",
+      name: "script_updated",
       mainStep: 3,
       variable: params.fileName,
       user: userId,
