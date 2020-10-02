@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import "bulma-extensions/bulma-steps/dist/css/bulma-steps.min.css";
-import { sendData } from "./utils/api";
+import { getData, sendData } from "./utils/api";
 import "./Script.css";
-
 class Script extends React.Component {
   constructor(props) {
     super(props);
@@ -13,9 +12,12 @@ class Script extends React.Component {
     this.submitScript = this.submitScript.bind(this);
     this.removeFile = this.removeFile.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
 
     this.state = {
       applicationId: this.props.match.params.id,
+      application: null,
+      submissionType: this.props.match.params.type, // first, update, new
       step: 1,
       selectedFile: null,
       confirmed: false,
@@ -23,6 +25,11 @@ class Script extends React.Component {
       title: "",
       content: null,
     };
+  }
+
+  async componentDidMount() {
+    const data = await getData(`/applications/${this.state.applicationId}`);
+    this.setState({ application: data.application });
   }
 
   selectScriptHandler(event) {
@@ -51,6 +58,11 @@ class Script extends React.Component {
     );
   }
 
+  toggleModal() {
+    const content = document.getElementById(`modal-error`);
+    content.classList.toggle("is-active");
+  }
+
   getStepClasses(step) {
     if (step === this.state.step) return "step-item is-completed is-info";
     if (step < this.state.step) return "step-item is-completed is-success";
@@ -75,9 +87,64 @@ class Script extends React.Component {
     const step = this.state.step;
     let content;
     if (step === 1) {
+      let uploadDescription = "";
+      switch (this.state.submissionType) {
+        case "first":
+          uploadDescription =
+            "Bitte reichen sie ein Skript ein welches Ihnen die aggregierte Ergebnismenge für Ihren Forschungsantrag zurückgibt";
+          break;
+        case "update":
+          uploadDescription =
+            "Die Ausführung Ihres Skriptes hat eine Fehlermeldung produziert. Bitte reichen sie eine neue Version Ihres Skriptes ein";
+          break;
+        case "new":
+          uploadDescription =
+            "Wenn die bisher zurückgelieferte Ergebnismenge nicht spezifisch genug ist reichen sie bitte eine neue Version Ihres Skriptes, ein welche die benötigte Ergebnismenge abfragt";
+      }
+      console.log(this.state.application);
       content = (
         <React.Fragment>
-          <div className="upload-description">asd</div>
+          <div className="upload-description">
+            {uploadDescription}{" "}
+            {this.state.submissionType === "update" && this.state.application && (
+              <React.Fragment>
+                <i
+                  className={
+                    "fa fa-exclamation-circle error-color is-clickable"
+                  }
+                  onClick={this.toggleModal}
+                ></i>
+                <div id={"modal-error"} className="modal">
+                  <div
+                    className="modal-background"
+                    onClick={this.toggleModal}
+                  ></div>
+                  <div className="modal-content">
+                    <div className="box">
+                      <article className="media">
+                        <div className="media-content">
+                          <div className="content">
+                            <p>
+                              {
+                                this.state.application.history[
+                                  this.state.application.history.length - 2
+                                ].message
+                              }
+                            </p>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                  <button
+                    className="modal-close is-large"
+                    aria-label="close"
+                    onClick={this.toggleModal}
+                  ></button>
+                </div>
+              </React.Fragment>
+            )}
+          </div>
           <div className="file has-name">
             <label className="file-label">
               <input

@@ -9,7 +9,7 @@ import Login from "./Auth/Login";
 import ApplicationNew from "./ApplicationNew";
 import Manage from "./Manage/Manage";
 import Details from "./Manage/Details";
-import StatusShow from "./Status/StatusShow";
+import StatusShow from "./Status/StatusTest";
 import "./App.css";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -28,7 +28,10 @@ export default class App extends React.Component {
             <Route exact path="/applications/new">
               <ApplicationNew />
             </Route>
-            <Route path="/applications/:id/script" render={() => <Script />} />
+            <Route
+              path="/applications/:id/script/:type"
+              render={() => <Script />}
+            />
             <Route path="/applications/:id" render={() => <Application />} />
             <Route exact path="/manage" render={() => <Manage />} />
             <Route path="/manage/:id" render={() => <Details />} />

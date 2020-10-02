@@ -31,13 +31,13 @@ const TimelineItem = (props) => {
           {props.message && (
             <i
               onClick={toggleModal}
-              className={"far fa-envelope click message-icon"}
+              className={"far fa-envelope is-clickable error-color"}
             ></i>
           )}
         </div>
       </div>
       <div id={"modal-" + props.name} className="modal">
-        <div className="modal-background"></div>
+        <div className="modal-background" onClick={this.toggleModal}></div>
         <div className="modal-content">
           <div className="box">
             <article className="media">

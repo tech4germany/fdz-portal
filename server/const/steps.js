@@ -93,7 +93,7 @@ const STEPS = [
   {
     name: "script_unsubmitted",
     string: "Sie müssen ein Skript einreichen",
-    link: `/applications/:id:/script`,
+    link: `/applications/:id:/script/first`,
     mainStep: 3,
     newBubble: true,
     showDefault: true,
@@ -164,7 +164,7 @@ const STEPS = [
     name: "script_needs_update",
     string: "Das Skript :var: muss überarbeitet werden",
     mainStep: 3,
-    link: `/applications/:id:/script`,
+    link: `/applications/:id:/script/update`,
     newBubble: true,
     showDefault: false,
     type: "unsubmitted",
