@@ -66,7 +66,6 @@ const Applications = () => {
               <span className="icon">
                 <i className="fas fa-plus"></i>
               </span>
-              {/* <span>Application</span> */}
             </button>
           </Link>
         </div>

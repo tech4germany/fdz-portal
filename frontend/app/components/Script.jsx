@@ -14,6 +14,7 @@ class Script extends React.Component {
     this.goBack = this.goBack.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.abortWizard = this.abortWizard.bind(this);
+    this.clickConfirmCheckbox = this.clickConfirmCheckbox.bind(this);
 
     this.state = {
       applicationId: this.props.match.params.id,
@@ -21,7 +22,8 @@ class Script extends React.Component {
       submissionType: this.props.match.params.type, // first, update, new
       step: 1,
       selectedFile: null,
-      confirmed: false,
+      isSelected: false,
+      isConfirmed: false,
       resultMethod: null,
       title: "",
       content: null,
@@ -34,7 +36,7 @@ class Script extends React.Component {
   }
 
   selectScriptHandler(event) {
-    this.setState({ selectedFile: event.target.files[0] });
+    this.setState({ selectedFile: event.target.files[0], isSelected: true });
   }
 
   abortWizard() {
@@ -42,7 +44,7 @@ class Script extends React.Component {
   }
 
   removeFile() {
-    this.setState({ selectedFile: null });
+    this.setState({ selectedFile: null, isSelected: false });
   }
 
   goBack() {
@@ -50,9 +52,6 @@ class Script extends React.Component {
   }
 
   uploadScript() {
-    if (!this.state.selectedFile) {
-      return;
-    }
     this.setState({ loading: true });
     setTimeout(
       function () {
@@ -74,9 +73,14 @@ class Script extends React.Component {
     else return "step-item";
   }
 
+  clickConfirmCheckbox() {
+    this.setState({
+      isConfirmed: !this.state.isConfirmed,
+    });
+  }
+
   confirmScript() {
     this.setState({ step: 3 });
-    this.setState({ confirmed: true });
   }
 
   submitScript(resultMethod) {
@@ -89,6 +93,7 @@ class Script extends React.Component {
   }
 
   render() {
+    console.log(this.state.isSelected);
     const step = this.state.step;
     let content;
     if (step === 1) {
@@ -183,37 +188,47 @@ class Script extends React.Component {
               )}
             </label>
           </div>
-
+          <Link to={"/applications/" + this.state.applicationId}>
+            <button className="button is-danger is-outlined back-button">
+              Abbrechen
+            </button>
+          </Link>
           <button
             className="button is-info upload-button"
             onClick={this.uploadScript}
+            id="uploadButton"
+            disabled={!this.state.isSelected}
           >
             Hochladen
           </button>
-          <Link to={"/applications/" + this.state.applicationId}>
-            <button className="button is-danger is-outlined back-button">
-              <span className="icon is-small">
-                <i className="fas fa-times"></i>
-              </span>
-            </button>
-          </Link>
         </React.Fragment>
       );
     } else if (step === 2) {
       content = (
         <React.Fragment>
-          <div className="upload-info">
-            Es ist wichtig, dass Ihr entwickeltes Skript bereits auf den
-            Testdaten geprüft und lauffähig ist um unnötige Wartezeit zu
-            vermeiden.
-          </div>
-          <div className="upload-info-confirm">
-            Hiermit versichere ich mein Skript bereits sorgfältig geprüft zu
-            haben. Mein Skript habe ich am Testdatensatz laufen lassen und keine
-            Fehlermeldung bekommen.
-            <br />
-            Ich bin mir darüber im klaren, dass ein nicht lauffähiges Skript den
-            Datenantragsprozess um mehrere Wochen bis Monate verzögern kann.
+          <div className="confirm-content">
+            <div className="checkbox-div">
+              <label className="checkbox">
+                <input type="checkbox" onClick={this.clickConfirmCheckbox} />{" "}
+              </label>
+            </div>
+            <div>
+              <div className="upload-info">
+                Es ist wichtig, dass Ihr entwickeltes Skript bereits auf den
+                Testdaten geprüft und lauffähig ist um unnötige Wartezeit zu
+                vermeiden.
+              </div>
+              <div className="upload-info-confirm">
+                Hiermit versichere ich mein Skript bereits sorgfältig geprüft zu
+                haben. Mein Skript habe ich am Testdatensatz laufen lassen und
+                keine Fehlermeldung bekommen.
+                <br />
+                <br />
+                Ich bin mir darüber im klaren, dass ein nicht lauffähiges Skript
+                den Datenantragsprozess um mehrere Wochen bis Monate verzögern
+                kann.
+              </div>
+            </div>
           </div>
 
           <button
@@ -224,21 +239,20 @@ class Script extends React.Component {
               <i className="fas fa-chevron-circle-left"></i>
             </span>
           </button>
-
+          <Link to={"/applications/" + this.state.applicationId}>
+            <button className="button is-danger is-outlined back-button">
+              Abrechen
+            </button>
+          </Link>
           <button
             className="button is-info upload-button"
             onClick={this.confirmScript}
             autoFocus={true}
+            disabled={!this.state.isConfirmed}
+            id="confirmButton"
           >
             Bestätigen
           </button>
-          <Link to={"/applications/" + this.state.applicationId}>
-            <button className="button is-danger is-outlined back-button">
-              <span className="icon is-small">
-                <i className="fas fa-times"></i>
-              </span>
-            </button>
-          </Link>
         </React.Fragment>
       );
     } else if (step === 3) {
@@ -327,9 +341,7 @@ class Script extends React.Component {
           </button>
           <Link to={"/applications/" + this.state.applicationId}>
             <button className="button is-danger is-outlined back-button">
-              <span className="icon is-small">
-                <i className="fas fa-times"></i>
-              </span>
+              Abrechen
             </button>
           </Link>
         </React.Fragment>
