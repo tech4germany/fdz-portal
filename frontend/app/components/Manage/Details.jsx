@@ -81,12 +81,12 @@ const Application = () => {
         (templateStep.type === "unsubmitted" && i < application.history.length)
       )
         continue;
-      const statusText = templateStep.string.includes(":var:")
-        ? templateStep.string.replace(":var:", step.variable)
-        : templateStep.string;
+      const statusText = templateStep.string_fdz.includes(":var:")
+        ? templateStep.string_fdz.replace(":var:", step.variable)
+        : templateStep.string_fdz;
       history.push(
         <div key={step.name + step.date}>
-          {timestampToString(step.date)} -{statusText}
+          {timestampToString(step.date)} - {statusText}
         </div>
       );
     }

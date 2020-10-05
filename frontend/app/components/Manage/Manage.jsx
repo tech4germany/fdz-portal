@@ -30,7 +30,7 @@ const Manage = () => {
           <Link to={"/manage/" + application._id}>{application.name} </Link>
         </div>
         <div className="application-status">
-          {status.string}{" "}
+          {status.string_fdz}{" "}
           <small>
             <i className={"fa " + icon}></i>
           </small>
