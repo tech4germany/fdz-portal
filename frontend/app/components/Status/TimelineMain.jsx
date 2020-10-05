@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 const TimelineMain = (props) => {
   return (
-    <header className={"timeline-mainstep " + props.status}>
+    <header
+      className={"timeline-mainstep is-clickable " + props.status}
+      onClick={props.collapseDetails}
+      id={props.id}
+    >
       <div className="timeline-head">
         <div className="timeline-title">{props.title}</div>
-        <div
-          className="icon is-small click collapse"
-          id={props.id}
-          onClick={props.collapseDetails}
-        >
+        <div className="icon is-small is-clickable collapse" id={props.id}>
           <i
             className="fas fa-angle-down"
             aria-hidden="true"

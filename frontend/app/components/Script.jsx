@@ -93,7 +93,6 @@ class Script extends React.Component {
   }
 
   render() {
-    console.log(this.state.isSelected);
     const step = this.state.step;
     let content;
     if (step === 1) {
