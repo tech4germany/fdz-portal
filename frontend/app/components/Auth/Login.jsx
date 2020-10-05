@@ -7,7 +7,6 @@ import "bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio.min.css";
 import "./Login.css";
 
 const Login = (props) => {
-  console.log(props);
   const [notification, setNotification] = useState(null);
   const history = useHistory();
 

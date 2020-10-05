@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, Redirect } from "react-router-dom";
 import "bulma-extensions/bulma-steps/dist/css/bulma-steps.min.css";
 import { getData, sendData } from "./utils/api";
 import "./Script.css";
@@ -13,6 +13,7 @@ class Script extends React.Component {
     this.removeFile = this.removeFile.bind(this);
     this.goBack = this.goBack.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.abortWizard = this.abortWizard.bind(this);
 
     this.state = {
       applicationId: this.props.match.params.id,
@@ -34,6 +35,10 @@ class Script extends React.Component {
 
   selectScriptHandler(event) {
     this.setState({ selectedFile: event.target.files[0] });
+  }
+
+  abortWizard() {
+    window.location.pathname = `/applications/${this.state.applicationId}`;
   }
 
   removeFile() {
@@ -101,7 +106,6 @@ class Script extends React.Component {
           uploadDescription =
             "Wenn die bisher zurückgelieferte Ergebnismenge nicht spezifisch genug ist reichen sie bitte eine neue Version Ihres Skriptes, ein welche die benötigte Ergebnismenge abfragt";
       }
-      console.log(this.state.application);
       content = (
         <React.Fragment>
           <div className="upload-description">
@@ -186,6 +190,13 @@ class Script extends React.Component {
           >
             Hochladen
           </button>
+          <Link to={"/applications/" + this.state.applicationId}>
+            <button className="button is-danger is-outlined back-button">
+              <span className="icon is-small">
+                <i className="fas fa-times"></i>
+              </span>
+            </button>
+          </Link>
         </React.Fragment>
       );
     } else if (step === 2) {
@@ -213,6 +224,7 @@ class Script extends React.Component {
               <i className="fas fa-chevron-circle-left"></i>
             </span>
           </button>
+
           <button
             className="button is-info upload-button"
             onClick={this.confirmScript}
@@ -220,6 +232,13 @@ class Script extends React.Component {
           >
             Bestätigen
           </button>
+          <Link to={"/applications/" + this.state.applicationId}>
+            <button className="button is-danger is-outlined back-button">
+              <span className="icon is-small">
+                <i className="fas fa-times"></i>
+              </span>
+            </button>
+          </Link>
         </React.Fragment>
       );
     } else if (step === 3) {
@@ -301,6 +320,13 @@ class Script extends React.Component {
               <i className="fas fa-chevron-circle-left"></i>
             </span>
           </button>
+          <Link to={"/applications/" + this.state.applicationId}>
+            <button className="button is-danger is-outlined back-button">
+              <span className="icon is-small">
+                <i className="fas fa-times"></i>
+              </span>
+            </button>
+          </Link>
         </React.Fragment>
       );
     } else if (step === 4) {
@@ -355,7 +381,7 @@ class Script extends React.Component {
                 <p className="step-title">Ergebnismenge</p>
               </div>
             </li>
-            <li className={this.getStepClasses(4)}>
+            {/* <li className={this.getStepClasses(4)}>
               <div className="step-marker">
                 <span className="icon">
                   <i className="fa fa-flag"></i>
@@ -364,7 +390,7 @@ class Script extends React.Component {
               <div className="step-details">
                 <p className="step-title">Zusammenfassung</p>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
         {content}
