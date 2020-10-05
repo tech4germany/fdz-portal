@@ -52,7 +52,7 @@ export default class App extends React.Component {
     return (
       <BrowserRouter>
         <React.Fragment>
-          <Header logout={this.logout} />
+          <Header logout={this.logout} user={this.state.user} />
           {this.state.user ? (
             <Switch>
               <Route exact path="/">

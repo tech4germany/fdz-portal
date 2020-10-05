@@ -41,7 +41,7 @@ const Login = (props) => {
               className="input"
               type="text"
               id="email"
-              placeholder="user@rki.de"
+              placeholder="forschung@rki.de"
             />
             <span className="icon is-small is-left">
               <i className="fas fa-user"></i>

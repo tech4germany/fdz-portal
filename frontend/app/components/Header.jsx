@@ -14,7 +14,7 @@ const Header = (props) => {
               Anträge
             </Link>
 
-            <div className="navbar-item has-dropdown is-hoverable">
+            {/* <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">More</a>
 
               <div className="navbar-dropdown">
@@ -22,22 +22,23 @@ const Header = (props) => {
                 <a className="navbar-item">Jobs</a>
                 <a className="navbar-item">Contact</a>
               </div>
-            </div>
+            </div> */}
           </div>
-
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <button
-                className="button is-small is-outlined"
-                onClick={props.logout}
-              >
-                <span>Abmelden</span>
-                <span className="icon is-small">
-                  <i className="fa fa-sign-out-alt"></i>
-                </span>
-              </button>
+          {props.user && (
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <button
+                  className="button is-small is-outlined"
+                  onClick={props.logout}
+                >
+                  <span>Abmelden</span>
+                  <span className="icon is-small">
+                    <i className="fa fa-sign-out-alt"></i>
+                  </span>
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </nav>
     </div>
