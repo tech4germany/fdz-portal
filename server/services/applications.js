@@ -1,6 +1,7 @@
 const Application = require("../models/Application");
 const Script = require("../models/Script");
 const { STEPS } = require("../const/steps");
+const { application } = require("express");
 
 const get = async (id) => {
   const application = await Application.findById(id)
@@ -88,18 +89,13 @@ const updateStatus = async (data, user) => {
   }
 };
 
-const resetStatus = async (params) => {
+const resetStatus = async () => {
   try {
-    const applicationDB = await Application.findById(
-      params.applicationId
-    ).select("status history");
-
-    // applicationDB.history = applicationDB.history.filter((step) => {
-    //   if (step.name !== "script_submitted" && step.name !== "script_unexecuted")
-    //     return step;
-    // });
-    applicationDB.history.pop();
-    applicationDB.history.pop();
+    const applicationDB = await Application.findOne()
+      .sort({ _id: 1 })
+      .limit(1)
+      .select("status history");
+    applicationDB.history = applicationDB.history.slice(0, 10);
 
     applicationDB.status =
       applicationDB.history[applicationDB.history.length - 1].name;

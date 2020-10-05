@@ -11,6 +11,7 @@ import Manage from "./Manage/Manage";
 import Details from "./Manage/Details";
 import StatusShow from "./Status/StatusTest";
 import jwtDecode from "jwt-decode";
+import { getData } from "./utils/api";
 import "./App.css";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -43,7 +44,8 @@ export default class App extends React.Component {
     }
   }
 
-  logout() {
+  async logout() {
+    await getData(`/auth/logout`, "GET");
     this.setState({ user: null });
     localStorage.removeItem("identity");
   }

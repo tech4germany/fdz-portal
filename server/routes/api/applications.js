@@ -46,18 +46,6 @@ router.put(
   })
 );
 
-// Update Status
-router.get(
-  "/:id/reset",
-  asyncWrap(async (req, res) => {
-    await applicationsServices.resetStatus({
-      applicationId: req.params.id,
-    });
-    const result = "Status reset";
-    res.json({ status: 200, result });
-  })
-);
-
 // Fake script upload
 router.post(
   "/:id/script/fake",
@@ -68,22 +56,6 @@ router.post(
       resultMethod: req.body.resultMethod,
     });
     res.json({ status: 200, fileName });
-  })
-);
-
-// Update
-router.put(
-  "/:id",
-  asyncWrap(async (req, res) => {
-    // const applicationName = await applicationsServiceService.update(
-    //   req.params.id,
-    //   {
-    //     name: req.body.name,
-    //     statusUser: req.body.statusUser,
-    //   }
-    // );
-    const applicationName = "Test Application";
-    res.json({ status: 200, applicationName });
   })
 );
 
