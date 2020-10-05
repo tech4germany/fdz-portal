@@ -100,22 +100,23 @@ class Script extends React.Component {
       switch (this.state.submissionType) {
         case "first":
           uploadDescription =
-            "Bitte reichen sie ein Skript ein welches Ihnen die aggregierte Ergebnismenge für Ihren Forschungsantrag zurückgibt";
+            "Bitte reichen sie ein Skript ein welches Ihnen die aggregierte Ergebnismenge für Ihren Forschungsantrag zurückgibt.";
           break;
         case "update":
           uploadDescription =
-            "Die Ausführung Ihres Skriptes hat eine Fehlermeldung produziert. Bitte reichen sie eine neue Version Ihres Skriptes ein";
+            "Die Ausführung Ihres Skriptes hat eine Fehlermeldung produziert. Bitte reichen sie eine neue Version Ihres Skriptes ein.";
           break;
         case "new":
           uploadDescription =
-            "Wenn die bisher zurückgelieferte Ergebnismenge nicht spezifisch genug ist reichen sie bitte eine neue Version Ihres Skriptes, ein welche die benötigte Ergebnismenge abfragt";
+            "Wenn die bisher zurückgelieferte Ergebnismenge nicht spezifisch genug ist reichen sie bitte eine neue Version Ihres Skriptes, ein welche die benötigte Ergebnismenge abfragt.";
       }
       content = (
         <React.Fragment>
           <div className="upload-description">
-            {uploadDescription}{" "}
+            {uploadDescription}
             {this.state.submissionType === "update" && this.state.application && (
-              <React.Fragment>
+              <div>
+                <b>Details:</b>{" "}
                 <i
                   className={
                     "fa fa-exclamation-circle error-color is-clickable"
@@ -150,7 +151,7 @@ class Script extends React.Component {
                     onClick={this.toggleModal}
                   ></button>
                 </div>
-              </React.Fragment>
+              </div>
             )}
           </div>
           <div className="file has-name">
