@@ -6,7 +6,8 @@ import Notification from "../Notification/Notification";
 import "bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio.min.css";
 import "./Login.css";
 
-const Login = () => {
+const Login = (props) => {
+  console.log(props);
   const [notification, setNotification] = useState(null);
   const history = useHistory();
 
@@ -24,7 +25,7 @@ const Login = () => {
 
     localStorage.setItem("identity", result.jwtToken);
     setNotification(null);
-    history.push("/");
+    props.setUser(false);
   };
 
   const closeNotification = () => {

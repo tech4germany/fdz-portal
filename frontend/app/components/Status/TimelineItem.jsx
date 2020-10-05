@@ -37,7 +37,7 @@ const TimelineItem = (props) => {
         </div>
       </div>
       <div id={"modal-" + props.name} className="modal">
-        <div className="modal-background" onClick={this.toggleModal}></div>
+        <div className="modal-background" onClick={toggleModal}></div>
         <div className="modal-content">
           <div className="box">
             <article className="media">

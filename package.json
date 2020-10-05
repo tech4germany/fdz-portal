@@ -20,6 +20,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.0.0",
     "mongoose": "^5.10.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
