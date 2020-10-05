@@ -244,6 +244,11 @@ class Script extends React.Component {
     } else if (step === 3) {
       content = (
         <React.Fragment>
+          <div className="step3-description">
+            Wählen sie hier zwischen zwei Möglichen Ergebnismengen aus. Nachdem
+            ihr Skript ausgeführt wurde erhalten Sie eine Benachrichtigung per
+            E-Mail. Anschließend können Sie eine neues Skript einreichen
+          </div>
           <div className="box select-result-box">
             <article className="media">
               <div className="media-content">
