@@ -26,33 +26,21 @@ const Header = (props) => {
           </div>
 
           <div className="navbar-end">
-            <div className="navbar-item is-clickable" onClick={props.logout}>
-              <span className="logout-text">Ausloggen</span>
-              <i className="fa fa-sign-out-alt "></i>
+            <div className="navbar-item">
+              <button
+                className="button is-small is-outlined"
+                onClick={props.logout}
+              >
+                <span>Abmelden</span>
+                <span className="icon is-small">
+                  <i className="fa fa-sign-out-alt"></i>
+                </span>
+              </button>
             </div>
           </div>
         </div>
       </nav>
     </div>
-    //     <div className="tabs tabs-length">
-    //   <ul>
-    //     <li className="is-active">
-    //       <Link to="/applications">Anträge</Link>
-    //     </li>
-    //     <li className="">
-    //       <i className="fa fa-sign-out-alt"></i>
-    //     </li>
-    //      <li>
-    //       <Link to="/applications/new">New</Link>
-    //     </li>
-    //     <li>
-    //       <Link to="/login">Login</Link>
-    //     </li>
-    //     <li>
-    //       <Link to="/test">NotFound</Link>
-    //     </li>
-    //   </ul>
-    // </div>
   );
 };
 
