@@ -11,15 +11,14 @@ const Login = () => {
   const history = useHistory();
 
   const doLogin = async () => {
-    console.log("dologin");
     const result = await sendData(`/auth/login`, "POST", {
-      email: document.getElementById("email").value,
+      email: document.getElementById("email").value.toLowerCase(),
       password: document.getElementById("password").value,
     });
-    console.log(result);
 
     if (result.status !== 200) {
       setNotification({ text: result.message, status: "is-danger" });
+      document.getElementById("password").value = "";
       return;
     }
 
@@ -70,7 +69,7 @@ const Login = () => {
         </div>
         <Notification
           notification={notification}
-          size="small"
+          size="medium"
           close={setNotification}
         />
       </div>

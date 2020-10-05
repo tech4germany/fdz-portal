@@ -31,11 +31,15 @@ const create = async () => {
     };
     User.create(userFDZ);
 
-    const institution1 = { name: "RKI", email: "it@rki.de", password: "abc" };
+    const institution1 = {
+      name: "RKI",
+      email: "forschung@rki.de",
+      password: "abc",
+    };
     const institution1DB = await Institution.create(institution1);
 
     const user1 = {
-      email: "it@rki.de",
+      email: "forschung@rki.de",
       password: hash("abc"),
       role: "researcher",
       institution: institution1DB._id,

@@ -5,8 +5,10 @@ const { hash } = require("../utils/crypter");
 const login = async (email, password) => {
   const user = await User.findOne({ email }).lean();
 
-  if (!user) throw new ValError("Invalid user");
-  if (user.password !== hash(password)) throw new ValError("Invalid password");
+  if (!user || user.password !== hash(password))
+    throw new ValError(
+      "Die gewählte Kombination aus Email und Passwort konnte nicht gefunden werden"
+    );
 
   return jwt.sign({ email, role: user.role }, process.env.SECRET, {
     expiresIn: 1209600,
