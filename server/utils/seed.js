@@ -24,6 +24,7 @@ const create = async () => {
     await Application.deleteMany({});
     await Script.deleteMany({});
 
+    // FDZ User
     const userFDZ = {
       email: "support@fdz.de",
       password: hash("abc"),
@@ -31,6 +32,7 @@ const create = async () => {
     };
     User.create(userFDZ);
 
+    // Research institution
     const institution1 = {
       name: "RKI",
       email: "forschung@rki.de",
@@ -38,6 +40,7 @@ const create = async () => {
     };
     const institution1DB = await Institution.create(institution1);
 
+    // Research user
     const user1 = {
       email: "forschung@rki.de",
       password: hash("abc"),
@@ -46,6 +49,34 @@ const create = async () => {
     };
     user1DB = await User.create(user1);
 
+    // Application Covid
+    const application2 = {
+      name: "Covid",
+      description: "Zweiter Antrag",
+      queuePosition: 2,
+      history: [],
+      mainSteps: [],
+    };
+    application2.user = user1DB._id;
+    application2.institution = institution1DB._id;
+    application2.history.push({
+      name: "application_submitted",
+      mainStep: 1,
+      user: user1DB._id,
+      date: 1600956411000,
+    });
+    application2.history.push({
+      name: "application_unchecked",
+      user: user1DB._id,
+      mainStep: 1,
+      time: "1 - 2 Wochen",
+      date: 1600954123000,
+    });
+    application2.status =
+      application2.history[application2.history.length - 1].name;
+    application2DB = await Application.create(application2);
+
+    // Application Diabetis
     const application1 = {
       name: "Diabetes Prävalenz",
       description: "Erster Antrag",
@@ -124,36 +155,12 @@ const create = async () => {
       application1.history[application1.history.length - 1].name;
     application1DB = await Application.create(application1);
 
-    const application2 = {
-      name: "Covid",
-      description: "Zweiter Antrag",
-      queuePosition: 2,
-      history: [],
-      mainSteps: [],
-    };
-    application2.user = user1DB._id;
-    application2.institution = institution1DB._id;
-    application2.history.push({
-      name: "application_submitted",
-      mainStep: 1,
-      user: user1DB._id,
-      date: 1600956411000,
-    });
-    application2.history.push({
-      name: "application_unchecked",
-      user: user1DB._id,
-      mainStep: 1,
-      time: "1 - 2 Wochen",
-      date: 1600954123000,
-    });
-    application2.status =
-      application2.history[application2.history.length - 1].name;
-    application2DB = await Application.create(application2);
-
+    // First srcript
     const script1 = { fileName: "script1.sql", queuePosition: 1 };
     script1.user = user1DB._id;
     script1.application = application1DB._id;
     script1DB = await Script.create(script1);
+
     await mongoose.connection.close();
   } catch (error) {
     console.log(error);

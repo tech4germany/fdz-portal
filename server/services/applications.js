@@ -30,7 +30,7 @@ const list = async (params, user) => {
   }
 
   const applications = await Application.find(query, null, {
-    sort: { created_at: -1 },
+    sort: { lastStatusUpdate: -1 },
   })
     .populate({
       path: "user",
@@ -72,7 +72,7 @@ const updateStatus = async (data, user) => {
     }
 
     applicationDB.status = newStatus;
-    console.log("updating status", applicationDB);
+    applicationDB.lastStatusUpdate = Date.now();
     await applicationDB.save();
 
     // Placeholder: notify user
@@ -125,6 +125,7 @@ const uploadFakeScript = async (params) => {
 
     applicationDB.status =
       applicationDB.history[applicationDB.history.length - 1].name;
+    applicationDB.lastStatusUpdate = Date.now();
     await applicationDB.save();
     return params.fileName;
   } catch (error) {

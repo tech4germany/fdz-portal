@@ -89,11 +89,12 @@ const applicationSchema = new Schema(
       ref: "Institution",
       required: true,
     },
+    lastStatusUpdate: { type: Date, default: Date.now },
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at",
+      createdAt: "createdAt",
+      updatedAt: "updatedAt",
     },
   }
 );
