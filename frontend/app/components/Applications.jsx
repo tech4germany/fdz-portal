@@ -18,6 +18,15 @@ const Applications = () => {
     fetchData();
   }, []);
 
+  const timestampToString = (timestap) => {
+    const date = new Date(timestap);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    const timeString = day + "." + month + "." + year;
+    return timeString;
+  };
+
   let i = 0;
 
   const applicationsList = applications.map((application) => {
@@ -33,18 +42,20 @@ const Applications = () => {
       status.type === "waiting"
         ? "fa-hourglass-start"
         : "fa-exclamation-circle";
-
+    const statusDate = timestampToString(
+      application.history[application.history.length - 1].date
+    );
     return (
       <React.Fragment key={i}>
         {i > 1 && <hr />}
         <div key={application._id} className="application">
           <div className="application-list-name ">
             <Link to={"/applications/" + application._id}>
-              {application.name}{" "}
+              {application.name}
             </Link>
           </div>
           <div className="application-status">
-            {statusText}{" "}
+            {statusDate}: {statusText}
             {/* <small>
               <i className={"fa " + icon}></i>
             </small> */}
