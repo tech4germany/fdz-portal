@@ -6,12 +6,14 @@ import "./Applications.css";
 
 const Applications = () => {
   const [applications, setApplications] = useState([]);
+  const [unfetched, setUnfetched] = useState(true);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getData("/applications");
       setApplications(data.applications);
+      setUnfetched(false);
     };
     fetchData();
   }, []);
@@ -51,7 +53,6 @@ const Applications = () => {
       </React.Fragment>
     );
   });
-
   return (
     <div className="content-box">
       <div className="application-list">
@@ -59,7 +60,9 @@ const Applications = () => {
           <div>Antragsname</div>
           <div className="app-header-status">Status</div>
         </div>
-        {applicationsList}
+        {applicationsList.length !== 0 || unfetched
+          ? applicationsList
+          : "Es sind noch keine Anträge vorhanden"}
         <div className="right">
           <Link to="/applications/new">
             <button className="button is-small is-info">
