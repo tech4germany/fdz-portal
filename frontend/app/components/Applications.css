@@ -8,7 +8,9 @@
 }
 
 .application-status {
-  /* font-style: italic; */
+  font-size: small;
+  overflow-wrap: break-word;
+  max-width: 325px;
 }
 
 .app-header {

@@ -55,7 +55,7 @@ const Applications = () => {
             </Link>
           </div>
           <div className="application-status">
-            {statusDate}: {statusText}
+            {statusText} ({statusDate})
             {/* <small>
               <i className={"fa " + icon}></i>
             </small> */}
