@@ -104,7 +104,7 @@ class Script extends React.Component {
           break;
         case "update":
           uploadDescription =
-            "Die Ausführung Ihres Skriptes hat eine Fehlermeldung produziert. Bitte reichen sie eine neue Version Ihres Skriptes ein.";
+            "Die Ausführung Ihres Skriptes hat eine Fehlermeldung produziert.";
           break;
         case "new":
           uploadDescription =
@@ -114,7 +114,7 @@ class Script extends React.Component {
         <React.Fragment>
           <div className="upload-description">
             {uploadDescription}
-            {this.state.submissionType === "update" && this.state.application && (
+            {this.state.submissionType === "update" && (
               <div>
                 <b>Details:</b>{" "}
                 <i
@@ -123,6 +123,8 @@ class Script extends React.Component {
                   }
                   onClick={this.toggleModal}
                 ></i>
+                <br />
+                Bitte reichen sie eine neue Version Ihres Skriptes ein:
                 <div id={"modal-error"} className="modal">
                   <div
                     className="modal-background"
@@ -134,11 +136,10 @@ class Script extends React.Component {
                         <div className="media-content">
                           <div className="content">
                             <p>
-                              {
+                              {this.state.application &&
                                 this.state.application.history[
                                   this.state.application.history.length - 2
-                                ].message
-                              }
+                                ].message}
                             </p>
                           </div>
                         </div>
