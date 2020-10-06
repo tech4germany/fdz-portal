@@ -21,3 +21,7 @@
   display: flex;
   justify-content: flex-end;
 }
+.application-list-name {
+  overflow-wrap: break-word;
+  max-width: 275px;
+}

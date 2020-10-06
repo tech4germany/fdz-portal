@@ -38,7 +38,7 @@ const Applications = () => {
       <React.Fragment key={i}>
         {i > 1 && <hr />}
         <div key={application._id} className="application">
-          <div>
+          <div className="application-list-name ">
             <Link to={"/applications/" + application._id}>
               {application.name}{" "}
             </Link>
