@@ -10,9 +10,13 @@ const login = async (email, password) => {
       "Die gewählte Kombination aus Email und Passwort konnte nicht gefunden werden"
     );
 
-  return jwt.sign({ email, role: user.role }, process.env.SECRET, {
-    expiresIn: 1209600,
-  });
+  return jwt.sign(
+    { email, role: user.role, id: user._id },
+    process.env.SECRET,
+    {
+      expiresIn: 1209600,
+    }
+  );
 };
 
 const permissionCheck = (role, userRole) => {

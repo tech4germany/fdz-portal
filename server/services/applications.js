@@ -24,8 +24,9 @@ const get = async (id) => {
 const list = async (params, user) => {
   const limit = parseInt(params.limit) || 100;
   const query = {};
-  if (false && user.role === "researcher") {
-    query.user = params.userId;
+  console.log(user);
+  if (user.role === "researcher") {
+    query.user = user.id;
   }
 
   const applications = await Application.find(query, null, {
@@ -41,8 +42,8 @@ const list = async (params, user) => {
 };
 
 const updateStatus = async (data, user) => {
-  // if (user.role === "researcher")
-  //   throw new ValError("Not allowed to change status");
+  if (user.role === "researcher")
+    throw new ValError("Not allowed to change status");
 
   try {
     const applicationDB = await Application.findById(data.id).select(
@@ -73,15 +74,6 @@ const updateStatus = async (data, user) => {
     applicationDB.status = newStatus;
     console.log("updating status", applicationDB);
     await applicationDB.save();
-
-    // await Application.findOneAndUpdate(
-    //   { _id: params.id },
-    //   { status: params.status },
-    //   {
-    //     new: true,
-    //     runValidators: true,
-    //   }
-    // );
 
     // Placeholder: notify user
   } catch (error) {

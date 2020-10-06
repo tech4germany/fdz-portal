@@ -17,7 +17,7 @@ router.get(
 router.get(
   "/",
   asyncWrap(async (req, res) => {
-    const applications = await applicationsServices.list(req.params);
+    const applications = await applicationsServices.list(req.params, req.user);
     res.json({ status: 200, applications });
   })
 );
