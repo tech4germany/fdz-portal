@@ -1,11 +1,23 @@
 // Status Sub-Steps
 const STEPS = [
   {
+    name: "application_unsubmitted",
+    string: "Sie den müssen den Antrag hochladen",
+    string_fdz: "User muss den Antrag hochladen",
+    mainStep: 1,
+    newBubble: true,
+    showDefault: true,
+    type: "unsubmitted",
+    next: "application_submitted",
+    link: `/applications/:id:/upload`,
+    actionRequiered: true,
+  },
+  {
     name: "application_submitted",
     string: "Sie haben den Antrag eingereicht",
     string_fdz: "User hat den Antrag eingereicht",
     mainStep: 1,
-    newBubble: true,
+    newBubble: false,
     showDefault: false,
     type: "success",
     auto_next: "application_unchecked",

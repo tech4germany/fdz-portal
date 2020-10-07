@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Link, Redirect } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import "bulma-extensions/bulma-steps/dist/css/bulma-steps.min.css";
 import "bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio.min.css";
 import { getData, sendData } from "./utils/api";
@@ -14,7 +14,6 @@ class Script extends React.Component {
     this.removeFile = this.removeFile.bind(this);
     this.goBack = this.goBack.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    this.abortWizard = this.abortWizard.bind(this);
     this.clickConfirmCheckbox = this.clickConfirmCheckbox.bind(this);
 
     this.state = {
@@ -38,10 +37,6 @@ class Script extends React.Component {
 
   selectScriptHandler(event) {
     this.setState({ selectedFile: event.target.files[0], isSelected: true });
-  }
-
-  abortWizard() {
-    window.location.pathname = `/applications/${this.state.applicationId}`;
   }
 
   removeFile() {

@@ -1,7 +1,7 @@
 const Application = require("../models/Application");
+const User = require("../models/User");
 const Script = require("../models/Script");
 const { STEPS } = require("../const/steps");
-const { application } = require("express");
 
 const get = async (id) => {
   const application = await Application.findById(id)
@@ -38,6 +38,40 @@ const list = async (params, user) => {
     .limit(limit)
     .lean(); // .select({ "name": 1, "_id": 0})
   return applications;
+};
+
+const create = async (params, user) => {
+  let additionalUser = await User.find({
+    email: { $in: params.additionalUser },
+  })
+    .select("_id")
+    .lean();
+
+  const institutionId = (await User.findById(user.id).select("institution"))
+    .institution;
+
+  additionalUser = additionalUser.map((user) => user._id.toString());
+  additionalUser.unshift(user.id);
+
+  const data = {
+    name: params.applicationName,
+    status: "application_unsubmitted",
+    description: params.applicationDesc,
+    queuePosition: 1,
+    institution: institutionId,
+    users: additionalUser,
+    history: [
+      {
+        name: "application_unsubmitted",
+        user: user.id,
+        mainStep: 1,
+        date: Date.now(),
+      },
+    ],
+  };
+
+  const application = await new Application(data);
+  await application.save();
 };
 
 const updateStatus = async (data, user) => {
@@ -135,6 +169,7 @@ const uploadFakeScript = async (params, user) => {
 
 module.exports = {
   get,
+  create,
   list,
   updateStatus,
   resetStatus,

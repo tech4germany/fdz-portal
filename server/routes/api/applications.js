@@ -24,11 +24,16 @@ router.get(
 
 // New
 router.post(
-  "/",
+  "/new",
   asyncWrap(async (req, res) => {
-    await applicationsServices.create({
-      name: req.body.name,
-    });
+    await applicationsServices.create(
+      {
+        applicationName: req.body.applicationName,
+        applicationDesc: req.body.applicationDesc,
+        additionalUser: req.body.additionalUser,
+      },
+      req.user
+    );
     res.json({ status: 200 });
   })
 );

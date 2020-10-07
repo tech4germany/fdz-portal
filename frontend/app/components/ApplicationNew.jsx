@@ -1,24 +1,81 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getData, sendData } from "./utils/api";
+import BulmaTagsInput from "bulma-extensions/bulma-tagsinput/dist/js/bulma-tagsinput.min.js";
+import "bulma-extensions/bulma-tagsinput/dist/css/bulma-tagsinput.min.css";
 import "bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio.min.css";
 import "./ApplicationNew.css";
 
 const Home = () => {
+  useEffect(() => {
+    const inputTags = document.getElementById("tagsinput");
+    new BulmaTagsInput(inputTags);
+    // Not working
+    // inputTags.BulmaTagsInput().on("after.add", handleTags(inputTags.items));
+  }, []);
+
+  const submitApplication = async () => {
+    await sendData(`/applications/new`, "POST", {
+      applicationName: document.getElementById("applicationName").value,
+      applicationDesc: document.getElementById("applicationDesc").value,
+      additionalUser: document.getElementById("tagsinput").value.split(","),
+    });
+
+    window.location.pathname = "/applications";
+  };
+
   return (
     <div className="content-box">
       <div className="columns">
         <div className="column is-four-fifths">
           {/* Input */}
           <div className="field">
-            <label className="label">Name</label>
+            <label className="label">Antragsname</label>
             <div className="control has-icons-left">
-              <input className="input" type="text" placeholder="Text input" />
+              <input
+                className="input"
+                type="text"
+                placeholder="Diabetes Prävalenz"
+                id="applicationName"
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lightbulb"></i>
+              </span>
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Beschreibung</label>
+            <div className="control has-icons-left">
+              <input
+                className="input"
+                type="text"
+                placeholder="Kurze beschreibung"
+                id="applicationDesc"
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-clipboard"></i>
+              </span>
+            </div>
+          </div>
+          {/* Tags Input */}
+          <div className="field">
+            <label className="label">Beteiligte Personen</label>
+            <div className="control has-icons-left">
+              <input
+                className="input"
+                placeholder="Email eingeben"
+                data-selectable="false"
+                id="tagsinput"
+                type="tags"
+              ></input>
               <span className="icon is-small is-left">
                 <i className="fas fa-user"></i>
               </span>
             </div>
           </div>
+
           {/* Dropdown */}
-          <div className="field">
+          {/* <div className="field">
             <label className="label">Subject</label>
             <div className="control">
               <div className="select">
@@ -28,16 +85,16 @@ const Home = () => {
                 </select>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* Textarea */}
-          <div className="field">
+          {/* <div className="field">
             <label className="label">Message</label>
             <div className="control">
               <textarea className="textarea" placeholder="Textarea"></textarea>
             </div>
-          </div>
+          </div> */}
           {/* Checkbox */}
-          <div className="field">
+          {/* <div className="field">
             <input
               className="is-checkradio"
               id="exampleCheckbox"
@@ -46,9 +103,9 @@ const Home = () => {
               defaultChecked={false}
             />
             <label htmlFor="exampleCheckbox">Check me</label>
-          </div>
+          </div> */}
           {/* Radio buttons */}
-          <div className="field">
+          {/* <div className="field">
             <input
               className="is-checkradio"
               id="exampleRadioInline1"
@@ -65,18 +122,24 @@ const Home = () => {
               defaultChecked={false}
             />
             <label htmlFor="exampleRadioInline2">Option 2</label>
-          </div>
+          </div> */}
           {/* Buttons */}
           <div className="field is-grouped">
             <div className="control">
-              <button className="button is-link">Submit</button>
+              <Link to={"/applications"}>
+                <button className="button is-outlined is-danger">
+                  Abrechen
+                </button>
+              </Link>
             </div>
             <div className="control">
-              <button className="button is-link is-light">Cancel</button>
+              <button className="button is-info" onClick={submitApplication}>
+                Einreichen
+              </button>
             </div>
           </div>
           {/* Messages */}
-          <article className="message is-small">
+          {/* <article className="message is-small">
             <div className="message-header">
               <p>Small message</p>
               <button className="delete is-small" aria-label="delete"></button>
@@ -88,7 +151,7 @@ const Home = () => {
               <a>felis venenatis</a> efficitur. Aenean ac{" "}
               <em>eleifend lacus</em>, in mollis lectus.
             </div>
-          </article>
+          </article> */}
         </div>
       </div>
     </div>

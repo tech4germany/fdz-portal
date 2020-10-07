@@ -18,9 +18,8 @@ const applicationSchema = new Schema(
     },
     status: {
       type: String,
-      required: false,
+      required: true,
       enum: STATUSES_NAMES,
-      default: "application_submitted",
     },
     currentStepTimeEstimate: {
       type: Number,
