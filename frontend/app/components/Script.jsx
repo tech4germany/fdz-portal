@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter, Link, Redirect } from "react-router-dom";
 import "bulma-extensions/bulma-steps/dist/css/bulma-steps.min.css";
+import "bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio.min.css";
 import { getData, sendData } from "./utils/api";
 import "./Script.css";
 class Script extends React.Component {
@@ -209,9 +210,16 @@ class Script extends React.Component {
         <React.Fragment>
           <div className="confirm-content">
             <div className="checkbox-div">
-              <label className="checkbox">
-                <input type="checkbox" onClick={this.clickConfirmCheckbox} />{" "}
-              </label>
+              <div className="field">
+                <input
+                  className="is-checkradio is-success"
+                  id="exampleCheckbox"
+                  type="checkbox"
+                  name="exampleCheckbox"
+                  onClick={this.clickConfirmCheckbox}
+                />
+                <label htmlFor="exampleCheckbox"></label>
+              </div>
             </div>
             <div>
               <div className="upload-info">
