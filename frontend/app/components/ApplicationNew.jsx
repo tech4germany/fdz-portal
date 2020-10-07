@@ -37,6 +37,7 @@ const Home = () => {
                 type="text"
                 placeholder="Diabetes Prävalenz"
                 id="applicationName"
+                maxLength="30"
               />
               <span className="icon is-small is-left">
                 <i className="fas fa-lightbulb"></i>
@@ -51,6 +52,7 @@ const Home = () => {
                 type="text"
                 placeholder="Kurze beschreibung"
                 id="applicationDesc"
+                maxLength="30"
               />
               <span className="icon is-small is-left">
                 <i className="fas fa-clipboard"></i>
