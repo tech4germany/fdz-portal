@@ -83,7 +83,7 @@ const applicationSchema = new Schema(
       },
     ],
     scripts: [{ type: Schema.Types.ObjectId, ref: "Script" }],
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    users: [{ type: Schema.Types.ObjectId, ref: "User", required: true }],
     institution: {
       type: Schema.Types.ObjectId,
       ref: "Institution",

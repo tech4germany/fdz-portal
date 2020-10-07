@@ -39,7 +39,6 @@ const Applications = () => {
     const statusText = statusTemplate.string.includes(":var:")
       ? statusTemplate.string.replace(":var:", stepVariable)
       : statusTemplate.string;
-    console.log(statusTemplate);
     const icon =
       statusTemplate.type === "waiting"
         ? "fa-hourglass-start"

@@ -60,8 +60,9 @@ const create = async () => {
       queuePosition: 2,
       history: [],
       mainSteps: [],
+      users: [],
     };
-    application2.user = user1DB._id;
+    application2.users.push(user1DB._id);
     application2.institution = institution1DB._id;
     application2.history.push({
       name: "application_submitted",
@@ -87,8 +88,9 @@ const create = async () => {
       queuePosition: 1,
       history: [],
       mainSteps: [],
+      users: [],
     };
-    application1.user = user1DB._id;
+    application1.users.push(user1DB._id);
     application1.institution = institution1DB._id;
     application1.history.push({
       name: "application_submitted",

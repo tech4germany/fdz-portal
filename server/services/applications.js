@@ -24,9 +24,8 @@ const get = async (id) => {
 const list = async (params, user) => {
   const limit = parseInt(params.limit) || 100;
   const query = {};
-  console.log(user);
   if (user.role === "researcher") {
-    query.user = user.id;
+    query.users = user.id;
   }
 
   const applications = await Application.find(query, null, {
@@ -97,7 +96,7 @@ const resetStatus = async () => {
   }
 };
 
-const uploadFakeScript = async (params) => {
+const uploadFakeScript = async (params, user) => {
   try {
     const applicationDB = await Application.findById(
       params.applicationId
@@ -106,20 +105,19 @@ const uploadFakeScript = async (params) => {
     let time = "";
     if (params.resultMethod === "full") time = "4 - 6 Wochen";
     else time = "2 - 3 Wochen";
-    userId = applicationDB.history[0].user;
 
     applicationDB.history.push({
       name: "script_updated",
       mainStep: 3,
       variable: params.fileName,
-      user: userId,
+      user: user.id,
       date: Date.now(),
     });
     applicationDB.history.push({
       name: "script_unexecuted",
       mainStep: 3,
       time,
-      user: userId,
+      user: user.id,
       date: Date.now(),
     });
 
