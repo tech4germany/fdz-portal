@@ -81,11 +81,13 @@ const updateStatus = async (data, user) => {
 };
 
 const resetStatus = async () => {
+  console.log("reset");
   try {
     const applicationDB = await Application.findOne()
-      .sort({ _id: 1 })
+      .sort({ _id: -1 })
       .limit(1)
-      .select("status history");
+      .select("name status history");
+    console.log(applicationDB);
     applicationDB.history = applicationDB.history.slice(0, 10);
 
     applicationDB.status =
