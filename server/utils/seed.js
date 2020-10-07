@@ -28,6 +28,8 @@ const create = async () => {
     const userFDZ = {
       email: "support@fdz.de",
       password: hash("abc"),
+      forename: "FDZ",
+      surname: "Employee",
       role: "fdz",
     };
     User.create(userFDZ);
@@ -45,6 +47,8 @@ const create = async () => {
       email: "forschung@rki.de",
       password: hash("abc"),
       role: "researcher",
+      forename: "Peter",
+      surname: "Ihle",
       institution: institution1DB._id,
     };
     user1DB = await User.create(user1);
