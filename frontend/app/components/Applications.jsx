@@ -23,7 +23,7 @@ const Applications = () => {
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const day = date.getDate().toString().padStart(2, "0");
-    const timeString = day + "." + month + "." + year;
+    const timeString = day + "." + month;
     return timeString;
   };
 
@@ -31,15 +31,17 @@ const Applications = () => {
 
   const applicationsList = applications.map((application) => {
     i++;
-    const statusString = STEPS.find((step) => step.name === application.status)
-      .string;
+    const statusTemplate = STEPS.find(
+      (step) => step.name === application.status
+    );
     const stepVariable =
       application.history[application.history.length - 1].variable;
-    const statusText = statusString.includes(":var:")
-      ? statusString.replace(":var:", stepVariable)
-      : statusString;
+    const statusText = statusTemplate.string.includes(":var:")
+      ? statusTemplate.string.replace(":var:", stepVariable)
+      : statusTemplate.string;
+    console.log(statusTemplate);
     const icon =
-      status.type === "waiting"
+      statusTemplate.type === "waiting"
         ? "fa-hourglass-start"
         : "fa-exclamation-circle";
     const statusDate = timestampToString(
@@ -55,10 +57,11 @@ const Applications = () => {
             </Link>
           </div>
           <div className="application-status">
-            {statusText} ({statusDate})
-            {/* <small>
+            <span className="appliation-status-date">{statusDate}</span>:{" "}
+            <small>
               <i className={"fa " + icon}></i>
-            </small> */}
+            </small>{" "}
+            {statusText}
           </div>
         </div>
       </React.Fragment>
@@ -68,8 +71,8 @@ const Applications = () => {
     <div className="content-box">
       <div className="application-list">
         <div key="header-applications" className="application app-header">
-          <div>Antragsname</div>
-          <div className="app-header-status">Status</div>
+          <div className="application-list-name-header">Antragsname</div>
+          <div className="application-status-header">Status</div>
         </div>
         {applicationsList.length !== 0 || unfetched
           ? applicationsList
