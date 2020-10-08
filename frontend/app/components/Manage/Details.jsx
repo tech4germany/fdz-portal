@@ -90,6 +90,15 @@ const Application = () => {
         </div>
       );
     }
+
+    const users = application.users.map((user) => {
+      return (
+        <React.Fragment key={user.email}>
+          <i className="fa fa-user"></i> {user.email}
+          <br />
+        </React.Fragment>
+      );
+    });
     applicationContent = (
       <div className="content-box">
         <div className="application-name">{application.name}</div>
@@ -97,9 +106,7 @@ const Application = () => {
         <div className="application-institution">
           <i className="fa fa-university"></i> {application.institution.name}
         </div>
-        <div className="application-user">
-          <i className="fa fa-user"></i> {application.user.email}
-        </div>
+        <div className="application-user">{users}</div>
         <div className="application-action">
           <button className="button is-info is-outlined">
             <span className="icon">
@@ -117,12 +124,7 @@ const Application = () => {
           <div className="field">
             <div className="control has-icons-left">
               <div className="select">
-                <select
-                  name="cars"
-                  id="cars"
-                  value={newStatus}
-                  onChange={handleStatusChange}
-                >
+                <select value={newStatus} onChange={handleStatusChange}>
                   <option value="" disabled hidden>
                     Neuen Status auswählen
                   </option>
