@@ -119,7 +119,6 @@ const resetStatus = async () => {
     const applicationDB = await Application.findOne({
       name: "Diabetes Prävalenz",
     }).select("name status history");
-    console.log(applicationDB.name);
     applicationDB.history = applicationDB.history.slice(0, 10);
 
     applicationDB.status =
@@ -131,7 +130,6 @@ const resetStatus = async () => {
 };
 
 const upload = async (params, user) => {
-  console.log("uplaoding");
   try {
     const applicationDB = await Application.findById(params.id).select(
       "status history"

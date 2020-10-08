@@ -9,7 +9,6 @@ const ApplicationUpload = () => {
   const [loading, setLoading] = useState(false);
 
   const uploadApplication = async () => {
-    console.log("hello");
     setLoading(true);
     setTimeout(function () {
       setLoading(false);

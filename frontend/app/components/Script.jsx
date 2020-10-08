@@ -22,7 +22,6 @@ class Script extends React.Component {
       submissionType: this.props.match.params.type, // first, update, new
       step: 1,
       selectedFile: null,
-      isSelected: false,
       isConfirmed: false,
       resultMethod: null,
       title: "",
@@ -36,11 +35,11 @@ class Script extends React.Component {
   }
 
   selectScriptHandler(event) {
-    this.setState({ selectedFile: event.target.files[0], isSelected: true });
+    this.setState({ selectedFile: event.target.files[0] });
   }
 
   removeFile() {
-    this.setState({ selectedFile: null, isSelected: false });
+    this.setState({ selectedFile: null });
   }
 
   goBack() {
@@ -194,7 +193,7 @@ class Script extends React.Component {
             className="button is-info upload-button"
             onClick={this.uploadScript}
             id="uploadButton"
-            disabled={!this.state.isSelected}
+            disabled={!!!this.state.selectedFile}
           >
             Hochladen
           </button>

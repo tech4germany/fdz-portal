@@ -55,7 +55,6 @@ router.put(
 router.post(
   "/:id/upload",
   asyncWrap(async (req, res) => {
-    console.log(req.params);
     await applicationsServices.upload({ id: req.params.id }, req.user);
     res.json({ status: 200 });
   })

@@ -72,7 +72,7 @@ const StatusBar = ({ refreshData, application }) => {
       (step) => step.mainStep === mainStep.id
     );
     const lastStep = historySteps[historySteps.length - 1];
-    console.log(lastStep);
+
     if (historySteps.length === 0) {
       status = "future";
     } else if (lastStep.name === application.status) {
