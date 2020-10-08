@@ -18,23 +18,30 @@ const Manage = () => {
   }, [query]);
 
   const applicationsList = applications.map((application) => {
-    const status = STEPS.find((step) => step.name === application.status);
+    const step = STEPS.find((step) => step.name === application.status);
+
+    const statusText = step.stringFDZ.includes(":var:")
+      ? step.stringFDZ.replace(
+          ":var:",
+          application.history[application.history.length - 1].variable
+        )
+      : step.stringFDZ;
+
     const icon =
-      status.type === "waiting"
-        ? "fa-hourglass-start"
-        : "fa-exclamation-circle";
+      step.type === "waiting" ? "fa-exclamation-circle" : "fa-hourglass-start";
     return (
       <div key={application._id} className="application">
-        <div>
+        <div className="applications-manage-name">
           <Link to={"/manage/" + application._id}>{application.name} </Link>
         </div>
-        <div className="application-status">
-          {status.string_fdz}{" "}
+        <div className="applications-manage-user">
+          {application.users[0].email}
+        </div>
+        <div className="applications-manage-status">
           <small>
-            <i className={"fa " + icon}></i>
+            <i className={"fa " + icon}></i> {statusText}
           </small>
         </div>
-        <div className="application-user">{application.users[0].email}</div>
       </div>
     );
   });
@@ -42,10 +49,10 @@ const Manage = () => {
   return (
     <div className="content-box">
       <div className="application-list">
-        <div key="header-applications" className="application app-header">
-          <div>Antragsname</div>
-          <div className="app-header-status">Status</div>
-          <div className="app-header-status">User</div>
+        <div className="application app-header">
+          <div className="applications-manage-header-name">Antragsname</div>
+          <div className="applications-manage-header-user">User</div>
+          <div className="applications-manage-header-status">Status</div>
         </div>
         {applicationsList}
       </div>

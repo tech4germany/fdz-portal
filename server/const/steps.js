@@ -3,7 +3,7 @@ const STEPS = [
   {
     name: "application_unsubmitted",
     string: "Sie den müssen den Antrag hochladen",
-    string_fdz: "User muss den Antrag hochladen",
+    stringFDZ: "User muss den Antrag hochladen",
     mainStep: 1,
     newBubble: true,
     showDefault: true,
@@ -15,7 +15,7 @@ const STEPS = [
   {
     name: "application_submitted",
     string: "Sie haben den Antrag eingereicht",
-    string_fdz: "User hat den Antrag eingereicht",
+    stringFDZ: "User hat den Antrag eingereicht",
     mainStep: 1,
     newBubble: false,
     showDefault: false,
@@ -26,7 +26,7 @@ const STEPS = [
   {
     name: "application_unchecked",
     string: "Wir überprüfen den Antrag",
-    string_fdz: "Der Antrag muss überprüft werden",
+    stringFDZ: "Der Antrag muss überprüft werden",
     mainStep: 1,
     newBubble: true,
     showDefault: true,
@@ -37,7 +37,7 @@ const STEPS = [
   {
     name: "application_checked",
     string: "Wir haben den Antrag erfolgreich überprüft",
-    string_fdz: "Der Antrag wurde erfolgreich überprüft",
+    stringFDZ: "Der Antrag wurde erfolgreich überprüft",
     mainStep: 1,
     newBubble: false,
     showDefault: false,
@@ -48,7 +48,7 @@ const STEPS = [
   {
     name: "application_failed",
     string: "Der Antrag ist unvollständig oder fehlerhaft",
-    string_fdz: "Der Antrag ist unvollständig oder fehlerhaft",
+    stringFDZ: "Der Antrag ist unvollständig oder fehlerhaft",
     mainStep: 1,
     newBubble: false,
     showDefault: false,
@@ -59,7 +59,7 @@ const STEPS = [
   {
     name: "application_needs_update",
     string: "Sie müssen den Antrag überarbeiteten",
-    string_fdz: "User muss den Antrag überarbeiten",
+    stringFDZ: "User muss den Antrag überarbeiten",
     mainStep: 1,
     link: `/applications/:id:/update`,
     newBubble: true,
@@ -71,7 +71,7 @@ const STEPS = [
   {
     name: "application_updated",
     string: "Der Antrag wurde überarbeitet",
-    string_fdz: "Der Antrag wurde überarbeitet",
+    stringFDZ: "Der Antrag wurde überarbeitet",
     mainStep: 3,
     newBubble: false,
     showDefault: false,
@@ -82,7 +82,7 @@ const STEPS = [
   {
     name: "application_rejected",
     string: "Der Antrag wurde abgelehnt",
-    string_fdz: "Der Antrag wurde abgelehnt",
+    stringFDZ: "Der Antrag wurde abgelehnt",
     mainStep: 1,
     newBubble: false,
     showDefault: false,
@@ -92,7 +92,7 @@ const STEPS = [
   {
     name: "testdata_prepared",
     string: "Wir stellen die Testdaten bereit",
-    string_fdz: "Testdaten müssen bereitgestellt werden",
+    stringFDZ: "Testdaten müssen bereitgestellt werden",
     mainStep: 2,
     newBubble: true,
     showDefault: true,
@@ -103,7 +103,7 @@ const STEPS = [
   {
     name: "testdata_delivered",
     string: "Der Zugang zu den Testdaten wurde übermittelt",
-    string_fdz: "Der Zugang zu den Testdaten wurde übermittelt",
+    stringFDZ: "Der Zugang zu den Testdaten wurde übermittelt",
     mainStep: 2,
     newBubble: false,
     showDefault: false,
@@ -114,7 +114,7 @@ const STEPS = [
   {
     name: "script_unsubmitted",
     string: "Sie müssen ein Skript einreichen",
-    string_fdz: "USer muss ein Skript einreichen",
+    stringFDZ: "USer muss ein Skript einreichen",
     link: `/applications/:id:/script/first`,
     mainStep: 3,
     newBubble: true,
@@ -126,7 +126,7 @@ const STEPS = [
   {
     name: "script_submitted",
     string: "Sie haben das Skript (:var:) eingereicht",
-    string_fdz: "User hat das Skript (:var:) eingereicht",
+    stringFDZ: "User hat das Skript (:var:) eingereicht",
     mainStep: 3,
     newBubble: false,
     showDefault: false,
@@ -156,7 +156,7 @@ const STEPS = [
   {
     name: "script_unexecuted",
     string: "Wir führen das Skript aus",
-    string_fdz: "Das Skript muss ausgeführt werden",
+    stringFDZ: "Das Skript muss ausgeführt werden",
     mainStep: 3,
     newBubble: true,
     showDefault: true,
@@ -167,7 +167,7 @@ const STEPS = [
   {
     name: "script_executed",
     string: "Wir haben das Sript erfolgreich ausgeführt",
-    string_fdz: "Das Sript wurde erfolgreich ausgeführt",
+    stringFDZ: "Das Sript wurde erfolgreich ausgeführt",
     mainStep: 3,
     newBubble: false,
     showDefault: false,
@@ -178,7 +178,7 @@ const STEPS = [
   {
     name: "script_failed",
     string: "Die Ausführung von :var: war fehlerhaft",
-    string_fdz: "Die Ausführung von :var: war fehlerhaft",
+    stringFDZ: "Die Ausführung von :var: war fehlerhaft",
     mainStep: 3,
     newBubble: false,
     showDefault: false,
@@ -189,7 +189,7 @@ const STEPS = [
   {
     name: "script_needs_update",
     string: "Sie müssen das Skript :var: überarbeiten",
-    string_fdz: "User muss das Skript :var: überarbeiten",
+    stringFDZ: "User muss das Skript :var: überarbeiten",
     mainStep: 3,
     link: `/applications/:id:/script/update`,
     newBubble: true,
@@ -201,7 +201,7 @@ const STEPS = [
   {
     name: "script_updated",
     string: "Überarbeitetes Skript (:var:) wurde eingereicht",
-    string_fdz: "Überarbeitetes Skript (:var:) wurde eingereicht",
+    stringFDZ: "Überarbeitetes Skript (:var:) wurde eingereicht",
     mainStep: 3,
     newBubble: false,
     showDefault: false,
@@ -212,7 +212,7 @@ const STEPS = [
   {
     name: "results_preparing",
     string: "Wir stellen die Ergebnismenge bereit",
-    string_fdz: "Ergebnismenge muss bereitgestellt werden",
+    stringFDZ: "Ergebnismenge muss bereitgestellt werden",
     mainStep: 3,
     newBubble: true,
     showDefault: true,
@@ -223,7 +223,7 @@ const STEPS = [
   {
     name: "results_delivered",
     string: "Die Ergebnismenge wurde übermittelt",
-    string_fdz: "Die Ergebnismenge wurde übermittelt",
+    stringFDZ: "Die Ergebnismenge wurde übermittelt",
     mainStep: 3,
     newBubble: false,
     showDefault: false,
@@ -234,7 +234,7 @@ const STEPS = [
   {
     name: "give_feedback",
     string: "Bitte bewerten Sie den Service",
-    string_fdz: "User muss Service bewerten",
+    stringFDZ: "User muss Service bewerten",
     mainStep: 4,
     newBubble: true,
     showDefault: true,
@@ -246,7 +246,7 @@ const STEPS = [
   {
     name: "feddback_given",
     string: "Sie haben den Service berwertet",
-    string_fdz: "User hat den Service bewertet",
+    stringFDZ: "User hat den Service bewertet",
     mainStep: 4,
     newBubble: false,
     showDefault: false,
@@ -257,7 +257,7 @@ const STEPS = [
   {
     name: "submit_publication",
     string: "Bitte reichen Sie die Publikation der Ergebnise ein",
-    string_fdz: "User muss Publikation einreichen",
+    stringFDZ: "User muss Publikation einreichen",
     mainStep: 4,
     newBubble: true,
     showDefault: true,
@@ -269,7 +269,7 @@ const STEPS = [
   {
     name: "publication_submitted",
     string: "Publikation erfolgreich eingereicht",
-    string_fdz: "User hat Publikation eingereicht",
+    stringFDZ: "User hat Publikation eingereicht",
     mainStep: 4,
     newBubble: false,
     showDefault: false,
@@ -280,7 +280,7 @@ const STEPS = [
   {
     name: "application_closed",
     string: "Der Antrag wurde erfolgreich abgeschloßen",
-    string_fdz: "Der Antrag wurde erfolgreich abgeschloßen",
+    stringFDZ: "Der Antrag wurde erfolgreich abgeschloßen",
     mainStep: 4,
     newBubble: true,
     showDefault: true,
