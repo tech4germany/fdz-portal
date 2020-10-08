@@ -4,6 +4,7 @@ import "./Header.css";
 import bfarmLogo from "../assets/bfarm-logo.svg";
 
 const Header = (props) => {
+  console.log(props.user);
   return (
     <div className="header">
       <img src={bfarmLogo} alt="bfarm_logo" />
@@ -12,7 +13,14 @@ const Header = (props) => {
           {props.user && (
             <React.Fragment>
               <div className="navbar-start">
-                <Link className="navbar-item" to="/applications">
+                <Link
+                  className="navbar-item"
+                  to={
+                    props.user.role === "researcher"
+                      ? "/applications"
+                      : "/manage"
+                  }
+                >
                   Anträge
                 </Link>
 
