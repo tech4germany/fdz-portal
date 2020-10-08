@@ -14,7 +14,7 @@ const get = async (id) => {
       select: "name",
     })
     .populate({
-      path: "user",
+      path: "users",
       select: "email",
     })
     .lean();
@@ -32,7 +32,7 @@ const list = async (params, user) => {
     sort: { lastStatusUpdate: -1 },
   })
     .populate({
-      path: "user",
+      path: "users",
       select: "email",
     })
     .limit(limit)

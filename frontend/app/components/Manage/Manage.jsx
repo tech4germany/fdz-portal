@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { getData } from "../utils/api";
 import { STEPS } from "../../../../server/const/steps";
 import "./Manage.css";
-import Application from "../Application";
 
 const Manage = () => {
   const [applications, setApplications] = useState([]);
@@ -35,7 +34,7 @@ const Manage = () => {
             <i className={"fa " + icon}></i>
           </small>
         </div>
-        <div className="application-user">{application.user.email}</div>
+        <div className="application-user">{application.users[0].email}</div>
       </div>
     );
   });
