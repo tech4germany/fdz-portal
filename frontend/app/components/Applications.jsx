@@ -8,10 +8,16 @@ const Applications = () => {
   const [applications, setApplications] = useState([]);
   const [unfetched, setUnfetched] = useState(true);
   const [refresh, setRefresh] = useState(false);
+  const [offline, setOffline] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getData("/applications");
+      try {
+        var data = await getData("/applications");
+      } catch {
+        setOffline(true);
+        return;
+      }
       setApplications(data.applications);
       setUnfetched(false);
     };
@@ -73,7 +79,9 @@ const Applications = () => {
           <div className="application-list-name-header">Antragsname</div>
           <div className="application-status-header">Status</div>
         </div>
-        {applicationsList.length !== 0 || unfetched
+        {offline
+          ? "Server offline"
+          : applicationsList.length !== 0 || unfetched
           ? applicationsList
           : "Es sind noch keine Anträge vorhanden"}
         <div className="right">
