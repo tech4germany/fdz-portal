@@ -3,7 +3,7 @@ const User = require("../models/User");
 const Script = require("../models/Script");
 const { STEPS } = require("../const/steps");
 
-const get = async (id) => {
+const get = async (id, user) => {
   const application = await Application.findById(id)
     .populate({
       path: "scripts",
@@ -21,11 +21,37 @@ const get = async (id) => {
   return application;
 };
 
-const list = async (params, user) => {
-  const limit = parseInt(params.limit) || 100;
+const list = async (user) => {
+  const limit = 100;
   const query = {};
   if (user.role === "researcher") {
     query.users = user.id;
+  }
+
+  const applications = await Application.find(query, null, {
+    sort: { lastStatusUpdate: -1 },
+  })
+    .populate({
+      path: "users",
+      select: "email",
+    })
+    .limit(limit)
+    .lean(); // .select({ "name": 1, "_id": 0})
+  return applications;
+};
+
+const listFilter = async (data, user) => {
+  if (data === null) data = {};
+  const limit = parseInt(data.limit) || 100;
+
+  const query = {};
+  if (user.role === "researcher") {
+    query.users = user.id;
+  } else if (user.role === "fdz" && data.user) {
+    query.users = data.user;
+  }
+  if (data.status) {
+    query.status = data.status;
   }
 
   const applications = await Application.find(query, null, {
@@ -199,6 +225,7 @@ module.exports = {
   get,
   create,
   list,
+  listFilter,
   updateStatus,
   upload,
   resetStatus,

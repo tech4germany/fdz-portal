@@ -8,7 +8,7 @@ const { permissionCheck } = require("../../middleware/auth");
 router.get(
   "/:id",
   asyncWrap(async (req, res) => {
-    const application = await applicationsServices.get(req.params.id);
+    const application = await applicationsServices.get(req.params.id, req.user);
     res.json({ status: 200, application });
   })
 );
@@ -17,7 +17,19 @@ router.get(
 router.get(
   "/",
   asyncWrap(async (req, res) => {
-    const applications = await applicationsServices.list(req.params, req.user);
+    const applications = await applicationsServices.list(req.user);
+    res.json({ status: 200, applications });
+  })
+);
+
+// List Filtered
+router.post(
+  "/",
+  asyncWrap(async (req, res) => {
+    const applications = await applicationsServices.listFilter(
+      req.body.query,
+      req.user
+    );
     res.json({ status: 200, applications });
   })
 );

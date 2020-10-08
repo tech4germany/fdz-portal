@@ -4,7 +4,6 @@ import "./Header.css";
 import bfarmLogo from "../assets/bfarm-logo.svg";
 
 const Header = (props) => {
-  console.log(props.user);
   return (
     <div className="header">
       <img src={bfarmLogo} alt="bfarm_logo" />
