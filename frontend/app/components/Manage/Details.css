@@ -23,3 +23,11 @@
 .application-action .button {
   margin-right: 20px;
 }
+
+.details .field {
+  margin-top: 20px;
+}
+
+.details .textarea {
+  margin-bottom: 10px;
+}

@@ -23,7 +23,7 @@ const Application = () => {
 
   return (
     <React.Fragment>
-      {application != null && (
+      {application && (
         <StatusBar refreshData={refreshData} application={application} />
       )}
     </React.Fragment>

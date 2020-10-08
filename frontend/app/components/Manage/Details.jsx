@@ -100,7 +100,7 @@ const Application = () => {
       );
     });
     applicationContent = (
-      <div className="content-box">
+      <div className="content-box details">
         <div className="application-name">{application.name}</div>
         <div className="application-description">{application.description}</div>
         <div className="application-institution">
@@ -112,13 +112,13 @@ const Application = () => {
             <span className="icon">
               <i className="fa fa-cloud-download-alt"></i>
             </span>
-            <span>Skript</span>
+            <span>Antrag</span>
           </button>
           <button className="button is-info is-outlined">
             <span className="icon">
               <i className="fa fa-cloud-download-alt"></i>
             </span>
-            <span>PDF</span>
+            <span>Skript</span>
           </button>
 
           <div className="field">
