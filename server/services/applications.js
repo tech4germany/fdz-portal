@@ -115,17 +115,47 @@ const updateStatus = async (data, user) => {
 };
 
 const resetStatus = async () => {
-  console.log("reset");
   try {
-    const applicationDB = await Application.findOne()
-      .sort({ _id: -1 })
-      .limit(1)
-      .select("name status history");
-    console.log(applicationDB);
+    const applicationDB = await Application.findOne({
+      name: "Diabetes Prävalenz",
+    }).select("name status history");
+    console.log(applicationDB.name);
     applicationDB.history = applicationDB.history.slice(0, 10);
 
     applicationDB.status =
       applicationDB.history[applicationDB.history.length - 1].name;
+    await applicationDB.save();
+  } catch (error) {
+    throw error;
+  }
+};
+
+const upload = async (params, user) => {
+  console.log("uplaoding");
+  try {
+    const applicationDB = await Application.findById(params.id).select(
+      "status history"
+    );
+
+    const time = "2 - 3 Wochen";
+
+    applicationDB.history.push({
+      name: "application_submitted",
+      mainStep: 1,
+      user: user.id,
+      date: Date.now(),
+    });
+    applicationDB.history.push({
+      name: "application_unchecked",
+      user: user.id,
+      mainStep: 1,
+      time,
+      date: Date.now(),
+    });
+
+    applicationDB.status =
+      applicationDB.history[applicationDB.history.length - 1].name;
+    applicationDB.lastStatusUpdate = Date.now();
     await applicationDB.save();
   } catch (error) {
     throw error;
@@ -172,6 +202,7 @@ module.exports = {
   create,
   list,
   updateStatus,
+  upload,
   resetStatus,
   uploadFakeScript,
 };

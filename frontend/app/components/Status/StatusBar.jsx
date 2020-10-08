@@ -60,8 +60,6 @@ const StatusBar = ({ refreshData, application }) => {
     return string;
   };
 
-  const currentStep = application.history[application.history.length - 1];
-
   const timeline = [];
 
   for (const mainStep of MAIN_STEPS) {
@@ -74,7 +72,7 @@ const StatusBar = ({ refreshData, application }) => {
       (step) => step.mainStep === mainStep.id
     );
     const lastStep = historySteps[historySteps.length - 1];
-
+    console.log(lastStep);
     if (historySteps.length === 0) {
       status = "future";
     } else if (lastStep.name === application.status) {

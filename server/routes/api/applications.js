@@ -51,6 +51,16 @@ router.put(
   })
 );
 
+// Upload new Application
+router.post(
+  "/:id/upload",
+  asyncWrap(async (req, res) => {
+    console.log(req.params);
+    await applicationsServices.upload({ id: req.params.id }, req.user);
+    res.json({ status: 200 });
+  })
+);
+
 // Fake script upload
 router.post(
   "/:id/script/fake",

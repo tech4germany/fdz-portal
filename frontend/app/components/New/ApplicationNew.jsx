@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getData, sendData } from "./utils/api";
+import { getData, sendData } from "../utils/api";
 import BulmaTagsInput from "bulma-extensions/bulma-tagsinput/dist/js/bulma-tagsinput.min.js";
 import "bulma-extensions/bulma-tagsinput/dist/css/bulma-tagsinput.min.css";
 import "bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio.min.css";
 import "./ApplicationNew.css";
 
-const Home = () => {
+const ApplicationNew = () => {
   useEffect(() => {
     const inputTags = document.getElementById("tagsinput");
     new BulmaTagsInput(inputTags);
@@ -136,7 +136,7 @@ const Home = () => {
             </div>
             <div className="control">
               <button className="button is-info" onClick={submitApplication}>
-                Einreichen
+                Erstellen
               </button>
             </div>
           </div>
@@ -160,4 +160,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ApplicationNew;

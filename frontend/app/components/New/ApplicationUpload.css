@@ -1,0 +1,38 @@
+.application-upload {
+  margin-left: 70px;
+  margin-right: auto;
+}
+.application-upload .header {
+  font-weight: bold;
+  font-size: 22px;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.application-upload .notification {
+  width: 500px;
+}
+
+.application-upload .text {
+  line-height: 40px;
+  margin-right: 5px;
+}
+
+.application-upload hr {
+  width: 500px;
+}
+
+.application-upload .button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.application-upload .address {
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.application-upload .submit-button {
+  margin-left: 70px;
+}

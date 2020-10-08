@@ -6,7 +6,8 @@ import Script from "./Script";
 import Applications from "./Applications";
 import Application from "./Application";
 import Login from "./Auth/Login";
-import ApplicationNew from "./ApplicationNew";
+import ApplicationNew from "./New/ApplicationNew";
+import ApplicationUpload from "./New/ApplicationUpload";
 import Manage from "./Manage/Manage";
 import Details from "./Manage/Details";
 import StatusShow from "./Status/StatusTest";
@@ -72,6 +73,10 @@ export default class App extends React.Component {
               <Route exact path="/applications/new">
                 <ApplicationNew />
               </Route>
+              <Route
+                path="/applications/:id/upload"
+                render={() => <ApplicationUpload />}
+              />
               <Route
                 path="/applications/:id/script/:type"
                 render={() => <Script />}
