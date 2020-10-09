@@ -39,7 +39,7 @@ const Manage = () => {
       <div className="application-list">
         <div className="application app-header">
           <div className="applications-manage-header-name">Antragsname</div>
-          <div className="applications-manage-header-user">User {selectedUser && <button className="button is-small" onClick={removeUser}>
+          <div className="applications-manage-header-user">User {selectedUser && <button className="button is-small is-rounded" onClick={removeUser}>
             <span>{selectedUser}</span>
             <span className="icon danger">
               <i className="fas fa-times"></i>
@@ -51,7 +51,7 @@ const Manage = () => {
                 Status{" "}
                 <div className="select is-small">
                   <select onChange={filterStatus}>
-                    <option value="">All</option>
+                    <option value="">Alle</option>
                     <option value="active">Aktive</option>
                     <option value="passive">Passive</option>
                   </select>

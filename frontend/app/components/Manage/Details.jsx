@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getData, sendData } from "../utils/api";
 import Notification from "../Notification/Notification";
-import "./Details.css";
 import { STEPS } from "../../../../server/const/steps";
+import "./Details.css";
+
 
 const Application = () => {
   const [applicationId, setApplicationId] = useState(useParams().id);
