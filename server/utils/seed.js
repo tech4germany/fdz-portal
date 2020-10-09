@@ -150,7 +150,7 @@ const create = async () => {
       date: 1600954662000,
     });
     application1.history.push({
-      name: "testdata_prepared",
+      name: "testdata_undelivered",
       mainStep: 2,
       user: user1DB._id,
       date: 1600954663000,

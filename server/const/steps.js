@@ -42,7 +42,7 @@ const STEPS = [
     newBubble: false,
     showDefault: false,
     type: "success",
-    auto_next: "testdata_prepared",
+    auto_next: "testdata_undelivered",
     actionRequiered: false,
   },
   {
@@ -90,7 +90,7 @@ const STEPS = [
     actionRequiered: false,
   },
   {
-    name: "testdata_prepared",
+    name: "testdata_undelivered",
     string: "Wir stellen die Testdaten bereit",
     stringFDZ: "Testdaten müssen bereitgestellt werden",
     mainStep: 2,
