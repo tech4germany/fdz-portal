@@ -58,7 +58,7 @@ router.put(
       id: req.params.id,
       status: req.body.status,
       message: req.body.message,
-    });
+    }, req.user);
     res.json({ status: 200, applicationName });
   })
 );

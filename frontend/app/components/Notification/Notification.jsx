@@ -10,7 +10,7 @@ const Notification = (props) => {
   return (
     <div
       className={
-        "notification is-primary " +
+        "notification " +
         props.notification.status +
         " " +
         props.size

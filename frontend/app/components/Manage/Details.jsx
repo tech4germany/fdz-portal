@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getData, sendData } from "../utils/api";
 import Notification from "../Notification/Notification";
 import "./Details.css";
-import { STEPS, MAIN_STEPS } from "../../../../server/const/steps";
+import { STEPS } from "../../../../server/const/steps";
 
 const Application = () => {
   const [applicationId, setApplicationId] = useState(useParams().id);
@@ -45,7 +45,7 @@ const Application = () => {
     } else {
       setNotification({
         text: "Status konnte nicht geändert werden",
-        status: "is-fail",
+        status: "is-danger",
       });
     }
     setNewStatus("");
@@ -162,12 +162,12 @@ const Application = () => {
 
           {(newStatus === "script_failed" ||
             newStatus === "application_failed") && (
-            <textarea
-              className="textarea"
-              id="userMessage"
-              placeholder="Nachricht an User"
-            ></textarea>
-          )}
+              <textarea
+                className="textarea"
+                id="userMessage"
+                placeholder="Nachricht an User"
+              ></textarea>
+            )}
 
           {newStatus && (
             <button className="button is-info" onClick={submitNewStatus}>
