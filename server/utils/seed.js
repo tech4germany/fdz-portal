@@ -42,7 +42,7 @@ const create = async () => {
     };
     const institution1DB = await Institution.create(institution1);
 
-    // Research user
+    // Research user 1
     const user1 = {
       email: "forschung@rki.de",
       password: hash("abc"),
@@ -52,6 +52,45 @@ const create = async () => {
       institution: institution1DB._id,
     };
     user1DB = await User.create(user1);
+
+    // Research user 2
+    const user2 = {
+      email: "data@rki.de",
+      password: hash("abc"),
+      role: "researcher",
+      forename: "Max",
+      surname: "Wheile",
+      institution: institution1DB._id,
+    };
+    user2DB = await User.create(user2);
+
+    // Application Off-Label-Use
+    const application3 = {
+      name: "Off-Label-Use",
+      description: "Für Studie zum Off-Label-Use",
+      queuePosition: 3,
+      history: [],
+      mainSteps: [],
+      users: [],
+    };
+    application3.users.push(user2DB._id);
+    application3.institution = institution1DB._id;
+    application3.history.push({
+      name: "application_submitted",
+      mainStep: 1,
+      user: user1DB._id,
+      date: 1600956412400,
+    });
+    application3.history.push({
+      name: "application_unchecked",
+      user: user1DB._id,
+      mainStep: 1,
+      time: "1 - 2 Wochen",
+      date: 1600954123400,
+    });
+    application3.status =
+      application3.history[application3.history.length - 1].name;
+    application3DB = await Application.create(application3);
 
     // Application Covid
     const application2 = {

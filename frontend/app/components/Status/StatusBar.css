@@ -33,6 +33,9 @@
 .future {
   background-color: #363636;
 }
+.danger{
+  color: #FF0000;
+}
 .main-step-time {
   font-style: italic;
   color: #e7c0a7;
