@@ -26,40 +26,6 @@ const Manage = () => {
   const filterUser = (event) => {
     setQuery({ ...query, user: event.target.id });
   };
-
-  const applicationsList = applications.map((application) => {
-    const step = STEPS.find((step) => step.name === application.status);
-
-    const statusText = step.stringFDZ.includes(":var:")
-      ? step.stringFDZ.replace(
-          ":var:",
-          application.history[application.history.length - 1].variable
-        )
-      : step.stringFDZ;
-
-    const icon =
-      step.type === "waiting" ? "fa-exclamation-circle" : "fa-hourglass-start";
-    return (
-      <div key={application._id} className="application">
-        <div className="applications-manage-name">
-          <Link to={"/manage/" + application._id}>{application.name} </Link>
-        </div>
-        <div
-          className="applications-manage-user is-clickable"
-          onClick={filterUser}
-          id={application.users[0]._id}
-        >
-          {application.users[0].email}
-        </div>
-        <div className="applications-manage-status">
-          <small>
-            <i className={"fa " + icon}></i> {statusText}
-          </small>
-        </div>
-      </div>
-    );
-  });
-
   return (
     <div className="content-box">
       <div className="application-list">
@@ -73,15 +39,50 @@ const Manage = () => {
                 <div className="select is-small">
                   <select onChange={filterStatus}>
                     <option value="">All</option>
-                    <option value="application_unchecked">Aktive</option>
-                    <option value="script_needs_update">Passive</option>
+                    <option value="active">Aktive</option>
+                    <option value="passive">Passive</option>
                   </select>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {applicationsList}
+        {applications.map((application) => {
+          const step = STEPS.find((step) => step.name === application.status);
+
+          const statusText = step.stringFDZ.includes(":var:")
+            ? step.stringFDZ.replace(
+                ":var:",
+                application.history[application.history.length - 1].variable
+              )
+            : step.stringFDZ;
+
+          const icon =
+            step.type === "waiting"
+              ? "fa-exclamation-circle"
+              : "fa-hourglass-start";
+          return (
+            <div key={application._id} className="application">
+              <div className="applications-manage-name">
+                <Link to={"/manage/" + application._id}>
+                  {application.name}{" "}
+                </Link>
+              </div>
+              <div
+                className="applications-manage-user is-clickable"
+                onClick={filterUser}
+                id={application.users[0]._id}
+              >
+                {application.users[0].email}
+              </div>
+              <div className="applications-manage-status">
+                <small>
+                  <i className={"fa " + icon}></i> {statusText}
+                </small>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

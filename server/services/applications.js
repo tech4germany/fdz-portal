@@ -50,9 +50,19 @@ const listFilter = async (data, user) => {
   } else if (user.role === "fdz" && data.user) {
     query.users = data.user;
   }
+
   if (data.status) {
-    query.status = data.status;
+    const requestedStatuses = STEPS.reduce((result, step) => {
+      const type = data.status === "active" ? "waiting" : "unsubmitted";
+      if (step.type === type) result.push(step.name);
+      return result;
+    }, []);
+    query.status = {
+      $in: requestedStatuses,
+    }
+
   }
+  console.log(query);
 
   const applications = await Application.find(query, null, {
     sort: { lastStatusUpdate: -1 },
