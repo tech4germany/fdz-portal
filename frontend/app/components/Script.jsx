@@ -113,9 +113,7 @@ class Script extends React.Component {
               <div>
                 <b>Details:</b>{" "}
                 <i
-                  className={
-                    "fa fa-exclamation-circle error-color is-clickable"
-                  }
+                  className={"fa fa-envelope error-color is-clickable"}
                   onClick={this.toggleModal}
                 ></i>
                 <br />
