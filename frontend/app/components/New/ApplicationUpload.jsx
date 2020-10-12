@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getData, sendData } from "../utils/api";
+import AntragPDF from "../../assets/antrag-fdz.pdf";
 import "./ApplicationUpload.css";
 
 const ApplicationUpload = () => {
@@ -34,9 +35,11 @@ const ApplicationUpload = () => {
         <div className="header">Antrag einreichen</div>
         {/* First step */}
         <div className="notification">
-          <div className="">Bitte laden Sie den Antrag herunter:</div>
+          <div className="">
+            Hier können sie das aktuelle Antragsformular herunterladen:
+          </div>
           <div className="button-container">
-            <a target="_blank" href="/antrag.pdf">
+            <a target="_blank" href={AntragPDF}>
               <button className="button">
                 <span className="icon">
                   <i className="fas fa-cloud-download-alt"></i>
