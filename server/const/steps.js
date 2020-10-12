@@ -245,7 +245,7 @@ const STEPS = [
   },
   {
     name: "feddback_given",
-    string: "Sie haben den Service berwertet",
+    string: "Sie haben den Service bewertet",
     stringFDZ: "User hat den Service bewertet",
     mainStep: 4,
     newBubble: false,
@@ -279,8 +279,8 @@ const STEPS = [
   },
   {
     name: "application_closed",
-    string: "Der Antrag wurde erfolgreich abgeschloßen",
-    stringFDZ: "Der Antrag wurde erfolgreich abgeschloßen",
+    string: "Sie haben den Antrag erfolgreich abgeschlossen",
+    stringFDZ: "Der Antrag wurde erfolgreich abgeschlossen",
     mainStep: 4,
     newBubble: true,
     showDefault: true,
@@ -291,9 +291,9 @@ const STEPS = [
 
 // Main Steps
 const MAIN_STEPS = [
-  { id: 1, name: "Antrag" },
-  { id: 2, name: "Testdaten" },
-  { id: 3, name: "Skript" },
+  { id: 1, name: "Antrag einreichen" },
+  { id: 2, name: "Testdatenzugang" },
+  { id: 3, name: "Skript-Analyse" },
   { id: 4, name: "Antrag abschließen" },
 ];
 
