@@ -2,7 +2,7 @@
 const STEPS = [
   {
     name: "application_unsubmitted",
-    string: "Sie den müssen den Antrag hochladen",
+    string: "Sie müssen den Antrag hochladen",
     stringFDZ: "User muss den Antrag hochladen",
     mainStep: 1,
     newBubble: true,
