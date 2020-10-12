@@ -62,7 +62,6 @@ const listFilter = async (data, user) => {
     }
 
   }
-  console.log(query);
 
   const applications = await Application.find(query, null, {
     sort: { lastStatusUpdate: -1 },
@@ -108,6 +107,7 @@ const create = async (params, user) => {
 
   const application = await new Application(data);
   await application.save();
+  return application._id
 };
 
 const updateStatus = async (data, user) => {

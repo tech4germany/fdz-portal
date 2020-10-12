@@ -38,7 +38,7 @@ router.post(
 router.post(
   "/new",
   asyncWrap(async (req, res) => {
-    await applicationsServices.create(
+    const applicationId = await applicationsServices.create(
       {
         applicationName: req.body.applicationName,
         applicationDesc: req.body.applicationDesc,
@@ -46,7 +46,7 @@ router.post(
       },
       req.user
     );
-    res.json({ status: 200 });
+    res.json({ status: 200, applicationId });
   })
 );
 

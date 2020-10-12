@@ -15,13 +15,13 @@ const ApplicationNew = () => {
   }, []);
 
   const submitApplication = async () => {
-    await sendData(`/applications/new`, "POST", {
+    const result = await sendData(`/applications/new`, "POST", {
       applicationName: document.getElementById("applicationName").value,
       applicationDesc: document.getElementById("applicationDesc").value,
       additionalUser: document.getElementById("tagsinput").value.split(","),
     });
 
-    window.location.pathname = "/applications";
+    window.location.pathname = `/applications/${result.applicationId}`;
   };
 
   return (
@@ -50,7 +50,7 @@ const ApplicationNew = () => {
               <input
                 className="input"
                 type="text"
-                placeholder="Kurze beschreibung"
+                placeholder="Kurze beschreibung (Optional)"
                 id="applicationDesc"
                 maxLength="30"
               />
@@ -65,7 +65,7 @@ const ApplicationNew = () => {
             <div className="control has-icons-left">
               <input
                 className="input"
-                placeholder="Email eingeben"
+                placeholder="Email eingeben (Optional)"
                 data-selectable="false"
                 id="tagsinput"
                 type="tags"
