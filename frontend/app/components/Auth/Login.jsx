@@ -73,11 +73,11 @@ const Login = (props) => {
           close={setNotification}
         />
       </div>
-      <article class="message is-dark test-data-info-box">
-        <div class="message-header">
+      <article className="message is-dark test-data-info-box">
+        <div className="message-header">
           <p>Zugangsdaten</p>
         </div>
-        <div class="message-body">
+        <div className="message-body">
           <small>
             Mit diesen Daten können Sie sich jeweils als Forscher:in oder als
             FDZ Mitarbeiter:in einloggen.

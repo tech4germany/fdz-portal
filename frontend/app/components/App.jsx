@@ -10,7 +10,6 @@ import ApplicationNew from "./New/ApplicationNew";
 import ApplicationUpload from "./New/ApplicationUpload";
 import Manage from "./Manage/Manage";
 import Details from "./Manage/Details";
-import StatusShow from "./Status/StatusTest";
 import jwtDecode from "jwt-decode";
 import { getData } from "./utils/api";
 import "./App.css";
@@ -47,7 +46,8 @@ export default class App extends React.Component {
 
   async logout() {
     await getData(`/auth/logout`, "GET");
-    this.setState({ user: null });
+    window.location.href = "/";
+    // this.setState({ user: null });
     localStorage.removeItem("identity");
   }
 
@@ -65,11 +65,13 @@ export default class App extends React.Component {
                   <Manage />
                 )}
               </Route>
-              <Route
-                exact
-                path="/applications"
-                render={() => <Applications />}
-              />
+              <Route exact path="/applications">
+                {this.state.user.role === "researcher" ? (
+                  <Applications />
+                ) : (
+                  <Redirect to="/manage" />
+                )}
+              </Route>
               <Route exact path="/applications/new">
                 <ApplicationNew />
               </Route>
@@ -82,16 +84,15 @@ export default class App extends React.Component {
                 render={() => <Script />}
               />
               <Route path="/applications/:id" render={() => <Application />} />
-              <Route exact path="/manage" render={() => <Manage />} />
-              <Route path="/manage/:id" render={() => <Details />} />
-              <Route exact path="/status" render={() => <StatusShow />} />
-              <Route exact path="/login" render={() => <Redirect to="/" />} />
-              <Route
-                path="/auth"
-                render={() => (
-                  <Auth setUser={this._setUser} resetUser={this._resetUser} />
+              <Route exact path="/manage">
+                {this.state.user.role === "researcher" ? (
+                  <Redirect to="/applications" />
+                ) : (
+                  <Manage />
                 )}
-              />
+              </Route>
+              <Route path="/manage/:id" render={() => <Details />} />
+              <Route exact path="/login" render={() => <Redirect to="/" />} />
               <Route>
                 <NotFound />
               </Route>
