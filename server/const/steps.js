@@ -58,7 +58,7 @@ const STEPS = [
   },
   {
     name: "application_needs_update",
-    string: "Sie müssen den Antrag überarbeiteten",
+    string: "Sie müssen den Antrag überarbeiten",
     stringFDZ: "User muss den Antrag überarbeiten",
     mainStep: 1,
     link: `/applications/:id:/update`,
@@ -81,7 +81,7 @@ const STEPS = [
   },
   {
     name: "application_rejected",
-    string: "Der Antrag wurde abgelehnt",
+    string: "Wir haben den Antrag abgelehnt",
     stringFDZ: "Der Antrag wurde abgelehnt",
     mainStep: 1,
     newBubble: false,
@@ -102,7 +102,7 @@ const STEPS = [
   },
   {
     name: "testdata_delivered",
-    string: "Der Zugang zu den Testdaten wurde übermittelt",
+    string: "Wir haben den Zugang zu den Testdaten übermittelt",
     stringFDZ: "Der Zugang zu den Testdaten wurde übermittelt",
     mainStep: 2,
     newBubble: false,
@@ -114,7 +114,7 @@ const STEPS = [
   {
     name: "script_unsubmitted",
     string: "Sie müssen ein Skript einreichen",
-    stringFDZ: "USer muss ein Skript einreichen",
+    stringFDZ: "User muss ein Skript einreichen",
     link: `/applications/:id:/script/first`,
     mainStep: 3,
     newBubble: true,
@@ -166,8 +166,8 @@ const STEPS = [
   },
   {
     name: "script_executed",
-    string: "Wir haben das Sript erfolgreich ausgeführt",
-    stringFDZ: "Das Sript wurde erfolgreich ausgeführt",
+    string: "Wir haben das Skript erfolgreich ausgeführt",
+    stringFDZ: "Das Skript wurde erfolgreich ausgeführt",
     mainStep: 3,
     newBubble: false,
     showDefault: false,
@@ -222,7 +222,7 @@ const STEPS = [
   },
   {
     name: "results_delivered",
-    string: "Die Ergebnismenge wurde übermittelt",
+    string: "Wir haben die Ergebnismenge übermittelt",
     stringFDZ: "Die Ergebnismenge wurde übermittelt",
     mainStep: 3,
     newBubble: false,
@@ -256,7 +256,7 @@ const STEPS = [
   },
   {
     name: "submit_publication",
-    string: "Bitte reichen Sie die Publikation der Ergebnise ein",
+    string: "Bitte reichen Sie die Publikation der Ergebnisse ein",
     stringFDZ: "User muss Publikation einreichen",
     mainStep: 4,
     newBubble: true,
