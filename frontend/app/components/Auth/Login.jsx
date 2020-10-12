@@ -49,7 +49,7 @@ const Login = (props) => {
           </div>
         </div>
         <div className="field">
-          <label className="label">Password</label>
+          <label className="label">Passwort</label>
           <div className="control has-icons-left">
             <input
               className="input"
@@ -73,6 +73,39 @@ const Login = (props) => {
           close={setNotification}
         />
       </div>
+      <article class="message is-dark test-data-info-box">
+        <div class="message-header">
+          <p>Zugangsdaten</p>
+        </div>
+        <div class="message-body">
+          <small>
+            Mit diesen Daten können Sie sich jeweils als Forscher:in oder als
+            FDZ Mitarbeiter:in einloggen.
+            <br />
+            <br />
+            <strong>
+              <u>Forscher:in</u>
+            </strong>
+            <br />
+            Email: <i>forschung@rki.de</i>
+            <br />
+            Passwort: <i>abc</i>
+            <br />
+            <br />
+            <strong>
+              <u>FDZ Mitarbeiter:in</u>
+            </strong>
+            <br />
+            Email: <i>support@fdz.de</i>
+            <br />
+            Passwort: <i>abc</i>
+            <br />
+            <br />
+            Der Antragsstatus von Diabetes wird nach dem Ausloggen
+            zurückgesetzt.
+          </small>
+        </div>
+      </article>
     </React.Fragment>
   );
 };
