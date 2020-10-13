@@ -160,7 +160,7 @@ class Script extends React.Component {
                 <span className="file-icon">
                   <i className="fas fa-upload"></i>
                 </span>
-                <span className="file-label">Skript Datei auswählen</span>
+                <span className="file-label">Datei auswählen</span>
               </span>
               <span className="file-name">
                 {this.state.selectedFile && this.state.selectedFile.name}
@@ -239,12 +239,13 @@ class Script extends React.Component {
             <span className="icon is-small">
               <i className="fas fa-chevron-circle-left"></i>
             </span>
+            <span>Zurück</span>
           </button>
-          <Link to={"/applications/" + this.state.applicationId}>
+          {/* <Link to={"/applications/" + this.state.applicationId}>
             <button className="button is-danger is-outlined back-button">
               Abbrechen
             </button>
-          </Link>
+          </Link> */}
           <button
             className="button is-info upload-button"
             onClick={this.confirmScript}
@@ -339,12 +340,13 @@ class Script extends React.Component {
             <span className="icon is-small">
               <i className="fas fa-chevron-circle-left"></i>
             </span>
+            <span>Zurück</span>
           </button>
-          <Link to={"/applications/" + this.state.applicationId}>
+          {/* <Link to={"/applications/" + this.state.applicationId}>
             <button className="button is-danger is-outlined back-button">
               Abbrechen
             </button>
-          </Link>
+          </Link> */}
         </React.Fragment>
       );
     } else if (step === 4) {
@@ -376,7 +378,7 @@ class Script extends React.Component {
                 </span>
               </div>
               <div className="step-details ">
-                <p className="step-title">Skript Auswählen</p>
+                <p className="step-title">Skript auswählen</p>
               </div>
             </li>
             <li className={this.getStepClasses(2)}>
@@ -386,7 +388,7 @@ class Script extends React.Component {
                 </span>
               </div>
               <div className="step-details">
-                <p className="step-title">Skript Prüfen</p>
+                <p className="step-title">Skript prüfen</p>
               </div>
             </li>
             <li className={this.getStepClasses(3)}>
