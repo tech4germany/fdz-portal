@@ -7,8 +7,11 @@ const get = async () => {
   return time;
 };
 
-const update = async (application, testdata, script) => {
-  await Time.findOneAndUpdate({}, { application, testdata, script });
+const update = async (application, testdata, scriptPartial, scriptFull) => {
+  await Time.findOneAndUpdate(
+    {},
+    { application, testdata, scriptPartial, scriptFull }
+  );
 };
 
 module.exports = {

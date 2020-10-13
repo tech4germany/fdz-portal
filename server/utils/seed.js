@@ -22,6 +22,7 @@ const cleanDB = async () => {
   await User.deleteMany({});
   await Application.deleteMany({});
   await Script.deleteMany({});
+  await Time.deleteMany({});
 };
 
 const createInstitution = async (name, email) => {

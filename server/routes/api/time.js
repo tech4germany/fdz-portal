@@ -5,8 +5,8 @@ const timeServices = require("../../services/time");
 router.get(
   "/",
   asyncWrap(async (req, res) => {
-    const times = await timeServices.get();
-    res.json({ status: 200, times });
+    const time = await timeServices.get();
+    res.json({ status: 200, time });
   })
 );
 
@@ -16,7 +16,8 @@ router.put(
     await timeServices.update(
       req.body.application,
       req.body.testdata,
-      req.body.script
+      req.body.scriptPartial,
+      req.body.scriptFull
     );
     res.json({ status: 200 });
   })
