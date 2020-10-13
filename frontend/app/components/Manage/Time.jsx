@@ -13,7 +13,6 @@ const Time = () => {
 
   const fetchData = async () => {
     const data = await getData(`/time`);
-    console.log(data);
     setTime(data.time);
   };
 
@@ -45,7 +44,7 @@ const Time = () => {
   return (
     <React.Fragment>
       <div className="content-box time">
-        <div className="header-name">Zeitschätzung</div>
+        <div className="page-header">Zeitschätzung</div>
 
         <div className="time-setter">
           <div className="time-setter-name">Antragsbearbeitung:</div>

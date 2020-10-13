@@ -2,21 +2,14 @@ import React from "react";
 import "./Notification.css";
 
 const Notification = (props) => {
-  const closeNotification = () => {
-    props.close(null);
-  };
-
   if (props.notification === null) return "";
   return (
     <div
-      className={
-        "notification " +
-        props.notification.status +
-        " " +
-        props.size
-      }
+      className={"notification " + props.notification.status + " " + props.size}
     >
-      <button className="delete" onClick={closeNotification}></button>
+      {props.close && (
+        <button className="delete" onClick={props.close}></button>
+      )}
       {props.notification.text}
     </div>
   );

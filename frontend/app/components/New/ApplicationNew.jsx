@@ -7,12 +7,20 @@ import "bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio.min.css";
 import "./ApplicationNew.css";
 
 const ApplicationNew = () => {
+  const [time, setTime] = useState(null);
+
   useEffect(() => {
     const inputTags = document.getElementById("tagsinput");
     new BulmaTagsInput(inputTags);
     // Not working
     // inputTags.BulmaTagsInput().on("after.add", handleTags(inputTags.items));
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    const data = await getData(`/time`);
+    setTime(data.time);
+  };
 
   const submitApplication = async () => {
     const result = await sendData(`/applications/new`, "POST", {
@@ -25,7 +33,12 @@ const ApplicationNew = () => {
   };
 
   return (
-    <div className="content-box">
+    <div className="content-box new">
+      <div className="page-header">Neuen Antrag anlegen</div>
+      <div className="notification is-warning">
+        Die aktuelle geschätze Bearbeitunszeit für die Bearbeitung eines
+        Antrages liegt bei {time && time.application}.
+      </div>
       <div className="columns">
         <div className="column is-four-fifths">
           {/* Input */}

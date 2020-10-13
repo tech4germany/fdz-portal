@@ -24,3 +24,9 @@ body {
 .error-color {
   color: #ff3860;
 }
+
+.page-header {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 25px;
+}

@@ -20,6 +20,11 @@ const Header = (props) => {
                 >
                   Anträge
                 </Link>
+                {props.user.role === "fdz" && (
+                  <Link className="navbar-item" to="/time">
+                    Zeit
+                  </Link>
+                )}
 
                 {/* <div className="navbar-item has-dropdown is-hoverable">
                         <a className="navbar-link">More</a>

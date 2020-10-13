@@ -12,7 +12,6 @@ const Manage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(query);
       const data = await sendData("/applications", "POST", { query });
       setApplications(data.applications);
     };
@@ -25,26 +24,34 @@ const Manage = () => {
   };
 
   const filterUser = (event) => {
-    setSelectedUser(event.target.innerText)
+    setSelectedUser(event.target.innerText);
     setQuery({ ...query, user: event.target.id });
   };
 
   const removeUser = () => {
-    setSelectedUser(null)
+    setSelectedUser(null);
     setQuery({ ...query, user: undefined });
-  }
+  };
 
   return (
     <div className="content-box">
       <div className="application-list">
         <div className="application app-header">
           <div className="applications-manage-header-name">Antragsname</div>
-          <div className="applications-manage-header-user">User {selectedUser && <button className="button is-small is-rounded" onClick={removeUser}>
-            <span>{selectedUser}</span>
-            <span className="icon danger">
-              <i className="fas fa-times"></i>
-            </span>
-          </button>}</div>
+          <div className="applications-manage-header-user">
+            User{" "}
+            {selectedUser && (
+              <button
+                className="button is-small is-rounded"
+                onClick={removeUser}
+              >
+                <span>{selectedUser}</span>
+                <span className="icon danger">
+                  <i className="fas fa-times"></i>
+                </span>
+              </button>
+            )}
+          </div>
           <div className="applications-manage-header-status">
             <div className="field">
               <div className="control">
@@ -65,9 +72,9 @@ const Manage = () => {
 
           const statusText = step.stringFDZ.includes(":var:")
             ? step.stringFDZ.replace(
-              ":var:",
-              application.history[application.history.length - 1].variable
-            )
+                ":var:",
+                application.history[application.history.length - 1].variable
+              )
             : step.stringFDZ;
 
           const icon =
