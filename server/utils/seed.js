@@ -51,7 +51,6 @@ const createApplication = async (
   history,
   users
 ) => {
-  console.log(institution);
   return await Application.create({
     name,
     description,
@@ -79,7 +78,7 @@ const seedInit = async () => {
   const institution = await createInstitution("RKI", "forschung@rki.de");
   const userFDZ = await createUser("support@fdz.de", "fdz", "FDZ", "Employee");
   const userRe1 = await createUser(
-    "forschung@fdz.de",
+    "forschung@rki.de",
     "research",
     "Peter",
     "Ihle",

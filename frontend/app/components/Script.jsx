@@ -242,7 +242,7 @@ class Script extends React.Component {
           </button>
           <Link to={"/applications/" + this.state.applicationId}>
             <button className="button is-danger is-outlined back-button">
-              Abrechen
+              Abbrechen
             </button>
           </Link>
           <button
@@ -342,7 +342,7 @@ class Script extends React.Component {
           </button>
           <Link to={"/applications/" + this.state.applicationId}>
             <button className="button is-danger is-outlined back-button">
-              Abrechen
+              Abbrechen
             </button>
           </Link>
         </React.Fragment>

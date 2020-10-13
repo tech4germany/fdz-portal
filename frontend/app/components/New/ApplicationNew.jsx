@@ -130,7 +130,7 @@ const ApplicationNew = () => {
             <div className="control">
               <Link to={"/applications"}>
                 <button className="button is-outlined is-danger">
-                  Abrechen
+                  Abbrechen
                 </button>
               </Link>
             </div>

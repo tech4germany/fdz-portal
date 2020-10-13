@@ -109,7 +109,9 @@ const ApplicationUpload = () => {
         <div className="field is-grouped">
           <div className="control">
             <Link to={"/applications"}>
-              <button className="button is-outlined is-danger">Abrechen</button>
+              <button className="button is-outlined is-danger">
+                Abbrechen
+              </button>
             </Link>
           </div>
           <div className="control submit-button">

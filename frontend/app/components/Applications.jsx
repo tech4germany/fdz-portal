@@ -90,6 +90,7 @@ const Applications = () => {
               <span className="icon">
                 <i className="fas fa-plus"></i>
               </span>
+              <span>Neuer Antrag</span>
             </button>
           </Link>
         </div>
