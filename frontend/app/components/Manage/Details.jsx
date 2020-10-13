@@ -5,8 +5,7 @@ import Notification from "../Notification/Notification";
 import { STEPS } from "../../../../server/const/steps";
 import "./Details.css";
 
-
-const Application = () => {
+const Details = () => {
   const [applicationId, setApplicationId] = useState(useParams().id);
   const [application, setApplication] = useState(null);
   const [newStatus, setNewStatus] = useState("");
@@ -163,12 +162,12 @@ const Application = () => {
 
           {(newStatus === "script_failed" ||
             newStatus === "application_failed") && (
-              <textarea
-                className="textarea"
-                id="userMessage"
-                placeholder="Nachricht an User"
-              ></textarea>
-            )}
+            <textarea
+              className="textarea"
+              id="userMessage"
+              placeholder="Nachricht an User"
+            ></textarea>
+          )}
 
           {newStatus && (
             <button className="button is-info" onClick={submitNewStatus}>
@@ -192,4 +191,4 @@ const Application = () => {
   return <React.Fragment>{applicationContent}</React.Fragment>;
 };
 
-export default Application;
+export default Details;
