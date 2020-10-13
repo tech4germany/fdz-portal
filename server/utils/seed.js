@@ -3,8 +3,8 @@ const Institution = require("../models/Institution");
 const User = require("../models/User");
 const Application = require("../models/Application");
 const Script = require("../models/Script");
+const Time = require("../models/Time");
 const { hash } = require("./crypter");
-const { MAIN_STEPS } = require("../const/steps.js");
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/fdz";
 
@@ -71,9 +71,25 @@ const createScript = async (fileName, queuePosition, user, application) => {
   });
 };
 
+const createTime = async (
+  application = "1 - 2 Wochen",
+  testdata = "1 - 2 Wochen",
+  scriptPartial = "2 - 3 Wochen",
+  scriptFull = "4 - 6 Wochen"
+) => {
+  return await Time.create({
+    application,
+    testdata,
+    scriptPartial,
+    scriptFull,
+  });
+};
+
 const seedInit = async () => {
   await connectDB();
   await cleanDB();
+
+  await createTime();
 
   const institution = await createInstitution("RKI", "forschung@rki.de");
   const userFDZ = await createUser("support@fdz.de", "fdz", "FDZ", "Employee");
