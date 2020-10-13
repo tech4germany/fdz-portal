@@ -59,14 +59,14 @@ export default class App extends React.Component {
           {this.state.user ? (
             <Switch>
               <Route exact path="/">
-                {this.state.user.role === "researcher" ? (
+                {this.state.user.role === "research" ? (
                   <Applications />
                 ) : (
                   <Manage />
                 )}
               </Route>
               <Route exact path="/applications">
-                {this.state.user.role === "researcher" ? (
+                {this.state.user.role === "research" ? (
                   <Applications />
                 ) : (
                   <Redirect to="/manage" />
@@ -85,7 +85,7 @@ export default class App extends React.Component {
               />
               <Route path="/applications/:id" render={() => <Application />} />
               <Route exact path="/manage">
-                {this.state.user.role === "researcher" ? (
+                {this.state.user.role === "research" ? (
                   <Redirect to="/applications" />
                 ) : (
                   <Manage />

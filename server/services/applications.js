@@ -24,7 +24,7 @@ const get = async (id, user) => {
 const list = async (user) => {
   const limit = 100;
   const query = {};
-  if (user.role === "researcher") {
+  if (user.role === "research") {
     query.users = user.id;
   }
 
@@ -45,7 +45,7 @@ const listFilter = async (data, user) => {
   const limit = parseInt(data.limit) || 100;
 
   const query = {};
-  if (user.role === "researcher") {
+  if (user.role === "research") {
     query.users = user.id;
   } else if (user.role === "fdz" && data.user) {
     query.users = data.user;
@@ -111,7 +111,7 @@ const create = async (params, user) => {
 };
 
 const updateStatus = async (data, user) => {
-  if (user.role === "researcher")
+  if (user.role === "research")
     throw new ValError("Not allowed to change status");
 
   try {

@@ -6,212 +6,220 @@ const Script = require("../models/Script");
 const { hash } = require("./crypter");
 const { MAIN_STEPS } = require("../const/steps.js");
 
-const crypto = require("crypto");
-
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/fdz";
 
-const create = async () => {
-  try {
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    });
-
-    await Institution.deleteMany({});
-    await User.deleteMany({});
-    await Application.deleteMany({});
-    await Script.deleteMany({});
-
-    // FDZ User
-    const userFDZ = {
-      email: "support@fdz.de",
-      password: hash("abc"),
-      forename: "FDZ",
-      surname: "Employee",
-      role: "fdz",
-    };
-    User.create(userFDZ);
-
-    // Research institution
-    const institution1 = {
-      name: "RKI",
-      email: "forschung@rki.de",
-      password: "abc",
-    };
-    const institution1DB = await Institution.create(institution1);
-
-    // Research user 1
-    const user1 = {
-      email: "forschung@rki.de",
-      password: hash("abc"),
-      role: "researcher",
-      forename: "Peter",
-      surname: "Ihle",
-      institution: institution1DB._id,
-    };
-    user1DB = await User.create(user1);
-
-    // Research user 2
-    const user2 = {
-      email: "data@rki.de",
-      password: hash("abc"),
-      role: "researcher",
-      forename: "Max",
-      surname: "Wheile",
-      institution: institution1DB._id,
-    };
-    user2DB = await User.create(user2);
-
-    // Application Off-Label-Use
-    const application3 = {
-      name: "Off-Label-Use",
-      description: "Für Studie zum Off-Label-Use",
-      queuePosition: 3,
-      history: [],
-      mainSteps: [],
-      users: [],
-    };
-    application3.users.push(user2DB._id);
-    application3.institution = institution1DB._id;
-    application3.history.push({
-      name: "application_submitted",
-      mainStep: 1,
-      user: user1DB._id,
-      date: 1600956412400,
-    });
-    application3.history.push({
-      name: "application_unchecked",
-      user: user1DB._id,
-      mainStep: 1,
-      time: "1 - 2 Wochen",
-      date: 1600954123400,
-    });
-    application3.status =
-      application3.history[application3.history.length - 1].name;
-    application3DB = await Application.create(application3);
-
-    // Application Covid
-    const application2 = {
-      name: "Covid",
-      description: "Zweiter Antrag",
-      queuePosition: 2,
-      history: [],
-      mainSteps: [],
-      users: [],
-    };
-    application2.users.push(user1DB._id);
-    application2.institution = institution1DB._id;
-    application2.history.push({
-      name: "application_submitted",
-      mainStep: 1,
-      user: user1DB._id,
-      date: 1600956411000,
-    });
-    application2.history.push({
-      name: "application_unchecked",
-      user: user1DB._id,
-      mainStep: 1,
-      time: "1 - 2 Wochen",
-      date: 1600954123000,
-    });
-    application2.status =
-      application2.history[application2.history.length - 1].name;
-    application2DB = await Application.create(application2);
-
-    // Application Diabetis
-    const application1 = {
-      name: "Diabetes Prävalenz",
-      description: "Erster Antrag",
-      queuePosition: 1,
-      history: [],
-      mainSteps: [],
-      users: [],
-    };
-    application1.users.push(user1DB._id);
-    application1.institution = institution1DB._id;
-    application1.history.push({
-      name: "application_submitted",
-      user: user1DB._id,
-      mainStep: 1,
-      date: 1600954411000,
-    });
-    application1.history.push({
-      name: "application_unchecked",
-      user: user1DB._id,
-      mainStep: 1,
-      date: 1600954412000,
-    });
-    application1.history.push({
-      name: "application_checked",
-      user: user1DB._id,
-      mainStep: 1,
-      date: 1600954662000,
-    });
-    application1.history.push({
-      name: "testdata_undelivered",
-      mainStep: 2,
-      user: user1DB._id,
-      date: 1600954663000,
-    });
-    application1.history.push({
-      name: "testdata_delivered",
-      mainStep: 2,
-      user: user1DB._id,
-      date: 1601128885000,
-    });
-    application1.history.push({
-      name: "script_unsubmitted",
-      mainStep: 3,
-      user: user1DB._id,
-      date: 1601128891000,
-    });
-    application1.history.push({
-      name: "script_submitted",
-      mainStep: 3,
-      variable: "test.sql",
-      user: user1DB._id,
-      date: 1601248891000,
-    });
-    application1.history.push({
-      name: "script_unexecuted",
-      mainStep: 3,
-      time: "2 - 3 Wochen",
-      user: user1DB._id,
-      date: 1601248991000,
-    });
-    application1.history.push({
-      name: "script_failed",
-      mainStep: 3,
-      variable: "test.sql",
-      message: 'Syntax error in SQL statement "SELECT * FORM * "',
-      user: user1DB._id,
-      date: 1601248991000,
-    });
-    application1.history.push({
-      name: "script_needs_update",
-      mainStep: 3,
-      variable: "test.sql",
-      user: user1DB._id,
-      date: 1601248991000,
-    });
-    application1.status =
-      application1.history[application1.history.length - 1].name;
-    application1DB = await Application.create(application1);
-
-    // First srcript
-    const script1 = { fileName: "script1.sql", queuePosition: 1 };
-    script1.user = user1DB._id;
-    script1.application = application1DB._id;
-    script1DB = await Script.create(script1);
-
-    await mongoose.connection.close();
-  } catch (error) {
-    console.log(error);
-    process.exit();
-  }
-  console.log("seeding done");
+const connectDB = async () => {
+  await mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  });
 };
 
-create();
+const cleanDB = async () => {
+  await Institution.deleteMany({});
+  await User.deleteMany({});
+  await Application.deleteMany({});
+  await Script.deleteMany({});
+};
+
+const createInstitution = async (name, email) => {
+  return await Institution.create({
+    name,
+    email,
+    password: "abc",
+  });
+};
+
+const createUser = async (email, role, forename, surname, institution) => {
+  return await User.create({
+    email,
+    password: hash("abc"),
+    role,
+    forename,
+    surname,
+    institution,
+  });
+};
+
+const createApplication = async (
+  name,
+  description,
+  queuePosition,
+  institution,
+  history,
+  users
+) => {
+  console.log(institution);
+  return await Application.create({
+    name,
+    description,
+    queuePosition,
+    institution,
+    status: history[history.length - 1].name,
+    history,
+    users,
+  });
+};
+
+const createScript = async (fileName, queuePosition, user, application) => {
+  return await Script.create({
+    fileName,
+    queuePosition,
+    user,
+    application,
+  });
+};
+
+const seedInit = async () => {
+  await connectDB();
+  await cleanDB();
+
+  const institution = await createInstitution("RKI", "forschung@rki.de");
+  const userFDZ = await createUser("support@fdz.de", "fdz", "FDZ", "Employee");
+  const userRe1 = await createUser(
+    "forschung@fdz.de",
+    "research",
+    "Peter",
+    "Ihle",
+    institution._id
+  );
+  const userRe2 = await createUser(
+    "data@rki.de",
+    "research",
+    "Max",
+    "Wheile",
+    institution._id
+  );
+
+  const application1 = await createApplication(
+    "Off-Label-Use",
+    "Studie zum Off-Label-Use von Medikamenten",
+    1,
+    institution._id,
+    [
+      {
+        name: "application_submitted",
+        mainStep: 1,
+        user: userRe2._id,
+        date: 1600956412400,
+      },
+      {
+        name: "application_unchecked",
+        user: userRe2._id,
+        mainStep: 1,
+        time: "1 - 2 Wochen",
+        date: 1600954123400,
+      },
+    ],
+    [userRe2._id]
+  );
+  const application2 = await createApplication(
+    "Covid Prävalenz",
+    "Covid Deutschland Studie",
+    2,
+    institution._id,
+    [
+      {
+        name: "application_submitted",
+        mainStep: 1,
+        user: userRe1._id,
+        date: 1600956411000,
+      },
+      {
+        name: "application_unchecked",
+        user: userRe1._id,
+        mainStep: 1,
+        time: "1 - 2 Wochen",
+        date: 1600954123000,
+      },
+    ],
+    [userRe1._id]
+  );
+  const application3 = await createApplication(
+    "Diabetes Prävalenz",
+    "Erster Antrag",
+    3,
+    institution._id,
+    [
+      {
+        name: "application_submitted",
+        user: userRe1._id,
+        mainStep: 1,
+        date: 1600954411000,
+      },
+      {
+        name: "application_unchecked",
+        user: userRe1._id,
+        mainStep: 1,
+        date: 1600954412000,
+      },
+      {
+        name: "application_checked",
+        user: userRe1._id,
+        mainStep: 1,
+        date: 1600954662000,
+      },
+      {
+        name: "testdata_undelivered",
+        mainStep: 2,
+        user: userRe1._id,
+        date: 1600954663000,
+      },
+      {
+        name: "testdata_delivered",
+        mainStep: 2,
+        user: userRe1._id,
+        date: 1601128885000,
+      },
+      {
+        name: "script_unsubmitted",
+        mainStep: 3,
+        user: userRe1._id,
+        date: 1601128891000,
+      },
+      {
+        name: "script_submitted",
+        mainStep: 3,
+        variable: "test.sql",
+        user: userRe1._id,
+        date: 1601248891000,
+      },
+      {
+        name: "script_unexecuted",
+        mainStep: 3,
+        time: "2 - 3 Wochen",
+        user: userRe1._id,
+        date: 1601248991000,
+      },
+      {
+        name: "script_failed",
+        mainStep: 3,
+        variable: "test.sql",
+        message: 'Syntax error in SQL statement "SELECT * FORM * "',
+        user: userRe1._id,
+        date: 1601248991000,
+      },
+      {
+        name: "script_needs_update",
+        mainStep: 3,
+        variable: "test.sql",
+        user: userRe1._id,
+        date: 1601248991000,
+      },
+    ],
+    [userRe1._id]
+  );
+
+  await mongoose.connection.close();
+  console.log("init seeding done");
+};
+
+//await mongoose.connection.close();
+
+// console.log(error);
+// process.exit();
+
+// console.log("seeding done");
+seedInit();

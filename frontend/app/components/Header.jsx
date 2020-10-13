@@ -15,9 +15,7 @@ const Header = (props) => {
                 <Link
                   className="navbar-item"
                   to={
-                    props.user.role === "researcher"
-                      ? "/applications"
-                      : "/manage"
+                    props.user.role === "research" ? "/applications" : "/manage"
                   }
                 >
                   Anträge
