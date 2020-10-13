@@ -1,6 +1,6 @@
 # FDZ Portal
 
-[Live Demo](http://18.157.185.96:8000/)
+[Live Demo](https://fdz.tech4germany.org/)
 
 ## Installation
 
@@ -32,7 +32,3 @@ npm start
 ```
 
 Go to your browser and enter `http://localhost:8000/`.
-
-Use `forschung@rki.de` as username and the `abc` as password to sign in as a researcher and `support@fdz.de` : `abc` to sign in as a FDZ employee.
-
-The application status is reset after each logout.
