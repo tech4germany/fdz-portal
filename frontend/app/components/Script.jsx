@@ -283,8 +283,7 @@ class Script extends React.Component {
                     <br />
                     <small>
                       <i className="fa fa-hourglass-start"></i>{" "}
-                      {this.state.time.scriptFull}
-                      Bearbeitungszeit
+                      {this.state.time.scriptFull} geschätzte Bearbeitungszeit
                     </small>
                     <br />
                     <br />
@@ -319,7 +318,7 @@ class Script extends React.Component {
                     <br />
                     <small>
                       <i className="fa fa-hourglass-start"></i>{" "}
-                      {this.state.time.scriptPartial}
+                      {this.state.time.scriptPartial} geschätzte
                       Bearbeitungszeit
                     </small>
                     <br />
