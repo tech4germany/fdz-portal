@@ -24,20 +24,62 @@
   font-size: 22px;
   margin-bottom: 20px;
 }
-.current {
-  background-color: #209cee;
-}
-.success {
-  background-color: #48c774;
-}
-.future {
-  background-color: #363636;
-}
-.danger{
-  color: #FF0000;
-}
 .main-step-time {
   font-style: italic;
   color: #e7c0a7;
   float: right;
+}
+/* .success {
+  background-color: #48c774;
+}
+.current {
+  background-color: #209cee;
+}
+
+.future {
+  background-color: #363636;
+} */
+.danger {
+  color: #ff0000;
+}
+.success {
+  background-color: #338b1d;
+}
+.current {
+  background-color: #c4dbbf;
+}
+
+.future {
+  background-color: #363636;
+}
+/* Timeline item colors */
+.timeline .timeline-item .timeline-marker.item-successful {
+  background-color: #338b1d !important;
+  border-color: #338b1d !important;
+}
+.timeline .timeline-item .timeline-marker.item-successful.is-icon {
+  color: white !important;
+}
+.timeline .timeline-item.item-successful::before {
+  background-color: #338b1d;
+}
+.timeline .timeline-item .timeline-marker.item-current {
+  background-color: #c4dbbf !important;
+  border-color: #c4dbbf !important;
+}
+.timeline .timeline-item .timeline-marker.item-current.is-icon {
+  color: white !important;
+}
+.timeline .timeline-item.item-current::before {
+  background-color: #c4dbbf;
+}
+.timeline .timeline-item .timeline-marker.item-future {
+  background-color: #363636 !important;
+  border-color: #363636 !important;
+}
+.timeline .timeline-item .timeline-marker.item-future.is-icon {
+  color: white !important;
+}
+.timeline .timeline-item.item-future::before {
+  background-color: #363636;
 }

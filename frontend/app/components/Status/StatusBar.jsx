@@ -12,16 +12,16 @@ const StatusBar = ({ refreshData, application }) => {
     let iconClass = "";
     switch (status) {
       case "success":
-        statusClass = "is-success";
+        statusClass = "item-successful";
         iconClass = "fa-check";
         break;
       case "waiting":
       case "current":
-        statusClass = "is-info";
+        statusClass = "item-current";
         iconClass = "fa-hourglass-start";
         break;
       case "unsubmitted":
-        statusClass = "is-info";
+        statusClass = "item-current";
         iconClass = "fa-exclamation";
         break;
       case "problem":
@@ -29,7 +29,7 @@ const StatusBar = ({ refreshData, application }) => {
         iconClass = "fa-times";
         break;
       case "future":
-        statusClass = "is-dark";
+        statusClass = "item-future";
         iconClass = "";
         break;
     }
