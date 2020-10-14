@@ -79,7 +79,7 @@ const Manage = () => {
             ? "fa-exclamation-circle"
             : "fa-hourglass-start";
         return (
-          <div key={application._id} className="flex">
+          <div key={application._id} className="flex list-entry">
             <div className="name">
               <Link to={"/manage/" + application._id}>{application.name} </Link>
             </div>

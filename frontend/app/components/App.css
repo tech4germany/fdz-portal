@@ -27,10 +27,14 @@ body {
 }
 .page-header {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 25px;
 }
 .list-header {
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.list-entry {
+  margin-bottom: 15px;
 }
