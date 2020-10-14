@@ -35,75 +35,68 @@ const Manage = () => {
 
   return (
     <div className="content-box">
-      <div className="application-list">
-        <div className="application app-header">
-          <div className="applications-manage-header-name">Antragsname</div>
-          <div className="applications-manage-header-user">
-            User{" "}
-            {selectedUser && (
-              <button
-                className="button is-small is-rounded"
-                onClick={removeUser}
-              >
-                <span>{selectedUser}</span>
-                <span className="icon danger">
-                  <i className="fas fa-times"></i>
-                </span>
-              </button>
-            )}
-          </div>
-          <div className="applications-manage-header-status">
-            <div className="field">
-              <div className="control">
-                Status{" "}
-                <div className="select is-small">
-                  <select onChange={filterStatus}>
-                    <option value="">Alle</option>
-                    <option value="active">Aktive</option>
-                    <option value="passive">Passive</option>
-                  </select>
-                </div>
+      <div className="application list-header">
+        <div className="applications-manage-header-name">Antragsname</div>
+        <div className="applications-manage-header-user">
+          User{" "}
+          {selectedUser && (
+            <button className="button is-small is-rounded" onClick={removeUser}>
+              <span>{selectedUser}</span>
+              <span className="icon danger">
+                <i className="fas fa-times"></i>
+              </span>
+            </button>
+          )}
+        </div>
+        <div className="applications-manage-header-status">
+          <div className="field">
+            <div className="control">
+              Status{" "}
+              <div className="select is-small">
+                <select onChange={filterStatus}>
+                  <option value="">Alle</option>
+                  <option value="active">Aktive</option>
+                  <option value="passive">Passive</option>
+                </select>
               </div>
             </div>
           </div>
         </div>
-        {applications.map((application) => {
-          const step = STEPS.find((step) => step.name === application.status);
-
-          const statusText = step.stringFDZ.includes(":var:")
-            ? step.stringFDZ.replace(
-                ":var:",
-                application.history[application.history.length - 1].variable
-              )
-            : step.stringFDZ;
-
-          const icon =
-            step.type === "waiting"
-              ? "fa-exclamation-circle"
-              : "fa-hourglass-start";
-          return (
-            <div key={application._id} className="application">
-              <div className="applications-manage-name">
-                <Link to={"/manage/" + application._id}>
-                  {application.name}{" "}
-                </Link>
-              </div>
-              <div
-                className="applications-manage-user is-clickable"
-                onClick={filterUser}
-                id={application.users[0]._id}
-              >
-                {application.users[0].email}
-              </div>
-              <div className="applications-manage-status">
-                <small>
-                  <i className={"fa " + icon}></i> {statusText}
-                </small>
-              </div>
-            </div>
-          );
-        })}
       </div>
+      {applications.map((application) => {
+        const step = STEPS.find((step) => step.name === application.status);
+
+        const statusText = step.stringFDZ.includes(":var:")
+          ? step.stringFDZ.replace(
+              ":var:",
+              application.history[application.history.length - 1].variable
+            )
+          : step.stringFDZ;
+
+        const icon =
+          step.type === "waiting"
+            ? "fa-exclamation-circle"
+            : "fa-hourglass-start";
+        return (
+          <div key={application._id} className="application">
+            <div className="applications-manage-name">
+              <Link to={"/manage/" + application._id}>{application.name} </Link>
+            </div>
+            <div
+              className="applications-manage-user is-clickable"
+              onClick={filterUser}
+              id={application.users[0]._id}
+            >
+              {application.users[0].email}
+            </div>
+            <div className="applications-manage-status">
+              <small>
+                <i className={"fa " + icon}></i> {statusText}
+              </small>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

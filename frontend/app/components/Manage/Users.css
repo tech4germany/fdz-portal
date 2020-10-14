@@ -1,0 +1,13 @@
+.users .email {
+  width: 150px;
+}
+.users .name {
+  width: 150px;
+}
+.users .manage {
+  width: 150px;
+}
+
+.users .bottom {
+  margin-bottom: 15px;
+}

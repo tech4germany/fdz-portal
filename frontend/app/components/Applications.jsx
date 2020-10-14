@@ -75,7 +75,7 @@ const Applications = () => {
   return (
     <div className="content-box">
       <div className="application-list">
-        <div key="header-applications" className="application app-header">
+        <div key="header-applications" className="application list-header">
           <div className="application-list-name-header">Antragsname</div>
           <div className="application-status-header">Status</div>
         </div>

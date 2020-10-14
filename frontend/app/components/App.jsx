@@ -11,6 +11,7 @@ import ApplicationUpload from "./New/ApplicationUpload";
 import Manage from "./Manage/Manage";
 import Details from "./Manage/Details";
 import Time from "./Manage/Time";
+import Users from "./Manage/Users";
 import jwtDecode from "jwt-decode";
 import { getData } from "./utils/api";
 import "./App.css";
@@ -87,23 +88,30 @@ export default class App extends React.Component {
               <Route path="/applications/:id" render={() => <Application />} />
               <Route exact path="/manage">
                 {this.state.user.role === "research" ? (
-                  <Redirect to="/applications" />
+                  <Redirect to="/" />
                 ) : (
                   <Manage />
                 )}
               </Route>
               <Route path="/manage/:id">
                 {this.state.user.role === "research" ? (
-                  <Redirect to="/applications" />
+                  <Redirect to="/" />
                 ) : (
                   <Details />
                 )}
               </Route>
               <Route exact path="/time">
                 {this.state.user.role === "research" ? (
-                  <Redirect to="/applications" />
+                  <Redirect to="/" />
                 ) : (
                   <Time />
+                )}
+              </Route>
+              <Route exact path="/users">
+                {this.state.user.role === "research" ? (
+                  <Redirect to="/" />
+                ) : (
+                  <Users />
                 )}
               </Route>
               <Route exact path="/login" render={() => <Redirect to="/" />} />
