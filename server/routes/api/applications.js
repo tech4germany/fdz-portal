@@ -54,11 +54,14 @@ router.post(
 router.put(
   "/:id/status",
   asyncWrap(async (req, res) => {
-    const applicationName = await applicationsServices.updateStatus({
-      id: req.params.id,
-      status: req.body.status,
-      message: req.body.message,
-    }, req.user);
+    const applicationName = await applicationsServices.updateStatus(
+      {
+        id: req.params.id,
+        status: req.body.status,
+        message: req.body.message,
+      },
+      req.user
+    );
     res.json({ status: 200, applicationName });
   })
 );
@@ -81,6 +84,7 @@ router.post(
         applicationId: req.params.id,
         fileName: req.body.fileName,
         resultMethod: req.body.resultMethod,
+        time: req.body.time,
       },
       req.user
     );

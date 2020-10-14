@@ -59,8 +59,7 @@ const listFilter = async (data, user) => {
     }, []);
     query.status = {
       $in: requestedStatuses,
-    }
-
+    };
   }
 
   const applications = await Application.find(query, null, {
@@ -107,7 +106,7 @@ const create = async (params, user) => {
 
   const application = await new Application(data);
   await application.save();
-  return application._id
+  return application._id;
 };
 
 const updateStatus = async (data, user) => {
@@ -202,10 +201,6 @@ const uploadFakeScript = async (params, user) => {
       params.applicationId
     ).select("status history");
 
-    let time = "";
-    if (params.resultMethod === "full") time = "4 - 6 Wochen";
-    else time = "2 - 3 Wochen";
-
     applicationDB.history.push({
       name: "script_updated",
       mainStep: 3,
@@ -216,7 +211,7 @@ const uploadFakeScript = async (params, user) => {
     applicationDB.history.push({
       name: "script_unexecuted",
       mainStep: 3,
-      time,
+      time: params.time,
       user: user.id,
       date: Date.now(),
     });

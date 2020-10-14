@@ -26,12 +26,17 @@ class Script extends React.Component {
       resultMethod: null,
       title: "",
       content: null,
+      time: null,
     };
   }
 
   async componentDidMount() {
-    const data = await getData(`/applications/${this.state.applicationId}`);
-    this.setState({ application: data.application });
+    const resultApplication = await getData(
+      `/applications/${this.state.applicationId}`
+    );
+    this.setState({ application: resultApplication.application });
+    const resultTime = await getData(`/time`);
+    this.setState({ time: resultTime.time });
   }
 
   selectScriptHandler(event) {
@@ -83,6 +88,10 @@ class Script extends React.Component {
     sendData(`/applications/${this.state.applicationId}/script/fake`, "POST", {
       fileName: this.state.selectedFile.name,
       resultMethod,
+      time:
+        resultMethod === "full"
+          ? this.state.time.scriptFull
+          : this.state.scriptPartial,
     });
     this.setState({ step: 4 });
   }
@@ -273,7 +282,8 @@ class Script extends React.Component {
                     <strong>Komplette Ergebnismenge</strong>
                     <br />
                     <small>
-                      <i className="fa fa-hourglass-start"></i> 4 - 6 Wochen
+                      <i className="fa fa-hourglass-start"></i>{" "}
+                      {this.state.time.scriptFull}
                       Bearbeitungszeit
                     </small>
                     <br />
@@ -308,7 +318,8 @@ class Script extends React.Component {
                     <strong>Teil-Ergebnismenge</strong>
                     <br />
                     <small>
-                      <i className="fa fa-hourglass-start"></i> 2 - 3 Wochen
+                      <i className="fa fa-hourglass-start"></i>{" "}
+                      {this.state.time.scriptPartial}
                       Bearbeitungszeit
                     </small>
                     <br />
@@ -357,7 +368,10 @@ class Script extends React.Component {
           {this.state.resultMethod === "full"
             ? " komplette Ergebnismenge"
             : "Teil-Ergebnismenge"}{" "}
-          beantragt.
+          beantragt. Sie erhalten die Ergebnismenge voraussichtlich in{" "}
+          {this.state.resultMethod === "full"
+            ? this.state.time.scriptFull
+            : this.state.scriptPartial}
           <br />
           <Link to={"/applications/" + this.state.applicationId}>
             <button className="button is-info upload-button">
