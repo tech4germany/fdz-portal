@@ -19,10 +19,11 @@ npm install
 
 Copy the `.env.example` file and remove `.example` from the filename.
 
-Next step is to seed the datbase with users and applications (you only need to do this once):
+Next step is to seed the datbase with users and applications and build the apllication (you only need to do this once):
 
 ```bash
 npm run seed
+npm run build
 ```
 
 To start the app, simply run:
