@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { sendData } from "../utils/api";
 import Notification from "../Notification/Notification";
@@ -9,6 +9,13 @@ import "./Login.css";
 const Login = (props) => {
   const [notification, setNotification] = useState(null);
   const history = useHistory();
+
+  useEffect(() => {
+    document.addEventListener("keyup", handleEnterPassword);
+    return () => {
+      document.removeEventListener("keyup", handleEnterPassword);
+    };
+  });
 
   const doLogin = async () => {
     const result = await sendData(`/auth/login`, "POST", {
@@ -39,6 +46,11 @@ const Login = (props) => {
   const setFDZ = () => {
     document.getElementById("email").value = "support@fdz.de";
     document.getElementById("password").value = "abc";
+  };
+
+  const handleEnterPassword = (event) => {
+    console.log("enter");
+    if (event.key === "Enter") doLogin();
   };
 
   return (

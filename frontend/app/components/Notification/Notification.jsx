@@ -3,7 +3,6 @@ import "./Notification.css";
 
 const Notification = (props) => {
   if (!props.notification) return "";
-  console.log("redner not", props.notification);
   return (
     <div
       className={"notification " + props.notification.status + " " + props.size}
