@@ -198,7 +198,7 @@ const StatusBar = ({ refreshData, application }) => {
   return (
     <div className="content-box">
       <div className="application-title">
-        {application.name}{" "}
+        Statusübersicht - {application.name}
         <i
           className="fas fa-sync-alt is-hidden"
           aria-hidden="true"

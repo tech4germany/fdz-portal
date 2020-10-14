@@ -147,21 +147,6 @@ const updateStatus = async (data, user) => {
   }
 };
 
-const resetStatus = async () => {
-  try {
-    const applicationDB = await Application.findOne({
-      name: "Diabetes Prävalenz",
-    }).select("name status history");
-    applicationDB.history = applicationDB.history.slice(0, 10);
-
-    applicationDB.status =
-      applicationDB.history[applicationDB.history.length - 1].name;
-    await applicationDB.save();
-  } catch (error) {
-    throw error;
-  }
-};
-
 const upload = async (params, user) => {
   try {
     const applicationDB = await Application.findById(params.id).select(
@@ -231,6 +216,5 @@ module.exports = {
   listFilter,
   updateStatus,
   upload,
-  resetStatus,
   uploadFakeScript,
 };

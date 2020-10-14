@@ -17,7 +17,7 @@ const Users = () => {
   };
 
   const resetUser = async (userId) => {
-    const result = await sendData(`/users/reset/${userId}`, "PUT", {});
+    const result = await sendData(`/users/${userId}/reset`, "PUT", {});
 
     if (result.status === 200) {
       setNotification({
@@ -58,7 +58,7 @@ const Users = () => {
                 <div className="manage">
                   <button
                     className="button is-info is-small is-outlined"
-                    onClick={resetUser}
+                    onClick={() => resetUser(user._id)}
                   >
                     Anträge zurücksetzen
                   </button>

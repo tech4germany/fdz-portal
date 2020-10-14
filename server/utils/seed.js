@@ -47,7 +47,6 @@ const createUser = async (email, role, forename, surname, institution) => {
 const createApplication = async (
   name,
   description,
-  queuePosition,
   institution,
   history,
   users
@@ -55,7 +54,7 @@ const createApplication = async (
   return await Application.create({
     name,
     description,
-    queuePosition,
+    queuePosition: 0,
     institution,
     status: history[history.length - 1].name,
     history,
@@ -112,7 +111,6 @@ const seedInit = async () => {
   const application1 = await createApplication(
     "Off-Label-Use",
     "Studie zum Off-Label-Use von Medikamenten",
-    1,
     institution._id,
     [
       {
@@ -134,7 +132,6 @@ const seedInit = async () => {
   const application2 = await createApplication(
     "Covid Prävalenz",
     "Covid Deutschland Studie",
-    2,
     institution._id,
     [
       {
@@ -156,7 +153,6 @@ const seedInit = async () => {
   const application3 = await createApplication(
     "Diabetes Prävalenz",
     "Erster Antrag",
-    3,
     institution._id,
     [
       {
