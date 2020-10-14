@@ -32,12 +32,25 @@ const ApplicationNew = () => {
     window.location.pathname = `/applications/${result.applicationId}`;
   };
 
+  const timestampToString = (timestap) => {
+    const date = new Date(timestap);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+
+    const timeString = day + "." + month + "." + year;
+    return timeString;
+  };
+
   return (
     <div className="content-box new">
       <div className="page-header">Neuen Antrag anlegen</div>
       <div className="notification is-warning">
         Die aktuelle geschätze Bearbeitunszeit für die Bearbeitung eines
-        Antrages liegt bei {time && time.application}.
+        Antrages liegt bei {time && time.application}.<br />
+        <small>
+          Letzte Aktualisierung {time && timestampToString(time.lastUpdate)}
+        </small>
       </div>
       <div className="columns">
         <div className="column is-four-fifths">
