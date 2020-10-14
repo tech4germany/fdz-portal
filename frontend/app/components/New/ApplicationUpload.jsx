@@ -108,7 +108,7 @@ const ApplicationUpload = () => {
         {/* Buttons */}
         <div className="field is-grouped">
           <div className="control">
-            <Link to={"/applications"}>
+            <Link to={"/applications/" + applicationId}>
               <button className="button is-outlined is-danger">
                 Abbrechen
               </button>
