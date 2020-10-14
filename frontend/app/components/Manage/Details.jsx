@@ -72,13 +72,13 @@ const Details = () => {
   let applicationContent = "";
   if (application) {
     const history = [];
-    let i = 0;
-    for (const step of application.history) {
-      i++;
+    const historyCount = application.history.length;
+    for (let i = historyCount - 1; i >= 0; i--) {
+      const step = application.history[i];
       const templateStep = STEPS.find((tStep) => tStep.name === step.name);
       if (
-        templateStep.type === "waiting" ||
-        (templateStep.type === "unsubmitted" && i < application.history.length)
+        (templateStep.type === "waiting" && i < historyCount - 1) ||
+        (templateStep.type === "unsubmitted" && i < historyCount - 1)
       )
         continue;
       const statusText = templateStep.stringFDZ.includes(":var:")
