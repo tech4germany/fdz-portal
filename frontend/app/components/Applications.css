@@ -1,35 +1,24 @@
-.application {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+.applications .name {
+  width: 280px;
+}
+.applications .status {
+  width: 320px;
 }
 
-.application-status {
-  font-size: small;
-  overflow-wrap: break-word;
-  width: 325px;
-}
-
-.application-list-name {
-  overflow-wrap: break-word;
-  width: 275px;
-}
-
-.application-status-header {
-  width: 325px;
-}
-
-.application-list-name-header {
-  width: 275px;
-}
-
-.appliation-status-date {
-  font-weight: bold;
-  color: #81b29a;
-}
-
-.right {
+.applications .new {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
+}
+
+.applications .entry .name {
+  overflow-wrap: break-word;
+}
+.applications .entry .status {
+  font-size: smaller;
+  overflow-wrap: break-word;
+}
+.applications .entry .status .date {
+  font-weight: bold;
+  color: #81b29a;
 }

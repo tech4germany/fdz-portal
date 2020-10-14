@@ -53,47 +53,46 @@ const Applications = () => {
       application.history[application.history.length - 1].date
     );
     return (
-      <React.Fragment key={i}>
+      <div className="entry" key={i}>
         {i > 1 && <hr />}
-        <div key={application._id} className="application">
-          <div className="application-list-name ">
+        <div key={application._id} className="flex">
+          <div className="name">
             <Link to={"/applications/" + application._id}>
               {application.name}
             </Link>
           </div>
-          <div className="application-status">
-            <span className="appliation-status-date">{statusDate}</span>:{" "}
+          <div className="status">
+            <span className="date">{statusDate}</span>:{" "}
             <small>
               <i className={"fa " + icon}></i>
             </small>{" "}
             {statusText}
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   });
   return (
-    <div className="content-box">
-      <div className="application-list">
-        <div key="header-applications" className="application list-header">
-          <div className="application-list-name-header">Antragsname</div>
-          <div className="application-status-header">Status</div>
-        </div>
-        {offline
-          ? "Server offline"
-          : applicationsList.length !== 0 || unfetched
-          ? applicationsList
-          : "Es sind noch keine Anträge vorhanden"}
-        <div className="right">
-          <Link to="/applications/new">
-            <button className="button is-small is-info">
-              <span className="icon">
-                <i className="fas fa-plus"></i>
-              </span>
-              <span>Neuer Antrag</span>
-            </button>
-          </Link>
-        </div>
+    <div className="content-box applications">
+      <div className="page-header">Antragsübersicht</div>
+      <div className="flex list-header">
+        <div className="name">Antragsname</div>
+        <div className="status">Status</div>
+      </div>
+      {offline
+        ? "Server offline"
+        : applicationsList.length !== 0 || unfetched
+        ? applicationsList
+        : "Es sind noch keine Anträge vorhanden"}
+      <div className="new">
+        <Link to="/applications/new">
+          <button className="button is-small is-info">
+            <span className="icon">
+              <i className="fas fa-plus"></i>
+            </span>
+            <span>Neuer Antrag</span>
+          </button>
+        </Link>
       </div>
     </div>
   );
