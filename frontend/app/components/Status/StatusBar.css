@@ -77,8 +77,8 @@
   background-color: #363636 !important;
   border-color: #363636 !important;
 }
-.timeline .timeline-item .timeline-marker.item-future.is-icon {
-  color: white !important;
+.timeline .timeline-item .timeline-marker.item-future.is-outlined {
+  background-color: #fff !important;
 }
 .timeline .timeline-item.item-future::before {
   background-color: #363636;

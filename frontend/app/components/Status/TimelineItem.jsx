@@ -8,7 +8,13 @@ const TimelineItem = (props) => {
   };
   return (
     <div className={"timeline-item " + props.status}>
-      <div className={"timeline-marker is-icon " + props.status}>
+      <div
+        className={
+          "timeline-marker is-icon " +
+          (props.status === "item-future" ? "is-outlined " : "") +
+          props.status
+        }
+      >
         {props.icon && <i className={"fa " + props.icon}></i>}
       </div>
       <div className="timeline-content">
