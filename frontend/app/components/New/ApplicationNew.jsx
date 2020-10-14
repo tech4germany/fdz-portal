@@ -46,8 +46,8 @@ const ApplicationNew = () => {
     <div className="content-box new">
       <div className="page-header">Neuen Antrag anlegen</div>
       <div className="notification is-warning">
-        Die aktuelle geschätze Bearbeitunszeit für die Bearbeitung eines
-        Antrages liegt bei {time && time.application}.<br />
+        Die aktuelle geschätze Bearbeitunszeit liegt bei{" "}
+        {time && time.application}.<br />
         <small>
           Letzte Aktualisierung {time && timestampToString(time.lastUpdate)}
         </small>
