@@ -39,7 +39,7 @@ const Users = () => {
   return (
     <React.Fragment>
       <div className="content-box users">
-        <div className="page-header">Account Management</div>
+        <div className="page-header">Account-Management</div>
         <div className="flex list-header">
           <div className="email">Email</div>
           <div className="name">Name</div>

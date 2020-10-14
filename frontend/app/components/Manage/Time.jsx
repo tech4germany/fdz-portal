@@ -44,7 +44,7 @@ const Time = () => {
   return (
     <React.Fragment>
       <div className="content-box time">
-        <div className="page-header">Zeitschätzung</div>
+        <div className="page-header">Zeit-Management</div>
 
         <div className="time-setter">
           <div className="time-setter-name">Antragsbearbeitung:</div>

@@ -35,6 +35,7 @@ const Manage = () => {
 
   return (
     <div className="content-box manage">
+      <div className="page-header">Antrags-Management</div>
       <div className="flex list-header">
         <div className="name">Antragsname</div>
         <div className="user">

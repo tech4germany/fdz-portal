@@ -99,10 +99,6 @@ const Login = (props) => {
             Email: <i>support@fdz.de</i>
             <br />
             Passwort: <i>abc</i>
-            <br />
-            <br />
-            Der Antragsstatus von Diabetes wird nach dem Ausloggen
-            zurückgesetzt.
           </small>
         </div>
       </article>

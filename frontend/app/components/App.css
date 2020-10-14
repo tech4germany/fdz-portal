@@ -2,11 +2,15 @@ body {
   background-color: #f3f3f3;
   min-height: 100vh;
 }
-
 .click {
   cursor: pointer;
 }
-
+.error-color {
+  color: #ff3860;
+}
+.flex {
+  display: flex;
+}
 .content-box {
   background-color: white;
   margin-top: 30px;
@@ -20,17 +24,12 @@ body {
   border-radius: 0.25rem;
   box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
 }
-
-.error-color {
-  color: #ff3860;
-}
-
 .page-header {
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 25px;
 }
-
-.flex {
-  display: flex;
+.list-header {
+  font-weight: bold;
+  margin-bottom: 20px;
 }

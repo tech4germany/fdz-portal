@@ -47,10 +47,8 @@ export default class App extends React.Component {
   }
 
   async logout() {
-    //await getData(`/auth/logout`, "GET");
     localStorage.removeItem("identity");
     window.location.href = "/";
-    // this.setState({ user: null });
   }
 
   render() {
