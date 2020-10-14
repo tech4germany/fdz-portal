@@ -1,18 +1,9 @@
-.applications-manage-header-name {
+.manage .name {
   width: 200px;
 }
-.applications-manage-header-status {
+.manage .status {
   width: 250px;
 }
-.applications-manage-header-user {
-  width: 200px;
-}
-.applications-manage-name {
-  width: 200px;
-}
-.applications-manage-status {
-  width: 250px;
-}
-.applications-manage-user {
+.manage .user {
   width: 200px;
 }

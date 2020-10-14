@@ -34,10 +34,10 @@ const Manage = () => {
   };
 
   return (
-    <div className="content-box">
-      <div className="application list-header">
-        <div className="applications-manage-header-name">Antragsname</div>
-        <div className="applications-manage-header-user">
+    <div className="content-box manage">
+      <div className="flex list-header">
+        <div className="name">Antragsname</div>
+        <div className="user">
           User{" "}
           {selectedUser && (
             <button className="button is-small is-rounded" onClick={removeUser}>
@@ -48,7 +48,7 @@ const Manage = () => {
             </button>
           )}
         </div>
-        <div className="applications-manage-header-status">
+        <div className="status">
           <div className="field">
             <div className="control">
               Status{" "}
@@ -79,17 +79,17 @@ const Manage = () => {
             : "fa-hourglass-start";
         return (
           <div key={application._id} className="application">
-            <div className="applications-manage-name">
+            <div className="name">
               <Link to={"/manage/" + application._id}>{application.name} </Link>
             </div>
             <div
-              className="applications-manage-user is-clickable"
+              className="user is-clickable"
               onClick={filterUser}
               id={application.users[0]._id}
             >
               {application.users[0].email}
             </div>
-            <div className="applications-manage-status">
+            <div className="status">
               <small>
                 <i className={"fa " + icon}></i> {statusText}
               </small>

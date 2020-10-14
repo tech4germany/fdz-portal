@@ -14,7 +14,6 @@ const Users = () => {
   const fetchData = async () => {
     const data = await getData(`/users`);
     setUsers(data.users);
-    console.log(data);
   };
 
   const resetUser = async (userId) => {
