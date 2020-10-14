@@ -1,5 +1,5 @@
 .timeline-mainstep {
-  width: 450px;
+  width: 600px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -42,6 +42,7 @@
 .danger {
   color: #ff0000;
 }
+/* Timeline item colors */
 .success {
   background-color: #338b1d;
 }
@@ -52,7 +53,6 @@
 .future {
   background-color: #363636;
 }
-/* Timeline item colors */
 .timeline .timeline-item .timeline-marker.item-successful {
   background-color: #338b1d !important;
   border-color: #338b1d !important;
