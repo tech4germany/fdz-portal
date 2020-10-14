@@ -31,8 +31,18 @@ const Login = (props) => {
     setNotification(null);
   };
 
+  const setResearch = () => {
+    document.getElementById("email").value = "forschung@rki.de";
+    document.getElementById("password").value = "abc";
+  };
+
+  const setFDZ = () => {
+    document.getElementById("email").value = "support@fdz.de";
+    document.getElementById("password").value = "abc";
+  };
+
   return (
-    <React.Fragment>
+    <div className="login">
       <div className="loginForm">
         <div className="field">
           <label className="label">Email</label>
@@ -67,12 +77,12 @@ const Login = (props) => {
             Login
           </button>
         </div>
-        <Notification
-          notification={notification}
-          size="medium"
-          close={setNotification}
-        />
       </div>
+      <Notification
+        notification={notification}
+        size="medium"
+        close={closeNotification}
+      />
       <article className="message is-dark test-data-info-box">
         <div className="message-header">
           <p>Zugangsdaten</p>
@@ -84,7 +94,9 @@ const Login = (props) => {
             <br />
             <br />
             <strong>
-              <u>Forscher:in</u>
+              <u className="is-clickable" onClick={setResearch}>
+                Forscher:in
+              </u>
             </strong>
             <br />
             Email: <i>forschung@rki.de</i>
@@ -93,7 +105,9 @@ const Login = (props) => {
             <br />
             <br />
             <strong>
-              <u>FDZ Mitarbeiter:in</u>
+              <u className="is-clickable" onClick={setFDZ}>
+                FDZ Mitarbeiter:in
+              </u>
             </strong>
             <br />
             Email: <i>support@fdz.de</i>
@@ -102,7 +116,7 @@ const Login = (props) => {
           </small>
         </div>
       </article>
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -5,8 +5,10 @@
   margin-top: 30px;
 }
 
-.loginForm .notification {
+.login .notification {
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .test-data-info-box {

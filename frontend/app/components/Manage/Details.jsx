@@ -178,7 +178,7 @@ const Details = () => {
           <Notification
             notification={notification}
             size="large"
-            close={setNotification}
+            close={closeNotification}
           />
         </div>
         <div className="application-history">
