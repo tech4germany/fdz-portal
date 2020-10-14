@@ -36,7 +36,7 @@ const list = async (user) => {
       select: "email",
     })
     .limit(limit)
-    .lean(); // .select({ "name": 1, "_id": 0})
+    .lean();
   return applications;
 };
 
@@ -142,8 +142,6 @@ const updateStatus = async (data, user) => {
     applicationDB.status = newStatus;
     applicationDB.lastStatusUpdate = Date.now();
     await applicationDB.save();
-
-    // Placeholder: notify user
   } catch (error) {
     throw error;
   }
