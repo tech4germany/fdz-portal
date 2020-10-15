@@ -103,28 +103,36 @@ const Login = (props) => {
           <small>
             Mit diesen Daten können Sie sich jeweils als Forscher:in oder als
             FDZ Mitarbeiter:in einloggen:
-            <br />
-            <br />
-            <strong>
-              <u className="is-clickable" onClick={setResearch}>
-                Forscher:in
-              </u>
-            </strong>
-            <br />
-            Email: <i>forschung@rki.de</i>
-            <br />
-            Passwort: <i>abc</i>
-            <br />
-            <br />
-            <strong>
-              <u className="is-clickable" onClick={setFDZ}>
-                FDZ Mitarbeiter:in
-              </u>
-            </strong>
-            <br />
-            Email: <i>support@fdz.de</i>
-            <br />
-            Passwort: <i>abc</i>
+            <div className="flex user-container">
+              <div className="user-box">
+                <strong>
+                  <u className="is-clickable" onClick={setResearch}>
+                    Forscher:in
+                  </u>
+                </strong>
+                <br />
+                Email: <i>forschung@rki.de</i>
+                <br />
+                Passwort: <i>abc</i>
+              </div>
+              <div>
+                <strong>
+                  <u className="is-clickable" onClick={setFDZ}>
+                    FDZ Mitarbeiter:in
+                  </u>
+                </strong>
+                <br />
+                Email: <i>support@fdz.de</i>
+                <br />
+                Passwort: <i>abc</i>
+              </div>
+            </div>
+            <a
+              target="_blank"
+              href="https://github.com/tech4germany/fdz-portal/blob/master/GUIDE.md"
+            >
+              Anleitung für den Prototypen
+            </a>{" "}
           </small>
         </div>
       </article>
