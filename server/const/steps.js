@@ -125,8 +125,8 @@ const STEPS = [
   },
   {
     name: "script_submitted",
-    string: "Sie haben das Skript (:var:) eingereicht",
-    stringFDZ: "User hat das Skript (:var:) eingereicht",
+    string: "Sie haben das Skript :var: eingereicht",
+    stringFDZ: "User hat das Skript :var: eingereicht",
     mainStep: 3,
     newBubble: false,
     showDefault: false,

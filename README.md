@@ -1,6 +1,6 @@
 # FDZ Portal
 
-[Live Demo](https://fdz.tech4germany.org/)
+[Live Demo](https://fdz.tech4germany.org/) (See the [Guide](https://github.com/tech4germany/fdz-portal/blob/master/GUIDE.md) on how to use the prototype)
 
 ## Installation
 

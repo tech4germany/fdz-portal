@@ -77,7 +77,7 @@ const Login = (props) => {
               className="input"
               type="password"
               id="password"
-              placeholder="Passsword"
+              placeholder="Passswort"
             />
             <span className="icon is-small is-left">
               <i className="fas fa-lock"></i>
