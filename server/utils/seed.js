@@ -152,7 +152,7 @@ const seedInit = async () => {
   );
   const application3 = await createApplication(
     "Diabetes Prävalenz",
-    "Erster Antrag",
+    "Studie zur Diabetes Prävalenz in Berlin",
     institution._id,
     [
       {

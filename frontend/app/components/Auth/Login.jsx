@@ -97,12 +97,12 @@ const Login = (props) => {
       />
       <article className="message is-dark test-data-info-box">
         <div className="message-header">
-          <p>Zugangsdaten</p>
+          <p>Zugangsdaten für Demo</p>
         </div>
         <div className="message-body">
           <small>
             Mit diesen Daten können Sie sich jeweils als Forscher:in oder als
-            FDZ Mitarbeiter:in einloggen.
+            FDZ Mitarbeiter:in einloggen:
             <br />
             <br />
             <strong>
