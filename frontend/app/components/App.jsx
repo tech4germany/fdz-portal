@@ -13,7 +13,6 @@ import Details from "./Manage/Details";
 import Time from "./Manage/Time";
 import Users from "./Manage/Users";
 import jwtDecode from "jwt-decode";
-import { getData } from "./utils/api";
 import "./App.css";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";

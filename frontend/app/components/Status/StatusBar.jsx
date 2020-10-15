@@ -25,7 +25,7 @@ const StatusBar = ({ refreshData, application }) => {
         iconClass = "fa-exclamation";
         break;
       case "problem":
-        statusClass = "is-danger";
+        statusClass = "item-fail";
         iconClass = "fa-times";
         break;
       case "future":

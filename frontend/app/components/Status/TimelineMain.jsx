@@ -9,7 +9,12 @@ const TimelineMain = (props) => {
       id={props.id}
     >
       <div className="timeline-head">
-        <div className="timeline-title">{props.title}</div>
+        <div className="timeline-title">
+          {props.status === "success" && (
+            <i className="fa fa-check check-icon"></i>
+          )}{" "}
+          {props.title}
+        </div>
         <div className="icon is-small is-clickable collapse" id={props.id}>
           <i
             className="fas fa-angle-down"
@@ -27,7 +32,7 @@ const TimelineMain = (props) => {
         )}
         {props.link && (
           <Link to={props.link}>
-            <button className="button is-info is-inverted is-small">
+            <button className="button is-info is-inverted is-small bold-button">
               Einreichen
             </button>
           </Link>
