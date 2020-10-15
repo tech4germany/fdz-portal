@@ -92,8 +92,8 @@ const ApplicationUpload = () => {
         {/* Third step */}
         <div className="notification">
           <div className="">
-            Schicken sie uns den unterschriebenen Antrag noch zusätzlich
-            postalisch zu, um die diesen zu verifizieren:
+            Schicken Sie uns den unterschriebenen Antrag zu, um die diesen zu
+            verifizieren:
           </div>
           <div className="address">
             <b>Anschrift:</b>

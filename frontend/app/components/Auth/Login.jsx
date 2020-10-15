@@ -97,29 +97,25 @@ const Login = (props) => {
       />
       <article className="message is-dark test-data-info-box">
         <div className="message-header">
-          <p>Zugangsdaten für Demo</p>
+          <p>Zugangsdaten für die Demo</p>
         </div>
         <div className="message-body">
           <small>
             Mit diesen Daten können Sie sich jeweils als Forscher:in oder als
             FDZ Mitarbeiter:in einloggen:
             <div className="flex user-container">
-              <div className="user-box">
+              <div className="user-box is-clickable" onClick={setResearch}>
                 <strong>
-                  <u className="is-clickable" onClick={setResearch}>
-                    Forscher:in
-                  </u>
+                  <u>Forscher:in</u>
                 </strong>
                 <br />
                 Email: <i>forschung@rki.de</i>
                 <br />
                 Passwort: <i>abc</i>
               </div>
-              <div>
+              <div className="is-clickable" onClick={setFDZ}>
                 <strong>
-                  <u className="is-clickable" onClick={setFDZ}>
-                    FDZ Mitarbeiter:in
-                  </u>
+                  <u>FDZ Mitarbeiter:in</u>
                 </strong>
                 <br />
                 Email: <i>support@fdz.de</i>

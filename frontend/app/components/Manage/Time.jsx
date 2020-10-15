@@ -84,7 +84,7 @@ const Time = () => {
 
         <div className="time-setter">
           <div className="time-setter-name">
-            Sckipt (Komplette Ergebnismenge):
+            Skript (Komplette Ergebnismenge):
           </div>
           <div className="time-setter-input">
             <input
