@@ -49,7 +49,7 @@ const Header = (props) => {
                   >
                     <span>Abmelden</span>
                     <span className="icon is-small">
-                      <i className="fa fa-sign-out-alt"></i>
+                      <i className="fa fa-sign-out-alt signout-button"></i>
                     </span>
                   </button>
                 </div>

@@ -111,7 +111,7 @@ const StatusBar = ({ refreshData, application }) => {
           icon={statusInfo.iconClass}
           date={step.date}
           key={step.name + step.date}
-          name={step.name}
+          name={step.name + step.date}
           link={templateStep.link}
           time={step.time}
         />
