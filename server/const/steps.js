@@ -155,8 +155,8 @@ const STEPS = [
   // },
   {
     name: "script_unexecuted",
-    string: "Wir führen das Skript aus",
-    stringFDZ: "Das Skript muss ausgeführt werden",
+    string: "Wir führen das Skript :var: aus",
+    stringFDZ: "Das Skript :var: muss ausgeführt werden",
     mainStep: 3,
     newBubble: true,
     showDefault: true,

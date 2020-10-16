@@ -195,6 +195,7 @@ const uploadFakeScript = async (params, user) => {
       name: "script_unexecuted",
       mainStep: 3,
       time: params.time,
+      variable: params.fileName,
       user: user.id,
       date: Date.now(),
     });
