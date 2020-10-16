@@ -120,9 +120,17 @@ const updateStatus = async (data, user) => {
     let newStatus = data.status;
 
     const nextStep = STEPS.find((step) => step.name === data.status);
+    let variable = null;
+    if (
+      nextStep.name === "script_failed" ||
+      nextStep.name === "script_needs_update"
+    )
+      variable =
+        applicationDB.history[applicationDB.history.length - 1].variable;
     applicationDB.history.push({
       name: data.status,
       mainStep: nextStep.mainStep,
+      variable,
       message: data.message ? data.message : null,
       date: Date.now(),
     });
@@ -134,6 +142,7 @@ const updateStatus = async (data, user) => {
       newStatus = nextStep.auto_next;
       applicationDB.history.push({
         name: nextAutoStep.name,
+        variable,
         mainStep: nextAutoStep.mainStep,
         date: Date.now(),
       });
