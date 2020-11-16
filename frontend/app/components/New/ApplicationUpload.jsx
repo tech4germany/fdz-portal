@@ -39,7 +39,7 @@ const ApplicationUpload = () => {
             Hier können sie das aktuelle Antragsformular herunterladen:
           </div>
           <div className="button-container">
-            <a target="_blank" href={AntragPDF}>
+            <a download href={AntragPDF}>
               <button className="button">
                 <span className="icon">
                   <i className="fas fa-cloud-download-alt"></i>
