@@ -32,10 +32,6 @@ const app = express();
 
 app.use(express.json());
 app.use(security);
-app.use(
-  "/assets",
-  express.static(path.join(__dirname, "../frontend/landing_page/assets"))
-);
 app.use("/public", express.static(path.join(__dirname, "../frontend/build")));
 
 app.use(routes);
