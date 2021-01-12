@@ -1,0 +1,10 @@
+node_modules
+error.log
+.git
+.github
+.gitignore
+.dockerignore
+.babelrc
+docker-compose.yml
+Dockerfile
+LICENSE
