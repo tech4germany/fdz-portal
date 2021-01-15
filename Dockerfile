@@ -1,7 +1,7 @@
-FROM node:12-alpine
+FROM node:14-alpine
 WORKDIR /home/node
 COPY --chown=node:node package*.json ./
-RUN npm install
+RUN npm ci
 RUN npm run build
 RUN npm run seed
 COPY --chown=node:node . .
