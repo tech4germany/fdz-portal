@@ -19,7 +19,7 @@
     "bulma-extensions": "^6.2.7",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
     "mongoose": "^5.11.11",
     "react": "^16.14.0",
